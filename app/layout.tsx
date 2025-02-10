@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Header from "@/components/header";
+import Header from "@/components/shared/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +15,51 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "cuttypie.dev",
+  title: "Matheo (cuttypie)",
   description: "cuttypie's blog.",
+  metadataBase: new URL("https://cuttypiedev.vercel.app/"),
+  keywords: [
+    "developer",
+    "frontend",
+    "backend",
+    "fullstack",
+    "blog",
+    "react",
+    "next.js",
+    "typescript",
+    "javascript",
+    "cuttypie",
+  ],
+  authors: [
+    {
+      name: "cuttypie",
+      url: "https://cuttypiedev.vercel.app/",
+    },
+  ],
+  creator: "cuttypie",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://cuttypiedev.vercel.app/",
+    title: "Matheo (cuttypie)",
+    description: "cuttypie's blog.",
+    siteName: "Matheo (cuttypie)",
+    images: [
+      {
+        url: "https://cuttypiedev.vercel.app/avatar.webp",
+        width: 1200,
+        height: 630,
+        alt: "Matheo (cuttypie)",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Matheo (cuttypie)",
+    description: "cuttypie's blog.",
+    images: ["https://cuttypiedev.vercel.app/avatar.webp"],
+    creator: "@DorianTho5",
+  },
 };
 
 export default function RootLayout({

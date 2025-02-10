@@ -1,5 +1,5 @@
-import Hero from "@/components/hero";
-import ProjectGrid from "@/components/project/project-grid";
+import Hero from "@/components/home/hero";
+import ProjectGrid from "@/components/home/project-grid";
 
 export default function Home() {
   return (

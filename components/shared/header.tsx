@@ -16,7 +16,10 @@ const Header = () => {
             height={36}
             className="rounded-md"
           />
-          <span className="font-bold">cuttypie.dev</span>
+          <h1 className="font-bold">
+            matheo
+            <span className="text-yellow-200 text-xl font-extrabold">.</span>
+          </h1>
         </Link>
         <div className="flex gap-6 text-sm font-semibold">
           <Link href="/about" className="hover:text-white/70 transition">
