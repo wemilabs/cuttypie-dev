@@ -3,6 +3,7 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  --font-geist-mono: 'Geist Mono', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,4 +48,52 @@ html {
 img {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Code block styles */
+pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background: #0d1117 !important;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+pre > code {
+  display: grid;
+  font-family: var(--font-geist-mono);
+  font-size: 0.9em;
+  line-height: 1.5;
+  background: transparent !important;
+}
+
+code {
+  font-family: var(--font-geist-mono);
+}
+
+/* Inline code */
+:not(pre) > code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Highlighted lines */
+.highlighted {
+  background: rgba(255, 255, 255, 0.1);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+/* Code block line numbers */
+.line-number::before {
+  content: attr(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: #484f58;
 }

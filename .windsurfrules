@@ -1,0 +1,7 @@
+1. Always refer and use latest stable Next.js version
+2. Split code into reusable components and pages
+3. Use TypeScript for static typing all across the board
+4. Prioritize writing clean and maintainable code
+5. Use modern CSS frameworks like Tailwind CSS
+6. Prioritize React Server Components and Server Actions for fast and responsive user experiences
+7. Always explain your approach when writing new code

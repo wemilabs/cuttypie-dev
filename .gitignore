@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# content
+/content/**/*.draft.md
+/content/**/_drafts/
+/content/**/temp/
+/content/**/.cache/
