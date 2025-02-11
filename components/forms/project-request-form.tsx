@@ -7,7 +7,7 @@ export default function ProjectRequestForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    pitch: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +33,7 @@ export default function ProjectRequestForm() {
     } else {
       setSuccess(true);
       // Reset form
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", pitch: "" });
     }
 
     setIsSubmitting(false);
@@ -87,10 +87,10 @@ export default function ProjectRequestForm() {
       </div>
       <div>
         <textarea
-          name="message"
-          value={formData.message}
+          name="pitch"
+          value={formData.pitch}
           onChange={handleChange}
-          placeholder="Message (minimum 50 characters)"
+          placeholder="Pitch your project idea (minimum 50 characters)"
           required
           disabled={isSubmitting}
           rows={4}

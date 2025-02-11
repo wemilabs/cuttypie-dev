@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import AboutSection from "@/components/about/section";
 import SkillCard from "@/components/about/skill-card";
@@ -15,7 +15,9 @@ export default function About() {
     <div className="max-w-4xl mx-auto px-6 pt-[74px] pb-20 mt-16">
       {/* Hero Section */}
       <section className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Hey, I'm Matheo</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          Hey, I'm <span className="text-yellow-200">Matheo</span>
+        </h1>
         <p className="text-lg text-white/70 leading-relaxed">
           I'm a full-stack developer passionate about building beautiful and
           functional web applications. My expertise lies in TypeScript, React,
@@ -44,8 +46,12 @@ export default function About() {
             description="Using React Native and Expo, I build cross-platform mobile applications that provide native experiences while maintaining code reusability."
           />
           <SkillCard
+            title="Research and Writing"
+            description="Apart from coding, I devote significant time to comprehensive research and articulate writing. Thus, I stay at the forefront of technological advancements and convey complex concepts effectively."
+          />
+          <SkillCard
             title="Open Source Contribution"
-            description="When not working on my projects, I actively dig into open-source projects and contribute to their development. This allows me to learn from the best practices and connect with a vibrant developer community around the world."
+            description="Often digging into open-source projects and contribute to their development. This allows me to learn from the best practices and connect with a vibrant developer community around the world."
           />
         </div>
       </AboutSection>

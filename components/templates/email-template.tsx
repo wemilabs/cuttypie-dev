@@ -1,12 +1,10 @@
-import * as React from "react";
-
 interface EmailTemplateProps {
   name: string;
   email: string;
-  message: string;
+  pitch: string;
 }
 
-export function EmailTemplate({ name, email, message }: EmailTemplateProps) {
+export function EmailTemplate({ name, email, pitch }: EmailTemplateProps) {
   return (
     <div>
       <h1>New Project Request Received</h1>
@@ -23,8 +21,8 @@ export function EmailTemplate({ name, email, message }: EmailTemplateProps) {
       </div>
 
       <div style={{ margin: "24px 0" }}>
-        <h2>Message:</h2>
-        <p style={{ whiteSpace: "pre-wrap" }}>{message}</p>
+        <h2>Content:</h2>
+        <p style={{ whiteSpace: "pre-wrap" }}>{pitch}</p>
       </div>
 
       <hr

@@ -11,7 +11,7 @@ const resend = new Resend(process.env.RESEND_API_KEY!);
 const projectRequestSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address."),
-  message: z.string().min(50, "Message must be at least 50 characters"),
+  pitch: z.string().min(50, "Pitch must be at least 50 characters"),
 });
 
 export async function sendProjectRequest(formData: FormData) {
@@ -20,7 +20,7 @@ export async function sendProjectRequest(formData: FormData) {
     const validatedData = projectRequestSchema.parse({
       name: formData.get("name"),
       email: formData.get("email"),
-      message: formData.get("message"),
+      pitch: formData.get("pitch"),
     });
 
     // Send email
