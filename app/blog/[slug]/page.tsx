@@ -26,29 +26,29 @@ export async function generateMetadata({
       },
     ],
     creator: "cuttypie",
-    // openGraph: {
-    //   type: "website",
-    //   locale: "en_US",
-    //   url: "https://cuttypiedev.vercel.app/",
-    //   title: "Matheo (cuttypie)",
-    //   description: "cuttypie's blog.",
-    //   siteName: "Matheo (cuttypie)",
-    //   images: [
-    //     {
-    //       url: "https://cuttypiedev.vercel.app/avatar.webp",
-    //       width: 1200,
-    //       height: 630,
-    //       alt: "Matheo (cuttypie)",
-    //     },
-    //   ],
-    // },
-    // twitter: {
-    //   card: "summary_large_image",
-    //   title: "Matheo (cuttypie)",
-    //   description: "cuttypie's blog.",
-    //   images: ["https://cuttypiedev.vercel.app/avatar.webp"],
-    //   creator: "@DorianTho5",
-    // },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: `https://cuttypiedev.vercel.app/blog/${slug}`,
+      title: `${post.title} - Blog | Matheo (cuttypie)`,
+      description: post.description,
+      siteName: "Matheo (cuttypie)",
+      images: [
+        {
+          url: "https://cuttypiedev.vercel.app/avatar.webp",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} - Blog | Matheo (cuttypie)`,
+      description: post.description,
+      images: ["https://cuttypiedev.vercel.app/avatar.webp"],
+      creator: "@DorianTho5",
+    },
   };
 }
 
