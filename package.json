@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-post": "tsx scripts/create-post.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.6",
@@ -34,6 +35,7 @@
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.1",
     "tailwindcss": "^4.0.5",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }

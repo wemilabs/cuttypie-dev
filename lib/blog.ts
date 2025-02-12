@@ -40,6 +40,7 @@ const SUPPORTED_LANGUAGES: BuiltinLanguage[] = [
   "yaml",
   "toml",
   "sql",
+  "console",
 ];
 
 // Theme configuration
@@ -77,7 +78,7 @@ const getHighlighterInstance = async () => {
 };
 
 /**
- * Get all blog posts metadata
+ * Get all blog posts
  */
 export async function getAllPosts(): Promise<BlogPost[]> {
   // Get all .md files from the posts directory
@@ -86,19 +87,10 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     fileNames.map((fileName) => getPostBySlug(fileName.replace(/\.md$/, "")))
   );
 
-  // Sort posts by date in descending order (newest first)
-  // For posts on the same day, use the file's last modified time as a tiebreaker
+  // Sort posts by date and time in descending order (newest first)
   return allPostsData.sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
-    
-    if (dateA.toDateString() === dateB.toDateString()) {
-      // If same day, use file's last modified time
-      const statsA = fs.statSync(path.join(postsDirectory, `${a.slug}.md`));
-      const statsB = fs.statSync(path.join(postsDirectory, `${b.slug}.md`));
-      return statsB.mtimeMs - statsA.mtimeMs;
-    }
-    
     return dateB.getTime() - dateA.getTime();
   });
 }
@@ -143,13 +135,19 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
 
   const contentHtml = processedContent.toString();
 
+  // Handle the date - it's already an ISO string in the frontmatter
+  const date =
+    typeof data.date === "string"
+      ? data.date
+      : new Date(data.date).toISOString();
+
   // Combine the data with the slug
   return {
     slug,
     content: contentHtml,
     title: data.title,
     description: data.description,
-    date: data.date.toISOString(),
+    date,
     tags: data.tags,
   };
 }
