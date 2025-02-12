@@ -2,12 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
-import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
-import { getHighlighter } from "shikiji";
+import { unified } from "unified";
 import type { BuiltinLanguage, BuiltinTheme } from "shikiji";
 
 // Types for blog post metadata
@@ -45,37 +44,6 @@ const SUPPORTED_LANGUAGES: BuiltinLanguage[] = [
 
 // Theme configuration
 const THEME: BuiltinTheme = "github-dark";
-
-// Singleton highlighter instance and initialization promise
-let highlighterInstance: Awaited<ReturnType<typeof getHighlighter>> | undefined;
-let highlighterPromise:
-  | Promise<Awaited<ReturnType<typeof getHighlighter>>>
-  | undefined;
-
-/**
- * Get the singleton highlighter instance
- */
-const getHighlighterInstance = async () => {
-  if (highlighterInstance) return highlighterInstance;
-
-  // If we're already initializing, return the existing promise
-  if (highlighterPromise) return highlighterPromise;
-
-  // Create new initialization promise
-  highlighterPromise = getHighlighter({
-    themes: [THEME],
-    langs: SUPPORTED_LANGUAGES,
-  });
-
-  try {
-    // Wait for initialization and store the instance
-    highlighterInstance = await highlighterPromise;
-    return highlighterInstance;
-  } finally {
-    // Clear the promise after initialization (success or failure)
-    highlighterPromise = undefined;
-  }
-};
 
 /**
  * Get all blog posts
