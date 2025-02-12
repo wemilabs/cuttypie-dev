@@ -45,8 +45,8 @@ export default function About() {
             description="Using React Native and Expo, I build cross-platform mobile applications that provide native experiences while maintaining code reusability."
           />
           <SkillCard
-            title="Research and Writing"
-            description="Apart from coding, I devote significant time to comprehensive research and articulate writing. Thus, I stay at the forefront of technological advancements and convey complex concepts effectively."
+            title="Research, Lecture Reviews, and Writing"
+            description="Apart from coding, I devote significant time to comprehensive research, reviewing papers and articulate writing. Thus, I stay at the forefront of technological advancements and convey complex concepts effectively."
           />
           <SkillCard
             title="Open Source Contribution"
