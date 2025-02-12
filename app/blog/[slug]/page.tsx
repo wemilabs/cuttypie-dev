@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { CodeBlock } from "@/components/code-block";
 import { getPostBySlug } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import Error from "./error";
@@ -86,8 +87,9 @@ export default async function BlogPost({
           prose-li:my-2
           prose-blockquote:border-l-4 prose-blockquote:border-yellow-500 prose-blockquote:pl-4 prose-blockquote:italic
           prose-img:rounded-lg prose-img:my-8"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      >
+        <CodeBlock html={post.content} />
+      </div>
     </article>
   );
 }
