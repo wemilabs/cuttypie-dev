@@ -12,7 +12,7 @@ tags:
   - prediction
 status: published
 publishDate: '2025-02-13T07:28:23.240Z'
-lastEdited: '2025-02-13T07:56:00.703Z'
+lastEdited: '2025-02-13T09:47:22.798Z'
 date: '2025-02-13T07:28:23.240Z'
 ---
 
@@ -101,15 +101,15 @@ As manufacturers continue to adopt and refine this technology, digital twins wil
 ---
 
 ## References
-- <a href="https://en.wikipedia.org/wiki/Digital_twin" target="_blank">Digital twin</a>
-- <a href="https://www.ptc.com/en/blogs/corporate/digital-twin-for-predictive-maintenance" target="_blank">How Digital Twin Enables Predictive Maintenance</a>
-- <a href="https://blog.gramener.com/digital-twin-predictive-maintenance/" target="_blank">How To Implement Digital Twin In Manufacturing for Predictive Maintenance</a>
-- <a href="https://www.anylogic.com/resources/case-studies/digital-twin-of-a-manufacturing-line-helping-maintenance-decision-making/" target="_blank">Digital Twin of a Manufacturing Line: Helping Maintenance Decision-Making</a>
-- <a href="https://www.triaxtec.com/blog/top-6-applications-of-digital-twins-in-manufacturing/" target="_blank">Top 6 Applications of Digital Twins in the Manufacturing Industry</a>
-- <a href="https://nc-vision.com/the-benefits-of-digital-twins-for-predictive-maintenance-in-manufacturing/" target="_blank">The Benefits of Digital Twins for Predictive Maintenance in Manufacturing</a>
-- <a href="https://arxiv.org/abs/2406.13117" target="_blank">State-of-the-Art Review: The Use of Digital Twins to Support Artificial Intelligence-Guided Predictive Maintenance</a>
-- <a href="https://www.reuters.com/legal/legalindustry/avoiding-growing-pains-development-use-digital-twins-2024-08-20/" target="_blank">Avoiding growing pains in the development and use of digital twins</a>
-- <a href="https://en.wikipedia.org/wiki/Fourth_Industrial_Revolution" target="_blank">Fourth Industrial Revolution</a>
+- <a href="https://en.wikipedia.org/wiki/Digital_twin" target="_blank">Digital twin</a> - Wikipedia
+- <a href="https://www.ptc.com/en/blogs/corporate/digital-twin-for-predictive-maintenance" target="_blank">How Digital Twin Enables Predictive Maintenance</a> - PTC
+- <a href="https://blog.gramener.com/digital-twin-predictive-maintenance/" target="_blank">How To Implement Digital Twin In Manufacturing for Predictive Maintenance</a> - Gramener
+- <a href="https://www.anylogic.com/resources/case-studies/digital-twin-of-a-manufacturing-line-helping-maintenance-decision-making/" target="_blank">Digital Twin of a Manufacturing Line: Helping Maintenance Decision-Making</a> - AnyLogic
+- <a href="https://www.triaxtec.com/blog/top-6-applications-of-digital-twins-in-manufacturing/" target="_blank">Top 6 Applications of Digital Twins in the Manufacturing Industry</a> - TriaxTec
+- <a href="https://nc-vision.com/the-benefits-of-digital-twins-for-predictive-maintenance-in-manufacturing/" target="_blank">The Benefits of Digital Twins for Predictive Maintenance in Manufacturing</a> - NC-Vision
+- <a href="https://arxiv.org/abs/2406.13117" target="_blank">State-of-the-Art Review: The Use of Digital Twins to Support Artificial Intelligence-Guided Predictive Maintenance</a> - arXiv
+- <a href="https://www.reuters.com/legal/legalindustry/avoiding-growing-pains-development-use-digital-twins-2024-08-20/" target="_blank">Avoiding growing pains in the development and use of digital twins</a> - Reuters
+- <a href="https://en.wikipedia.org/wiki/Fourth_Industrial_Revolution" target="_blank">Fourth Industrial Revolution</a> - Wikipedia
 
 ---
 
