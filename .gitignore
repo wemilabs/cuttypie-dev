@@ -45,3 +45,4 @@ next-env.d.ts
 /content/**/_drafts/
 /content/**/temp/
 /content/**/.cache/
+/content/.trash/

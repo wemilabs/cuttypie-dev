@@ -7,7 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "create-post": "tsx scripts/create-post.ts"
+    "create-post": "tsx scripts/create-post.ts",
+    "delete-post": "tsx scripts/delete-post.ts",
+    "restore-post": "tsx scripts/restore-post.ts",
+    "empty-trash": "tsx scripts/empty-trash.ts",
+    "draft-post": "tsx scripts/draft-post.ts",
+    "delete-draft": "tsx scripts/delete-draft.ts",
+    "update-draft": "tsx scripts/update-draft.ts",
+    "update-post": "tsx scripts/update-post.ts",
+    "list-drafts": "tsx scripts/list-drafts.ts",
+    "publish-draft": "tsx scripts/publish-draft.ts",
+    "unpublish-post": "tsx scripts/unpublish-post.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.6",
@@ -29,11 +39,13 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^22.13.1",
+    "@types/prompts": "^2.4.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.1",
+    "prompts": "^2.4.2",
     "tailwindcss": "^4.0.5",
     "tsx": "^4.19.2",
     "typescript": "^5"
