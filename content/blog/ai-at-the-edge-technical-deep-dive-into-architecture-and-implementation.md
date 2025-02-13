@@ -10,7 +10,7 @@ tags:
   - architecture
 status: published
 publishDate: '2025-02-13T06:56:26.357Z'
-lastEdited: '2025-02-13T07:16:25.598Z'
+lastEdited: '2025-02-13T10:56:19.959Z'
 date: '2025-02-13T06:56:26.357Z'
 ---
 
