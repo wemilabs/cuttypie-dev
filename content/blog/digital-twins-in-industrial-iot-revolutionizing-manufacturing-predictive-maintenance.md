@@ -12,7 +12,7 @@ tags:
   - prediction
 status: published
 publishDate: '2025-02-13T07:28:23.240Z'
-lastEdited: '2025-02-13T09:47:22.798Z'
+lastEdited: '2025-02-13T09:53:14.312Z'
 date: '2025-02-13T07:28:23.240Z'
 ---
 
@@ -110,7 +110,3 @@ As manufacturers continue to adopt and refine this technology, digital twins wil
 - <a href="https://arxiv.org/abs/2406.13117" target="_blank">State-of-the-Art Review: The Use of Digital Twins to Support Artificial Intelligence-Guided Predictive Maintenance</a> - arXiv
 - <a href="https://www.reuters.com/legal/legalindustry/avoiding-growing-pains-development-use-digital-twins-2024-08-20/" target="_blank">Avoiding growing pains in the development and use of digital twins</a> - Reuters
 - <a href="https://en.wikipedia.org/wiki/Fourth_Industrial_Revolution" target="_blank">Fourth Industrial Revolution</a> - Wikipedia
-
----
-
-_For further insights on digital twins and their applications, explore sources from PTC, Gramener, AnyLogic, NC-Vision, and academic research available on platforms like arXiv._
