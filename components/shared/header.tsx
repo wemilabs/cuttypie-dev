@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import XformerlyTwitter from "@/components/social-links/x";
+import XformerlyTwitter from "@/components/icons/x";
 import Avatar from "@/public/avatar.webp";
 
 const Header = () => {

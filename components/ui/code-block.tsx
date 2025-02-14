@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { CopyCodeButton } from "./copy-code-button";
+import { CopyCodeButton } from "@/components/ui/copy-code-button";
 
 interface CodeBlockProps {
   html: string;

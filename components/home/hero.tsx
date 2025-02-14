@@ -1,4 +1,4 @@
-import Github from "../social-links/github";
+import Github from "@/components/icons/github";
 
 const Hero = () => {
   return (

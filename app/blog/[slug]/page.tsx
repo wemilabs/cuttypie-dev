@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { CodeBlock } from "@/components/code-block";
+import { CodeBlock } from "@/components/ui/code-block";
 import { getPostBySlug } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import Error from "./error";
