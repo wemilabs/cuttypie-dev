@@ -4,7 +4,7 @@ import { existsSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { spawn } from "child_process";
-import { generateSlug } from "../lib/utils";
+import { generateSafeSlug } from "../lib/utils";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -171,7 +171,7 @@ async function main() {
     let newSlug: string | undefined;
     if (updates.title && updates.title !== existingData.title) {
       metadata.title = updates.title;
-      newSlug = generateSlug(updates.title);
+      newSlug = generateSafeSlug(updates.title);
       const newPath = path.join(postsDirectory, `${newSlug}.md`);
 
       // Check if new slug would conflict with existing file

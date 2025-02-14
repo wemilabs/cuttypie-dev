@@ -1,7 +1,7 @@
-import prompts from "prompts";
-import { listDrafts } from "../lib/utils";
 import fs from "fs/promises";
 import path from "path";
+import prompts from "prompts";
+import { listDrafts } from "../lib/utils";
 
 const draftsDirectory = path.join(process.cwd(), "content/_drafts");
 
@@ -26,7 +26,9 @@ async function main() {
         name: "slug",
         message: "Select a draft to delete:",
         choices: drafts.map((draft) => ({
-          title: `${draft.title} (last edited ${draft.lastEdited.toLocaleString()})`,
+          title: `${
+            draft.title
+          } (last edited ${draft.lastEdited.toLocaleString()})`,
           value: draft.slug,
           description: draft.description,
         })),
