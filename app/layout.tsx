@@ -16,14 +16,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Matheo (cuttypie)",
-  description: "cuttypie's blog.",
+  description: "matheo's website.",
   metadataBase: new URL("https://cuttypiedev.vercel.app/"),
   keywords: [
     "developer",
     "frontend",
     "backend",
     "fullstack",
-    "blog",
     "react",
     "next.js",
     "typescript",
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://cuttypiedev.vercel.app/",
     title: "Matheo (cuttypie)",
-    description: "cuttypie's blog.",
+    description: "matheo's website.",
     siteName: "Matheo (cuttypie)",
     images: [
       {
@@ -56,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Matheo (cuttypie)",
-    description: "cuttypie's blog.",
+    description: "matheo's website.",
     images: ["https://cuttypiedev.vercel.app/avatar.webp"],
     creator: "@DorianTho5",
   },
