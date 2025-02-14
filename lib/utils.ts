@@ -47,23 +47,22 @@ function generateTrashFilename(originalSlug: string): string {
 
 /**
  * Creates a new blog post with automatic timestamp
- * @param slug The URL-friendly name of the post
  * @param metadata Post metadata (title, description, tags)
  * @param content Initial content of the post
- * @returns Promise that resolves when the post is created
+ * @returns The generated slug for the post
  */
 export async function createNewPost(
-  slug: string,
   metadata: PostMetadata,
   content: string = ""
-): Promise<void> {
-  // Ensure slug is URL-friendly
-  const safeSlug = slug.toLowerCase().replace(/[^a-z0-9-]/g, "-");
-  const filePath = path.join(postsDirectory, `${safeSlug}.md`);
+): Promise<string> {
+  // Generate slug from title
+  const slug = generateSafeSlug(metadata.title);
+
+  const filePath = path.join(postsDirectory, `${slug}.md`);
 
   // Check if file already exists
   if (existsSync(filePath)) {
-    throw new Error(`A post with slug "${safeSlug}" already exists`);
+    throw new Error(`A post with slug "${slug}" already exists`);
   }
 
   // Create frontmatter with automatic timestamp
@@ -82,6 +81,8 @@ export async function createNewPost(
 
   // Write the file asynchronously
   await fs.writeFile(filePath, fileContent, "utf8");
+
+  return slug;
 }
 
 /**
@@ -269,10 +270,7 @@ export async function createDraft(
   content: string = ""
 ): Promise<string> {
   // Generate slug from title
-  const slug = title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  const slug = generateSafeSlug(title);
 
   // Ensure drafts directory exists
   await ensureDraftsDirectory();
@@ -349,7 +347,7 @@ export async function listDrafts(): Promise<
  * @param title The title to convert to slug
  * @returns URL-friendly slug
  */
-export function generateSlug(title: string): string {
+export function generateSafeSlug(title: string): string {
   return title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
@@ -377,7 +375,8 @@ export async function updateDraft(
 
   // Read existing draft
   const fileContent = await fs.readFile(filePath, "utf8");
-  const { data: existingData, content: existingBodyContent } = matter(fileContent);
+  const { data: existingData, content: existingBodyContent } =
+    matter(fileContent);
 
   // Merge metadata
   const newMetadata: PostMetadata = {
@@ -392,7 +391,7 @@ export async function updateDraft(
   // Generate new slug if title changed
   let newSlug: string | undefined;
   if (metadata?.title && metadata.title !== existingData.title) {
-    newSlug = generateSlug(metadata.title);
+    newSlug = generateSafeSlug(metadata.title);
     const newPath = path.join(draftsDirectory, `${newSlug}.draft.md`);
 
     // Check if new slug would conflict with existing file

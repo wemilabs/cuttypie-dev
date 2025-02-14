@@ -11,38 +11,20 @@ async function main() {
   try {
     // Get command line arguments
     const [, , ...args] = process.argv;
-    let slug = args[0];
     let title = args[1];
     let description = args[2];
     let tags = args.slice(3);
 
     // If any required arguments are missing, prompt for them
-    if (!slug) {
-      const response = await prompts({
-        type: "text",
-        name: "slug",
-        message: "Enter the post slug (e.g., my-first-post):",
-        validate: (value: string) =>
-          /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)
-            ? true
-            : "Slug must be lowercase with hyphens",
-      });
-      
-      if (!response.slug) {
-        throw new Error("ABORTED");
-      }
-      slug = response.slug;
-    }
-
     if (!title) {
       const response = await prompts({
         type: "text",
         name: "title",
         message: "Enter the post title:",
-        validate: (value: string) => 
+        validate: (value: string) =>
           value.length > 0 ? true : "Title is required",
       });
-      
+
       if (!response.title) {
         throw new Error("ABORTED");
       }
@@ -57,7 +39,7 @@ async function main() {
         validate: (value: string) =>
           value.length > 0 ? true : "Description is required",
       });
-      
+
       if (!response.description) {
         throw new Error("ABORTED");
       }
@@ -74,7 +56,7 @@ async function main() {
         validate: (value: string) =>
           value.length > 0 ? true : "At least one tag is required",
       });
-      
+
       if (!response.tags) {
         throw new Error("ABORTED");
       }
@@ -88,7 +70,10 @@ async function main() {
       tags: tags.map((tag: string) => tag.trim()),
     };
 
-    await createNewPost(slug, postData, "Start writing your post here...\n");
+    const slug = await createNewPost(
+      postData,
+      "Start writing your post here...\n"
+    );
     console.log("✅ Created new post:", slug);
   } catch (error: unknown) {
     if (error instanceof Error) {
