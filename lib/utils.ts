@@ -48,12 +48,12 @@ function generateTrashFilename(originalSlug: string): string {
 /**
  * Creates a new blog post with automatic timestamp
  * @param metadata Post metadata (title, description, tags)
- * @param content Initial content of the post
+ * @param boilerplateContent Initial content of the post
  * @returns The generated slug for the post
  */
 export async function createNewPost(
   metadata: PostMetadata,
-  content: string = ""
+  boilerplateContent: string = ""
 ): Promise<string> {
   // Generate slug from title
   const slug = generateSafeSlug(metadata.title);
@@ -72,7 +72,7 @@ export async function createNewPost(
   };
 
   // Combine frontmatter and content
-  const fileContent = matter.stringify(content, frontmatter);
+  const fileContent = matter.stringify(boilerplateContent, frontmatter);
 
   // Create the posts directory if it doesn't exist
   if (!existsSync(postsDirectory)) {
@@ -89,13 +89,13 @@ export async function createNewPost(
  * Updates an existing blog post while preserving its creation date
  * @param slug The URL-friendly name of the post
  * @param metadata Post metadata (title, description, tags)
- * @param content New content of the post
+ * @param updatedContent Updated content of the post
  * @returns Promise that resolves when the post is updated
  */
 export async function updatePost(
   slug: string,
   metadata: PostMetadata,
-  content: string = ""
+  updatedContent: string = ""
 ): Promise<void> {
   const filePath = path.join(postsDirectory, `${slug}.md`);
 
@@ -115,7 +115,7 @@ export async function updatePost(
   };
 
   // Combine frontmatter and new content
-  const fileContent = matter.stringify(content, frontmatter);
+  const fileContent = matter.stringify(updatedContent, frontmatter);
 
   // Write the updated file
   await fs.writeFile(filePath, fileContent, "utf8");

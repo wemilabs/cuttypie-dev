@@ -70,10 +70,15 @@ async function main() {
       tags: tags.map((tag: string) => tag.trim()),
     };
 
-    const slug = await createNewPost(
-      postData,
-      "Start writing your post here...\n"
-    );
+    const boilerplateContent = `![Alt text](Image URL)
+
+  <div class="flex justify-center mb-20">
+    <span class="text-sm text-center text-white/70"><em>Alt text</em></span>
+  </div>
+
+  Start writing your post here...`;
+
+    const slug = await createNewPost(postData, boilerplateContent);
     console.log("✅ Created new post:", slug);
   } catch (error: unknown) {
     if (error instanceof Error) {
