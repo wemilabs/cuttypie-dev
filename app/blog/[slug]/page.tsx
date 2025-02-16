@@ -110,7 +110,7 @@ export default async function BlogPost({
           prose-headings:font-semibold
           prose-h1:text-3xl prose-h1:mt-8 prose-h1:mb-4
           prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-3
-          prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-0
+          prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
           prose-p:text-base prose-p:leading-7 prose-p:my-2
           prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline
           prose-strong:text-yellow-500 prose-strong:font-semibold

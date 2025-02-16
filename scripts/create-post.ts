@@ -84,7 +84,7 @@ async function main() {
       postOfTheDay,
     };
 
-    const boilerplateContent = `![Alt text](Image URL)
+    const boilerplateContent = `<p align="center"><img src="Image URL" alt="Alt text" class="rounded-md" /></p>
 
   <div class="flex justify-center mb-20">
     <span class="text-sm text-center text-white/70"><em>Alt text</em></span>
