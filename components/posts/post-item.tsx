@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import { Star } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 
 interface PostItemProps {
@@ -9,14 +9,20 @@ interface PostItemProps {
     description: string;
     date: string;
     tags: string[];
+    postOfTheDay?: boolean;
   };
 }
 
 const PostItem = ({ post }: PostItemProps) => {
-  const { slug, title, description, date, tags } = post;
+  const { slug, title, description, date, tags, postOfTheDay } = post;
 
   return (
     <article className="group relative bg-white/5 rounded-lg p-6 hover:bg-white/10 transition">
+      {postOfTheDay && (
+        <div className="absolute -top-2 -right-2 bg-yellow-500 text-black rounded-full p-2 shadow-lg">
+          <Star className="size-4" />
+        </div>
+      )}
       <div className="flex flex-col space-y-2">
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <time dateTime={date} className="text-sm text-white/60 shrink-0">
@@ -34,7 +40,12 @@ const PostItem = ({ post }: PostItemProps) => {
           </div>
         </div>
         <h2 className="text-2xl font-bold group-hover:text-yellow-200 transition">
-          <Link href={`/blog/${slug}`}>{title}</Link>
+          <Link href={`/blog/${slug}`}>
+            {title}
+            {postOfTheDay && (
+              <span className="ml-2 text-sm text-yellow-500">(potd)</span>
+            )}
+          </Link>
         </h2>
         <p className="text-white/70">{description}</p>
         <Link

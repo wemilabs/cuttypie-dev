@@ -16,6 +16,7 @@ export interface BlogPost {
   description: string;
   date: string;
   tags: string[];
+  postOfTheDay?: boolean;
   content: string;
 }
 
@@ -24,6 +25,8 @@ const postsDirectory = path.join(process.cwd(), "content/blog");
 
 // Common languages we want to support
 const SUPPORTED_LANGUAGES: BuiltinLanguage[] = [
+  "c",
+  "cpp",
   "typescript",
   "javascript",
   "json",
@@ -101,7 +104,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 export async function getPostBySlug(slug: string): Promise<BlogPost> {
   const realSlug = slug.replace(/\.md$/, "");
   const fullPath = path.join(postsDirectory, `${realSlug}.md`);
-  
+
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
@@ -147,6 +150,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
       date,
       content: contentHtml,
       tags: data.tags || [],
+      postOfTheDay: data.postOfTheDay || false,
     };
   } catch (error) {
     console.error(`Error reading post ${slug}:`, error);

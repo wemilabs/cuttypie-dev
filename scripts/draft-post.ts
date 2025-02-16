@@ -14,7 +14,7 @@ async function main() {
         type: "text",
         name: "title",
         message: "Enter the draft title:",
-        validate: (value) => value.length > 0 ? true : "Title is required",
+        validate: (value) => (value.length > 0 ? true : "Title is required"),
       });
 
       if (!response.title) {
@@ -38,12 +38,19 @@ async function main() {
         initial: "draft",
         separator: ",",
       },
+      {
+        type: "confirm",
+        name: "postOfTheDay",
+        message: "Is this a Post of the Day?",
+        initial: false,
+      },
     ]);
 
     // Create the draft
     const slug = await createDraft(postTitle, {
       description: details.description || "",
       tags: details.tags || ["draft"],
+      postOfTheDay: details.postOfTheDay,
     });
 
     console.log("✅ Created new draft:", slug);

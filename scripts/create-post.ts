@@ -5,6 +5,7 @@ interface PostData {
   title: string;
   description: string;
   tags: string[];
+  postOfTheDay?: boolean;
 }
 
 async function main() {
@@ -14,6 +15,7 @@ async function main() {
     let title = args[1];
     let description = args[2];
     let tags = args.slice(3);
+    let postOfTheDay = false;
 
     // If any required arguments are missing, prompt for them
     if (!title) {
@@ -63,11 +65,23 @@ async function main() {
       tags = response.tags;
     }
 
+    if (!postOfTheDay) {
+      const response = await prompts({
+        type: "confirm",
+        name: "postOfTheDay",
+        message: "Is this a Post of the Day?",
+        initial: false,
+      });
+
+      postOfTheDay = response.postOfTheDay;
+    }
+
     // Create the post
     const postData: PostData = {
       title,
       description,
       tags: tags.map((tag: string) => tag.trim()),
+      postOfTheDay,
     };
 
     const boilerplateContent = `![Alt text](Image URL)

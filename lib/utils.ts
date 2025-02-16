@@ -12,6 +12,7 @@ interface PostMetadata {
   description: string;
   tags: string[];
   status?: "draft" | "published";
+  postOfTheDay?: boolean;
   lastEdited?: string;
   publishDate?: string | null;
   date?: string;
