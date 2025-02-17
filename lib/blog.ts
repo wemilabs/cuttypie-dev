@@ -13,6 +13,7 @@ import type { BuiltinLanguage, BuiltinTheme } from "shikiji";
 export interface BlogPost {
   slug: string;
   title: string;
+  coverImage: string;
   description: string;
   date: string;
   tags: string[];
@@ -146,6 +147,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     return {
       slug: realSlug,
       title: data.title,
+      coverImage: data.coverImage,
       description: data.description,
       date,
       content: contentHtml,

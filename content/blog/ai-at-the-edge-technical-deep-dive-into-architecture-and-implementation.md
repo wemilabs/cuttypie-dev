@@ -1,17 +1,18 @@
 ---
-title: 'AI at the Edge: Technical Deep Dive into Architecture and Implementation'
+title: "AI at the Edge: Technical Deep Dive into Architecture and Implementation"
 description: >-
   How smart devices are becoming more autonomous with local processing, reducing
   cloud dependency and enhancing privacy
+coverImage: "https://thumbs.dreamstime.com/b/mastering-cloud-edge-computing-deep-dive-ai-technology-294331475.jpg"
 tags:
   - edge
   - ai
   - computing
   - architecture
 status: published
-publishDate: '2025-02-13T06:56:26.357Z'
-lastEdited: '2025-02-13T10:56:19.959Z'
-date: '2025-02-13T06:56:26.357Z'
+publishDate: "2025-02-13T06:56:26.357Z"
+lastEdited: "2025-02-13T10:56:19.959Z"
+date: "2025-02-13T06:56:26.357Z"
 ---
 
 ![A cloud upon a city with data going up from](https://thumbs.dreamstime.com/b/mastering-cloud-edge-computing-deep-dive-ai-technology-294331475.jpg)

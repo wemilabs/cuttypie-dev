@@ -3,6 +3,7 @@ title: >-
   Enterprise-Level Networking: Evolving Strategies for the Modern Digital
   Enterprise
 description: Understand modern safe approaches to networking
+coverImage: "https://cdn-static.infotech.com/solution_set_hero_images/uploads/39071/9d15eced70165086d7fea7595d2302d6_big.jpg?1655843506"
 tags:
   - networking
   - strategies

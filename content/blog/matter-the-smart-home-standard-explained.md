@@ -1,15 +1,16 @@
 ---
-title: 'Matter, the smart home standard explained'
+title: "Matter, the smart home standard explained"
 description: Discovering the consensus technology powering modern homes
+coverImage: "https://cdn.pocket-lint.com/r/s/970x/assets/images/156992-smart-home-news-feature-what-is-matter-and-why-is-it-important-for-your-smart-home-image1-cijzjevbx2.jpg?v1"
 tags:
   - iot
   - matter
   - smart-home
   - interoperability
 status: published
-publishDate: '2025-02-13T08:30:39.968Z'
-lastEdited: '2025-02-13T09:36:17.116Z'
-date: '2025-02-13T08:30:39.968Z'
+publishDate: "2025-02-13T08:30:39.968Z"
+lastEdited: "2025-02-13T09:36:17.116Z"
+date: "2025-02-13T08:30:39.968Z"
 ---
 
 ![Smart Home Era](https://cdn.pocket-lint.com/r/s/970x/assets/images/156992-smart-home-news-feature-what-is-matter-and-why-is-it-important-for-your-smart-home-image1-cijzjevbx2.jpg?v1)

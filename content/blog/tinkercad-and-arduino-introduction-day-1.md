@@ -1,6 +1,7 @@
 ---
-title: TinkerCad and Arduino introduction - Day 1
+title: TinkerCad and Arduino Introduction - Day 1
 description: Demystifying the complexity of Arduino and TinkerCad (C++ programming)
+coverImage: "https://th.bing.com/th/id/OIP.z0Y7xAkbBQaezeXA6kQ78AAAAA?rs=1&pid=ImgDetMain"
 tags:
   - iot
   - arduino
@@ -9,8 +10,8 @@ tags:
   - programming
   - c&cpp
 postOfTheDay: true
-date: '2025-02-16T00:54:24.667Z'
-lastEdited: '2025-02-16T03:51:35.728Z'
+date: "2025-02-16T00:54:24.667Z"
+lastEdited: "2025-02-16T03:51:35.728Z"
 ---
 
 <p align="center"><img src="https://th.bing.com/th/id/OIP.z0Y7xAkbBQaezeXA6kQ78AAAAA?rs=1&pid=ImgDetMain" alt="AUTODESK TINKERCAD" class="rounded-md" /></p>

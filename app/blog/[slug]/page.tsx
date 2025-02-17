@@ -35,7 +35,10 @@ export async function generateMetadata({
       siteName: "Matheo (cuttypie)",
       images: [
         {
-          url: "https://cuttypiedev.vercel.app/avatar.webp",
+          url:
+            post.coverImage === "Cover Image URL"
+              ? "https://cuttypiedev.vercel.app/avatar.webp"
+              : post.coverImage,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -46,7 +49,11 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${post.title} - Blog | Matheo (cuttypie)`,
       description: post.description,
-      images: ["https://cuttypiedev.vercel.app/avatar.webp"],
+      images: [
+        post.coverImage === "Cover Image URL"
+          ? "https://cuttypiedev.vercel.app/avatar.webp"
+          : post.coverImage,
+      ],
       creator: "@DorianTho5",
     },
   };
@@ -61,6 +68,8 @@ export default async function BlogPost({
   const post = await getPostBySlug(slug);
 
   !post && <Error />;
+
+  const { date, tags, title, postOfTheDay, description, content } = post;
 
   return (
     <article className="max-w-4xl mx-auto px-6 py-24 space-y-8">
@@ -86,11 +95,11 @@ export default async function BlogPost({
 
       <header className="space-y-4 mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <time dateTime={post.date} className="text-sm text-white/60 shrink-0">
-            {formatDate(post.date)}
+          <time dateTime={date} className="text-sm text-white/60 shrink-0">
+            {formatDate(date)}
           </time>
           <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
+            {tags.map((tag) => (
               <span
                 key={tag}
                 className="text-xs px-2 py-1 bg-white/10 rounded-full whitespace-nowrap"
@@ -101,8 +110,13 @@ export default async function BlogPost({
           </div>
         </div>
 
-        <h1 className="text-3xl font-bold">{post.title}</h1>
-        <p className="text-base text-white/70">{post.description}</p>
+        <h1 className="text-3xl font-bold">
+          {title}
+          {postOfTheDay && (
+            <span className="ml-2 text-sm text-yellow-500">(potd)</span>
+          )}
+        </h1>
+        <p className="text-base text-white/70">{description}</p>
       </header>
 
       <div
@@ -122,7 +136,7 @@ export default async function BlogPost({
           prose-blockquote:border-l-4 prose-blockquote:border-yellow-500 prose-blockquote:pl-4 prose-blockquote:italic
           prose-img:rounded-lg prose-img:mt-12 prose-img:mb-4"
       >
-        <CodeBlock html={post.content} />
+        <CodeBlock html={content} />
       </div>
     </article>
   );

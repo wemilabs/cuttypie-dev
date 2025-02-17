@@ -4,6 +4,7 @@ import { createNewPost } from "../lib/utils";
 interface PostData {
   title: string;
   description: string;
+  coverImage?: string;
   tags: string[];
   postOfTheDay?: boolean;
 }
@@ -14,7 +15,8 @@ async function main() {
     const [, , ...args] = process.argv;
     let title = args[1];
     let description = args[2];
-    let tags = args.slice(3);
+    let coverImage = args[3];
+    let tags = args.slice(4);
     let postOfTheDay = false;
 
     // If any required arguments are missing, prompt for them
@@ -46,6 +48,22 @@ async function main() {
         throw new Error("ABORTED");
       }
       description = response.description;
+    }
+
+    if (!coverImage) {
+      const response = await prompts({
+        type: "text",
+        name: "coverImage",
+        message: "Enter the cover image URL:",
+        initial: "Cover Image URL",
+        validate: (value: string) =>
+          value.length > 0 ? true : "Cover image URL is required",
+      });
+
+      if (!response.coverImage) {
+        throw new Error("ABORTED");
+      }
+      coverImage = response.coverImage;
     }
 
     if (tags.length === 0) {
@@ -80,11 +98,14 @@ async function main() {
     const postData: PostData = {
       title,
       description,
+      coverImage,
       tags: tags.map((tag: string) => tag.trim()),
       postOfTheDay,
     };
 
-    const boilerplateContent = `<p align="center"><img src="Image URL" alt="Alt text" class="rounded-md" /></p>
+    const boilerplateContent = `<p align="center"><img src="${
+      coverImage === "Cover Image URL" ? "" : coverImage
+    }" alt="Alt text" class="rounded-md" /></p>
 
   <div class="flex justify-center mb-20">
     <span class="text-sm text-center text-white/70"><em>Alt text</em></span>

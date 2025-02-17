@@ -3,6 +3,7 @@ title: "IoT Security in the Quantum Era: Preparing for a Post‐Quantum Future"
 description: >-
   How the industry is preparing for post-quantum cryptography and what it means
   for current IoT deployments
+coverImage: "https://www.vttresearch.com/sites/default/files/2022-09/shutterstock_2120412068.jpg"
 tags:
   - iot
   - security

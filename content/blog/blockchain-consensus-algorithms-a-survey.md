@@ -1,6 +1,7 @@
 ---
 title: "Blockchain Consensus Algorithms: A Survey"
 description: A lecture review on Consensus Mechanism Algorithms in Blockchain Types Training
+coverImage: "https://www.slideteam.net/media/catalog/product/cache/1280x720/c/o/consensus_mechanism_algorithms_in_blockchain_types_training_ppt_slide01.jpg"
 tags:
   - blockchain
   - distributed-consensus

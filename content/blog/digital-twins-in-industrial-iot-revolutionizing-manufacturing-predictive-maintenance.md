@@ -3,6 +3,7 @@ title: >-
   Digital Twins in Industrial IoT: Revolutionizing Manufacturing & Predictive
   Maintenance
 description: Examining real-world applications in manufacturing and predictive maintenance
+coverImage: "https://th.bing.com/th/id/R.e06a543977d914065889e9218adbd72e?rik=CnDmwMvX%2buRS%2bA&pid=ImgRaw&r=0"
 tags:
   - iot
   - digital-twins
@@ -11,9 +12,9 @@ tags:
   - manufacturing
   - prediction
 status: published
-publishDate: '2025-02-13T07:28:23.240Z'
-lastEdited: '2025-02-13T09:53:14.312Z'
-date: '2025-02-13T07:28:23.240Z'
+publishDate: "2025-02-13T07:28:23.240Z"
+lastEdited: "2025-02-13T09:53:14.312Z"
+date: "2025-02-13T07:28:23.240Z"
 ---
 
 ![A1 Digital and Software AG Forge Strategic Alliance for the Internet of Things (IoT) using Cumulocity IoT](https://th.bing.com/th/id/R.e06a543977d914065889e9218adbd72e?rik=CnDmwMvX%2buRS%2bA&pid=ImgRaw&r=0)
@@ -101,6 +102,7 @@ As manufacturers continue to adopt and refine this technology, digital twins wil
 ---
 
 ## References
+
 - <a href="https://en.wikipedia.org/wiki/Digital_twin" target="_blank">Digital twin</a> - Wikipedia
 - <a href="https://www.ptc.com/en/blogs/corporate/digital-twin-for-predictive-maintenance" target="_blank">How Digital Twin Enables Predictive Maintenance</a> - PTC
 - <a href="https://blog.gramener.com/digital-twin-predictive-maintenance/" target="_blank">How To Implement Digital Twin In Manufacturing for Predictive Maintenance</a> - Gramener
