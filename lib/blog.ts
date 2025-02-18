@@ -7,7 +7,7 @@ import remarkRehype from "remark-rehype";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
 import { unified } from "unified";
-import type { BuiltinLanguage, BuiltinTheme } from "shikiji";
+import type { Theme } from "rehype-pretty-code";
 
 // Types for blog post metadata
 export interface BlogPost {
@@ -24,31 +24,8 @@ export interface BlogPost {
 // Directory where blog posts are stored
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
-// Common languages we want to support
-const SUPPORTED_LANGUAGES: BuiltinLanguage[] = [
-  "c",
-  "cpp",
-  "typescript",
-  "javascript",
-  "json",
-  "bash",
-  "markdown",
-  "mermaid",
-  "css",
-  "html",
-  "tsx",
-  "jsx",
-  "python",
-  "go",
-  "rust",
-  "yaml",
-  "toml",
-  "sql",
-  "console",
-];
-
 // Theme configuration
-const THEME: BuiltinTheme = "github-dark";
+const THEME: Theme = "github-dark";
 
 /**
  * Safely converts a date value to ISO string
