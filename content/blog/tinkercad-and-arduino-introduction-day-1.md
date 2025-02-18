@@ -271,7 +271,7 @@ So the aim was to **build a circuit with an Arduino Uno, a motor, a buzzer and a
 
 Putting everything together, you may end up with something like this:
 
-![From left, down, up, to right: Arduino Uno R3, PIR sensor,DC Motor, Piezo (Buzzer) and Multimeter.](/arduino-uno-r3-with-pir-sensor-motor-dc-piezo-buzzer-and-multimeter.webp)
+![From left, down, up, to right: Arduino Uno R3, PIR sensor,DC Motor, Piezo (Buzzer) and Multimeter.](https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIEtZGNaUoc1SfvOW0qnGQ2CL3mlBDkXt7beiM)
 
 <div class="flex justify-center mb-20">
     <span class="text-sm text-center text-white/70"><em>From left, down, up, to right: Arduino Uno R3, PIR sensor,DC Motor, Piezo (Buzzer) and Multimeter.</em></span>

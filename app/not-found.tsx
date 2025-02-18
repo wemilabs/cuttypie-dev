@@ -13,7 +13,9 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
       <Image
-        src={notFoundIllustration}
+        src={
+          "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIGtcBYwMbvhmfruEcpVlTJUtxFKi5Q91njSOM"
+        }
         alt="404 Not Found"
         width={400}
         height={400}

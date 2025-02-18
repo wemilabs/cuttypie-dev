@@ -2,13 +2,15 @@ export const projects = [
   {
     title: "Turbo MIS",
     description: "Next-generation school management system.",
-    image: "/turbo.webp",
+    image:
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIGX66jOsMbvhmfruEcpVlTJUtxFKi5Q91njSO",
     link: "https://turbo-mis.vercel.app",
   },
   {
     title: "Dreamnal - Forget them anymore",
     description: "Dream Journaling Mobile App.",
-    image: "/dreamnal.webp",
+    image:
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIbcHjyBmlalY8ZuTPQRqJXvyrKeEHz2finpFN",
     // link: "https://dreamnal.vercel.app",
     link: "https://github.com/wemilabs/dreamnal",
   },

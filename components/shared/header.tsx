@@ -10,7 +10,9 @@ const Header = () => {
       <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/" className="flex gap-2 items-center">
           <Image
-            src={Avatar}
+            src={
+              "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu"
+            }
             alt="cuttypie"
             width={36}
             height={36}

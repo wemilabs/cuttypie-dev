@@ -22,7 +22,7 @@ const ProjectCard = ({
         <Image
           src={
             image ??
-            "https://5n5vhs0v3c.ufs.sh/f/fXNe0o275jNhLMaMgPyr1U0RfETg7K8AuPGp5hqYH3dx6cCt"
+            "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIIU0MlBPxpbxQUqOZN6A0LHBjPY4Vlwumcioz"
           }
           alt={title}
           width={500}
