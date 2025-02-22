@@ -1,7 +1,7 @@
 ---
 title: TinkerCad and Arduino Introduction - Day 1
 description: Demystifying the complexity of Arduino and TinkerCad (C++ programming)
-coverImage: "https://th.bing.com/th/id/OIP.z0Y7xAkbBQaezeXA6kQ78AAAAA?rs=1&pid=ImgDetMain"
+coverImage: 'https://th.bing.com/th/id/OIP.z0Y7xAkbBQaezeXA6kQ78AAAAA?rs=1&pid=ImgDetMain'
 tags:
   - iot
   - arduino
@@ -10,8 +10,8 @@ tags:
   - programming
   - c&cpp
 postOfTheDay: true
-date: "2025-02-16T00:54:24.667Z"
-lastEdited: "2025-02-16T03:51:35.728Z"
+date: '2025-02-16T00:54:24.667Z'
+lastEdited: '2025-02-22T07:15:18.813Z'
 ---
 
 <p align="center"><img src="https://th.bing.com/th/id/OIP.z0Y7xAkbBQaezeXA6kQ78AAAAA?rs=1&pid=ImgDetMain" alt="AUTODESK TINKERCAD" class="rounded-md" /></p>
@@ -229,6 +229,52 @@ The `pinMode()` function is used to configure the mode of a pin. This means you 
 ...
 ```
 
+#### analogRead()
+
+The `analogRead()` function reads the voltage on an analog pin and converts it into a digital value. It's used with sensors that output a range of voltages, such as light sensors, temperature sensors, or potentiometers.
+- **Input Pins**: Analog pins (typically labeled A0-A5 on most Arduino boards).
+- **Return Value**: An integer between 0 and 1023. The value represents the voltage level at the pin:
+	- 0 corresponds to approximately 0V.
+	- 1023 corresponds to approximately the reference voltage (usually 5V for most Arduinos).
+- **Use cases**:
+	- Reading sensor data where precise measurement is needed.
+	- Controlling brightness of LEDs based on sensor input.
+
+```c++
+  const int analogPin = A0; // Analog Pin
+
+  void setup() {
+ ...  
+}
+
+  void loop() { 
+  // Read Analog Input
+  int analogValue = analogRead(analogPin);
+}
+```
+
+#### digitalRead()
+
+The `digitalRead()` function reads whether a digital pin is HIGH (approximately equal to VCC) or LOW (ground). It's typically used with components like push buttons or simple switches.
+- **Input Pins**: Digital pins can be configured as inputs using `pinMode()`.
+- **Return Value**: Either HIGH (`true`) or LOW (`false`), indicating whether there is power applied at that pin.
+- Use cases:
+	- Detecting button presses in user interfaces.
+	- Reading binary states from simple electronic circuits.
+
+```c++
+  const int digitalPin = 2; // Digital Pin
+
+  void setup() {
+   pinMode(digitalPin, INPUT); // Set up digital pin as input
+}
+
+  void loop() { 
+   // Read Digital Input
+  bool digitalWriteValue = !!(digitalRead(digitalPin)); // Convert HIGH/LOW to true/false
+}
+```
+
 #### digitalWrite()
 
 The `digitalWrite()` function is used to control the state of a pin. In the example below, the `digitalWrite(a, HIGH)` flips the light switch `a (pin 5)` to the ON position (sending power) and the light switch `b (pin 10)` to the OFF position (no power).
@@ -260,6 +306,23 @@ The `Serial` object is used to communicate with the computer. It has methods lik
   Serial.println("Hello World!"); // send the string "Hello World!" to the computer
   ...
 ```
+
+### 3. Key differences between `analogRead()` and `digitalRead()`
+
+As these two functions are used to read values, some important differences need to be underscored tho:
+
+- **Type of Input**:
+	- `analogRead()`: Reads continuous values within a range (e.g., light intensity levels).
+	- `digitalRead()`: Reads binary states only—HIGH or LOW.
+- **Pin Usage**:
+	- `analogRead()`: Uses analog input pins only (A0-A5).
+	- `digitalRead()`: Can use any digital pin after setting it as an INPUT using `pinMode()`.
+- **Resolution**:
+	- `analogRead()`: Offers higher resolution with values ranging from 0 to 1023 for most Arduinos.
+	- `digitalRead()`: Only provides two possible outcomes—HIGH (`true`) or LOW (`false`).
+- **Applications**:
+	- Use analog inputs for applications requiring precise measurements like environmental sensing.
+	- Use digital inputs when you need simple ON/OFF detection like in button presses.
 
 ---
 
