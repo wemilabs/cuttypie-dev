@@ -9,7 +9,7 @@ const Hero = () => {
         </h1>
         <p className="text-sm md:text-base tracking-tighter text-white/70 font-light mb-8">
           <span className="font-bold">Full-Stack Developer</span> and{" "}
-          <span className="font-bold">Open Source Contributor</span>
+          <span className="font-bold">Tech Blogger</span>
         </p>
         <div className="flex items-center justify-center">
           <a
