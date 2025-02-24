@@ -5,6 +5,7 @@ import { CodeBlock } from "@/components/ui/code-block";
 import { getPostBySlug } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import Error from "./error";
+import { CommentsSection } from "@/components/comments";
 
 export async function generateMetadata({
   params,
@@ -72,7 +73,7 @@ export default async function BlogPost({
   const { date, tags, title, postOfTheDay, description, content } = post;
 
   return (
-    <article className="max-w-4xl mx-auto px-6 py-24 space-y-8">
+    <article className="max-w-4xl mx-auto px-6 py-24">
       <Link
         href="/blog"
         className="inline-flex items-center text-white/60 hover:text-white mb-8 transition"
@@ -137,6 +138,11 @@ export default async function BlogPost({
           prose-img:rounded-lg prose-img:mt-12 prose-img:mb-4"
       >
         <CodeBlock html={content} />
+      </div>
+
+      {/* Comments Section */}
+      <div className="mt-16 border-t border-white/10 pt-8">
+        <CommentsSection postSlug={slug} />
       </div>
     </article>
   );
