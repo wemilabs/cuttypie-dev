@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CommentForm } from "./comment-form";
 import { CommentList } from "./comment-list";
@@ -34,8 +33,8 @@ function CommentsContent({ postSlug }: CommentsSectionProps) {
               <p className="text-muted-foreground mb-4">
                 Sign in to leave a comment
               </p>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="w-full sm:w-auto"
                 onClick={() => openAuth("signin")}
               >

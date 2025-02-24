@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { headers } from "next/headers";
 
 export const dynamic = "force-dynamic";
 
@@ -18,11 +17,11 @@ export async function GET() {
     console.error("Session error:", error);
     return NextResponse.json(
       { session: null },
-      { 
+      {
         headers: {
           "Cache-Control": "no-store, max-age=0",
-          "Pragma": "no-cache"
-        }
+          Pragma: "no-cache",
+        },
       }
     );
   }

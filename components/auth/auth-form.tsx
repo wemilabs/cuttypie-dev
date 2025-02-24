@@ -5,7 +5,7 @@ import { useAuth } from "./auth-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn, signUp } from "@/app/actions/auth";
+import { signIn, signUp } from "@/actions/auth";
 import { SignInInput, SignUpInput } from "@/lib/validations/auth";
 import { useSession } from "@/components/providers/session-provider";
 

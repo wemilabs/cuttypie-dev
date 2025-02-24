@@ -162,7 +162,7 @@ export async function signIn(data: SignInInput): Promise<AuthResponse> {
     }
 
     // Verify password
-    const isValid = await verifyPassword(validatedData.password, user.password);
+    const isValid = verifyPassword(validatedData.password, user.password);
     if (!isValid) {
       return { success: false, error: "Invalid email or password" };
     }

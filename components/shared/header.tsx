@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import XformerlyTwitter from "@/components/icons/x";
-import Avatar from "@/public/avatar.webp";
 
 const Header = () => {
   return (

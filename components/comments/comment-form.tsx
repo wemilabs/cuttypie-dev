@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { createComment } from "@/app/actions/comment";
+import { createComment } from "@/actions/comment";
 import { useSession } from "@/components/providers/session-provider";
 import { useComments } from "@/components/providers/comments-provider";
 
@@ -13,7 +13,11 @@ interface CommentFormProps {
   onSuccess?: () => void;
 }
 
-export function CommentForm({ postSlug, parentId, onSuccess }: CommentFormProps) {
+export function CommentForm({
+  postSlug,
+  parentId,
+  onSuccess,
+}: CommentFormProps) {
   const { session } = useSession();
   const { addComment } = useComments();
   const [content, setContent] = useState("");

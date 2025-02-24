@@ -120,16 +120,38 @@ export async function deleteComment(commentId: string, postSlug: string): Promis
 }
 
 /**
- * Gets all comments for a post
+ * Edits an existing comment
  */
-export async function getComments(postSlug: string): Promise<CommentResponse> {
+export async function editComment(
+  commentId: string,
+  content: string,
+  postSlug: string
+): Promise<CommentResponse> {
   try {
-    // Get all comments for the post
-    const comments = await prisma.comment.findMany({
-      where: {
-        postSlug,
-        parentId: null, // Get top-level comments only
-      },
+    // Check authentication
+    const session = await getSession();
+    if (!session) {
+      return { error: "You must be signed in to edit comments" };
+    }
+
+    // Get comment to check ownership
+    const comment = await prisma.comment.findUnique({
+      where: { id: commentId },
+      select: { authorId: true },
+    });
+
+    if (!comment) {
+      return { error: "Comment not found" };
+    }
+
+    if (comment.authorId !== session.id) {
+      return { error: "You can only edit your own comments" };
+    }
+
+    // Update comment
+    const updatedComment = await prisma.comment.update({
+      where: { id: commentId },
+      data: { content },
       include: {
         author: {
           select: {
@@ -137,25 +159,52 @@ export async function getComments(postSlug: string): Promise<CommentResponse> {
             email: true,
           },
         },
-        replies: {
-          include: {
-            author: {
-              select: {
-                name: true,
-                email: true,
-              },
-            },
-          },
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
       },
     });
 
-    return { comments };
+    // Revalidate the blog post page
+    revalidatePath(`/blog/${postSlug}`);
+    return { comment: updatedComment };
+
+  } catch (error) {
+    console.error("Edit comment error:", error);
+    return { error: "Failed to edit comment" };
+  }
+}
+
+// Helper function to build comment tree
+const buildCommentTree = (comments: CommentWithAuthor[], parentId: string | null = null): CommentWithAuthor[] => {
+  return comments
+    .filter(comment => comment.parentId === parentId)
+    .map(comment => ({
+      ...comment,
+      replies: buildCommentTree(comments, comment.id)
+    }))
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+};
+
+/**
+ * Gets all comments for a post with nested replies
+ */
+export async function getComments(postSlug: string): Promise<CommentResponse> {
+  try {
+    const allComments = await prisma.comment.findMany({
+      where: { postSlug },
+      include: {
+        author: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    const threadedComments = buildCommentTree(allComments);
+    return { comments: threadedComments };
   } catch (error) {
     console.error("Get comments error:", error);
-    return { error: "Failed to load comments" };
+    return { error: "Failed to get comments" };
   }
 }
