@@ -61,7 +61,7 @@ Beyond their technical intrigue, AI agents are poised to bring sweeping changes 
 
 - **Enterprise Automation:** Companies like Microsoft, Salesforce, and Google are already integrating AI agents to streamline workflows—from drafting emails and scheduling meetings to more sophisticated data analysis.
 - **Cost and Efficiency Gains:** By automating routine tasks, businesses can reduce operational costs and redeploy human talent to strategic, creative endeavors.
-- **Economic Transformation:** As noted by TIME in their feature on digital workers (citeturn2news40), AI agents could usher in an era where digital labor significantly boosts productivity, much like spreadsheets revolutionized business decades ago.
+- **Economic Transformation:** As noted by TIME in their feature on digital workers, AI agents could usher in an era where digital labor significantly boosts productivity, much like spreadsheets revolutionized business decades ago.
 
 These economic drivers not only fuel investment in agentic AI startups but also hint at a future where the agent becomes an indispensable partner in both personal and professional contexts.
 
