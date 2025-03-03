@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import XformerlyTwitter from "@/components/icons/x";
+import { ModeToggle } from "./mode-toggle";
 
 const Header = () => {
   return (
@@ -37,6 +38,7 @@ const Header = () => {
           >
             <XformerlyTwitter />
           </a>
+          {/* <ModeToggle /> */}
         </div>
       </nav>
     </header>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unstable_ViewTransition as ViewTransition } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -77,7 +78,9 @@ export default function RootLayout({
         <SessionProvider>
           <AuthProvider>
             <AuthModal />
-            <main className="bg-black text-white min-h-screen">{children}</main>
+            <main className="bg-black text-white min-h-screen">
+              <ViewTransition>{children}</ViewTransition>
+            </main>
           </AuthProvider>
         </SessionProvider>
       </body>

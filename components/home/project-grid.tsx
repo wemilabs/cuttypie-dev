@@ -8,7 +8,7 @@ const ProjectGrid = () => {
       className="max-w-6xl mx-auto px-6 pt-0 pb-16"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project, index) => (
+        {[...projects].reverse().map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
       </div>
