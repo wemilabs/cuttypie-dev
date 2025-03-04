@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Matheo (cuttypie)",
     images: [
       {
-        url: "https://cuttypiedev.vercel.app/avatar.webp",
+        url: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
         width: 1200,
         height: 630,
         alt: "Matheo (cuttypie)",
@@ -59,7 +59,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Matheo (cuttypie)",
     description: "matheo's website.",
-    images: ["https://cuttypiedev.vercel.app/avatar.webp"],
+    images: [
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
+    ],
     creator: "@DorianTho5",
   },
 };
