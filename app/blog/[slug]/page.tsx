@@ -38,7 +38,7 @@ export async function generateMetadata({
         {
           url:
             post.coverImage === "Cover Image URL"
-              ? "https://cuttypiedev.vercel.app/avatar.webp"
+              ? "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIIU0MlBPxpbxQUqOZN6A0LHBjPY4Vlwumcioz"
               : post.coverImage,
           width: 1200,
           height: 630,
