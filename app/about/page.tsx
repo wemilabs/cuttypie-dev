@@ -19,9 +19,9 @@ export default function About() {
         </h1>
         <p className="text-lg tracking-tighter text-white/70 leading-relaxed">
           I'm a full-stack developer passionate about building beautiful and
-          functional web applications. My expertise lies in TypeScript, React,
-          Node.js, and modern web technologies, focusing on creating scalable
-          and maintainable solutions.
+          functional web applications. My expertise lies in Next.js (React),
+          TypeScript, Node.js, and modern web technologies, focusing on creating
+          scalable and maintainable solutions.
         </p>
       </section>
 
@@ -30,7 +30,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <SkillCard
             title="Full-Stack Development"
-            description="I build end-to-end web applications using modern technologies like TypeScript, React, Node.js, and Next.js. My focus is on creating performant, scalable, and maintainable solutions."
+            description="I build end-to-end web applications using modern technologies like Next.js (React), TypeScript, Node.js. My focus is on creating performant, scalable, and maintainable solutions."
           />
           <SkillCard
             title="Frontend Expertise"
