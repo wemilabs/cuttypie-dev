@@ -32,7 +32,7 @@ export const projects = [
     title: "OpenStud",
     description: "The Ultimate Place for Smarter Learning.",
     image:
-      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIzWExWqdvNQMVsI8ZSJuhri7dUbxqOwRg95Lc",
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIocFmANsH9TukZ83NVJ7WeBRxYhXIzpmr2tl1",
     link: "https://openstud.vercel.app",
   },
 ];
