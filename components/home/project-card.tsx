@@ -18,15 +18,15 @@ const ProjectCard = ({
       rel="noopener noreferrer"
       className="group block bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition"
     >
-      <div className="aspect-video relative overflow-hidden">
+      <div className="size-28 relative overflow-hidden">
         <Image
           src={
             image ??
             "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIIU0MlBPxpbxQUqOZN6A0LHBjPY4Vlwumcioz"
           }
           alt={title}
-          width={500}
-          height={500}
+          width={28}
+          height={28}
           className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
         />
       </div>
