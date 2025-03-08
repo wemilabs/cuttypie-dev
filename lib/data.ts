@@ -5,6 +5,7 @@ export const projects = [
       "A social blog focusing on spiritually lifting people through the power of words.",
     // image: "/holylens.webp",
     link: "https://github.com/wemilabs/holylens",
+    badge: "paused",
   },
   {
     title: "Wermi POS",
@@ -12,6 +13,7 @@ export const projects = [
       "Next-generation point of sale system for restaurants and bars.",
     // image: "project3.jpg",
     link: "https://github.com/wemilabs/wermi-app",
+    badge: "paused",
   },
   {
     title: "Dreamnal - Forget them anymore",
@@ -20,6 +22,7 @@ export const projects = [
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIbcHjyBmlalY8ZuTPQRqJXvyrKeEHz2finpFN",
     // link: "https://dreamnal.vercel.app",
     link: "https://github.com/wemilabs/dreamnal",
+    badge: "in progress",
   },
   {
     title: "Turbo MIS",
@@ -27,6 +30,7 @@ export const projects = [
     image:
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIGX66jOsMbvhmfruEcpVlTJUtxFKi5Q91njSO",
     link: "https://turbo-mis.vercel.app",
+    badge: "paused",
   },
   {
     title: "OpenStud",
@@ -34,5 +38,6 @@ export const projects = [
     image:
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIL8rqZRT9azBluIkrOxiR25JGcXeSbhtfT8UC",
     link: "https://openstud.vercel.app",
+    badge: "current",
   },
 ];
