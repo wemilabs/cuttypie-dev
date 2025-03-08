@@ -25,8 +25,8 @@ const ProjectCard = ({
             "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIIU0MlBPxpbxQUqOZN6A0LHBjPY4Vlwumcioz"
           }
           alt={title}
-          width={28}
-          height={28}
+          width={500}
+          height={500}
           className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
         />
       </div>
