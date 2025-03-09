@@ -24,6 +24,7 @@ interface CommentWithAuthor {
   authorId: string;
   postSlug: string;
   parentId: string | null;
+  isPinned: boolean;
   author: CommentAuthor;
   replies?: CommentWithAuthor[];
 }
@@ -55,6 +56,7 @@ export async function createComment(data: CommentInput): Promise<CommentResponse
         postSlug: validatedData.postSlug,
         parentId: validatedData.parentId,
         authorId: session.id,
+        isPinned: false, // Default to not pinned
       },
       include: {
         author: {
@@ -68,7 +70,7 @@ export async function createComment(data: CommentInput): Promise<CommentResponse
 
     // Revalidate the blog post page
     revalidatePath(`/blog/${data.postSlug}`);
-    return { comment };
+    return { comment: { ...comment, isPinned: comment.isPinned } };
 
   } catch (error) {
     console.error("Create comment error:", error);
@@ -164,7 +166,7 @@ export async function editComment(
 
     // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
-    return { comment: updatedComment };
+    return { comment: { ...updatedComment, isPinned: updatedComment.isPinned } };
 
   } catch (error) {
     console.error("Edit comment error:", error);
@@ -180,7 +182,13 @@ const buildCommentTree = (comments: CommentWithAuthor[], parentId: string | null
       ...comment,
       replies: buildCommentTree(comments, comment.id)
     }))
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    .sort((a, b) => {
+      // First sort by pinned status (pinned comments first)
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
+      // Then sort by date (newest first)
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
 };
 
 /**
@@ -201,10 +209,69 @@ export async function getComments(postSlug: string): Promise<CommentResponse> {
       orderBy: { createdAt: "desc" },
     });
 
-    const threadedComments = buildCommentTree(allComments);
+    // Ensure all comments have the isPinned property
+    const commentsWithPinned = allComments.map(comment => ({
+      ...comment,
+      isPinned: comment.isPinned
+    }));
+
+    const threadedComments = buildCommentTree(commentsWithPinned);
     return { comments: threadedComments };
   } catch (error) {
     console.error("Get comments error:", error);
     return { error: "Failed to get comments" };
+  }
+}
+
+/**
+ * Pins or unpins a comment
+ */
+export async function togglePinComment(
+  commentId: string,
+  postSlug: string,
+  isPinned: boolean
+): Promise<CommentResponse> {
+  try {
+    // Check authentication
+    const session = await getSession();
+    if (!session) {
+      return { error: "You must be signed in to pin comments" };
+    }
+
+    // Only allow pinning top-level comments (no replies)
+    const comment = await prisma.comment.findUnique({
+      where: { id: commentId },
+      select: { parentId: true },
+    });
+
+    if (!comment) {
+      return { error: "Comment not found" };
+    }
+
+    if (comment.parentId) {
+      return { error: "Only top-level comments can be pinned" };
+    }
+
+    // Update comment pin status
+    const updatedComment = await prisma.comment.update({
+      where: { id: commentId },
+      data: { isPinned },
+      include: {
+        author: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    // Revalidate the blog post page
+    revalidatePath(`/blog/${postSlug}`);
+    return { comment: updatedComment };
+
+  } catch (error) {
+    console.error("Toggle pin comment error:", error);
+    return { error: "Failed to update comment pin status" };
   }
 }

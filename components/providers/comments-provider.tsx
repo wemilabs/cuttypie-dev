@@ -15,6 +15,7 @@ interface CommentWithAuthor {
   authorId: string;
   postSlug: string;
   parentId: string | null;
+  isPinned: boolean;
   author: CommentAuthor;
   replies?: CommentWithAuthor[];
 }
@@ -27,6 +28,7 @@ interface CommentsContextType {
   addComment: (comment: CommentWithAuthor) => void;
   removeComment: (commentId: string) => void;
   updateComment: (commentId: string, updatedComment: CommentWithAuthor) => void;
+  togglePinStatus: (commentId: string, isPinned: boolean) => void;
 }
 
 const CommentsContext = createContext<CommentsContextType | undefined>(
@@ -134,7 +136,57 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
         });
       };
 
-      return processComments(prevComments);
+      // Process the comments
+      const updatedComments = processComments(prevComments);
+      
+      // Re-sort comments if pinned status changed
+      if (updatedComment.isPinned !== prevComments.find(c => c.id === commentId)?.isPinned) {
+        return updatedComments.sort((a, b) => {
+          // First sort by pinned status
+          if (a.isPinned && !b.isPinned) return -1;
+          if (!a.isPinned && b.isPinned) return 1;
+          // Then sort by date
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        });
+      }
+      
+      return updatedComments;
+    });
+  }, []);
+
+  const togglePinStatus = useCallback((commentId: string, isPinned: boolean) => {
+    setComments(prevComments => {
+      const processComments = (comments: CommentWithAuthor[]): CommentWithAuthor[] => {
+        return comments.map(comment => {
+          // If this is the comment to update
+          if (comment.id === commentId) {
+            return {
+              ...comment,
+              isPinned
+            };
+          }
+
+          // Process replies if they exist
+          const processedComment = { ...comment };
+          if (processedComment.replies?.length) {
+            processedComment.replies = processComments(processedComment.replies);
+          }
+
+          return processedComment;
+        });
+      };
+
+      // Process the comments
+      const updatedComments = processComments(prevComments);
+      
+      // Re-sort comments to put pinned ones at the top
+      return updatedComments.sort((a, b) => {
+        // First sort by pinned status
+        if (a.isPinned && !b.isPinned) return -1;
+        if (!a.isPinned && b.isPinned) return 1;
+        // Then sort by date
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      });
     });
   }, []);
 
@@ -148,6 +200,7 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
         addComment,
         removeComment,
         updateComment,
+        togglePinStatus,
       }}
     >
       {children}

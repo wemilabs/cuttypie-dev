@@ -6,12 +6,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { CommentForm } from "./comment-form";
 import { useSession } from "@/components/providers/session-provider";
 import { useComments } from "@/components/providers/comments-provider";
-import { deleteComment, editComment } from "@/actions/comment";
+import {
+  deleteComment,
+  editComment,
+  togglePinComment,
+} from "@/actions/comment";
 import { formatDistanceToNow } from "date-fns";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
   MoreHorizontalIcon,
+  PinIcon,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -32,6 +37,7 @@ interface CommentWithAuthor {
   authorId: string;
   postSlug: string;
   parentId: string | null;
+  isPinned: boolean;
   author: CommentAuthor;
   replies?: CommentWithAuthor[];
 }
@@ -43,17 +49,19 @@ interface SingleCommentProps {
 
 export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
   const { session } = useSession();
-  const { removeComment, updateComment } = useComments();
+  const { removeComment, updateComment, togglePinStatus } = useComments();
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(comment.content);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPinning, setIsPinning] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const hasReplies = comment.replies && comment.replies.length > 0;
   const replyCount = comment.replies?.length || 0;
+  const isTopLevel = level === 0;
 
   const handleDelete = async () => {
     if (!session || isDeleting) return;
@@ -100,8 +108,40 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
     }
   };
 
+  const handleTogglePin = async () => {
+    if (!session || isPinning) return;
+
+    try {
+      setIsPinning(true);
+      setError(null);
+
+      const result = await togglePinComment(
+        comment.id,
+        comment.postSlug,
+        !comment.isPinned
+      );
+
+      if (result.error) {
+        setError(result.error);
+      } else if (result.comment) {
+        togglePinStatus(comment.id, !comment.isPinned);
+      }
+    } catch (error) {
+      console.error("Error toggling pin status:", error);
+      setError("Failed to update pin status");
+    } finally {
+      setIsPinning(false);
+    }
+  };
+
   return (
-    <div className={`group relative ${level > 0 ? "pl-12" : ""}`}>
+    <div
+      className={`group relative ${level > 0 ? "pl-12" : ""} ${
+        comment.isPinned && level === 0
+          ? "bg-yellow-50/20 dark:bg-yellow-900/10 border border-yellow-100/30 dark:border-yellow-800/20 rounded-md p-3 shadow-sm"
+          : ""
+      }`}
+    >
       {level > 0 && (
         <div className="absolute left-0 top-8 bottom-0 border-l-2 border-slate-200 dark:border-slate-800" />
       )}
@@ -139,6 +179,12 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                       addSuffix: true,
                     })}
                   </span>
+                  {comment.isPinned && (
+                    <span className="flex items-center gap-1 text-xs text-yellow-600/90 dark:text-yellow-500/90 bg-yellow-100/30 dark:bg-yellow-900/20 px-2 py-0.5 rounded-full">
+                      <PinIcon className="size-3" />
+                      Pinned
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -150,21 +196,35 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                       variant="ghost"
                       size="sm"
                       className="size-8 p-0"
-                      disabled={isDeleting || isEditing}
+                      disabled={isDeleting || isEditing || isPinning}
                     >
-                      {isDeleting ? (
+                      {isDeleting || isPinning ? (
                         <div className="size-4 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
                       ) : (
                         <MoreHorizontalIcon className="size-4" />
                       )}
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-32">
-                    <DropdownMenuItem onClick={() => setIsEditing(true)}>
+                  <DropdownMenuContent
+                    align="end"
+                    className="w-32 bg-gradient-to-br from-yellow-50/90 to-yellow-50/90 dark:from-slate-800/90 dark:to-slate-900/90 backdrop-blur-sm border border-yellow-100/50 dark:border-slate-700/50 shadow-md"
+                  >
+                    <DropdownMenuItem
+                      onClick={() => setIsEditing(true)}
+                      className="focus:bg-yellow-100/50 dark:focus:bg-slate-700/50 transition-colors"
+                    >
                       Edit
                     </DropdownMenuItem>
+                    {isTopLevel && (
+                      <DropdownMenuItem
+                        onClick={handleTogglePin}
+                        className="focus:bg-yellow-100/50 dark:focus:bg-slate-700/50 transition-colors"
+                      >
+                        {comment.isPinned ? "Unpin" : "Pin"}
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem
-                      className="text-red-600 dark:text-red-400"
+                      className="text-red-600 dark:text-red-400 focus:bg-red-50/50 dark:focus:bg-red-900/20 transition-colors"
                       onClick={handleDelete}
                       disabled={isDeleting}
                     >

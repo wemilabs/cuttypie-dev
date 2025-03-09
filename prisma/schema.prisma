@@ -27,6 +27,7 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   postSlug  String
+  isPinned  Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
   parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
