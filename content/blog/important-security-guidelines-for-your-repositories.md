@@ -7,6 +7,9 @@ tags:
   - git
   - security
   - best-practices
+  - 2fa
+  - ssh
+  - rbac
 postOfTheDay: true
 date: "2025-03-09T03:16:54.539Z"
 lastEdited: "2025-03-09T03:21:06.575Z"
@@ -15,7 +18,7 @@ lastEdited: "2025-03-09T03:21:06.575Z"
 <p align="center"><img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIpAym9DVIN8qB9zrPkx7h3YEvXTfboyKpdS2L" alt="GitHub Security" class="rounded-md" /></p>
 
   <div class="flex justify-center mb-20">
-    <span class="text-sm text-center text-white/70"><em>GitHub Security</em></span>
+    <span class="text-sm text-center text-white/70"><em>Enhance Your Repository Security with advanced practices such as 2FA, SSH keys, and RBAC</em></span>
   </div>
 
 Implementing secure practices for repositories involves several key steps, including enabling two-factor authentication (2FA), enforcing SSH keys, and implementing role-based access control (RBAC). Here’s a step-by-step guide to implementing these practices.
