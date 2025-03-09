@@ -265,7 +265,7 @@ By implementing these practices and leveraging GitHub’s advanced security feat
 ## References
 
 - <a href="https://github.com/wemilabs/unit11-security-practices" target="_blank">Security Guidelines</a> - Unit 11
-- <a href="https://docs.github.com/en/authentication" target="_blank">GitHub Docs</a> - GitHub
+- <a href="https://docs.github.com/en/authentication" target="_blank">GitHub Auth Docs</a> - GitHub
 
 ## Credits
 
