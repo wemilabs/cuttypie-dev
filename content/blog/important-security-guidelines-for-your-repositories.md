@@ -78,6 +78,17 @@ Enforcing SSH keys provides a more secure way to authenticate users and reduce t
     ssh-keygen -t ed25519 -C "your_email@example.com"
     ```
 
+  - Let's break it down before moving further:
+    - `ssh-keygen`: This is the main command to generate a new SSH key pair. SSH keys are used for secure authentication in various applications, such as logging into a server or connecting to GitHub.
+    - `-t ed25519`: Specifies the type of key to generate. Here, `Ed25519` refers to a modern public-key algorithm known for being fast, secure, and efficient. It's a good choice for generating SSH keys.
+    - `-C "your_email@example.com"`: Adds a comment to the key, which is your email address.
+    - **What happens when you run this command?**
+      - The system will ask you where to save the generated key. By default, it suggests saving it in `~/.ssh/id_ed25519`. You can press Enter to accept the default location.
+      - **Set a passphrase (optional):** You'll be prompted to enter a passphrase for extra protection. If you set a passphrase, you'll need to enter it every time you use the key. Pressing Enter skips the passphrase step.
+      - **Key pair generated:** The command generates two files:
+        - **A private key (e.g., `id_ed25519`):** This file should remain secret and stored securely.
+        - **A public key (e.g., `id_ed25519.pub`):** This file is shared with the server or service you're connecting to (e.g., GitHub).
+
 - **Add SSH Key to ssh-agent**:
 
   - **Unix environment**:
