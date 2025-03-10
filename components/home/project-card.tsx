@@ -23,7 +23,7 @@ const ProjectCard = ({
         "group flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02] backdrop-blur-sm transition-all duration-300 hover:border-amber-300/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.1)] hover:-translate-y-1",
         className,
         badge === "paused" && "opacity-50",
-        title === "OpenStud" && "cursor-none"
+        title === "OpenStud" && "cursor-not-allowed"
       )}
     >
       <div className="relative h-28 overflow-hidden">
