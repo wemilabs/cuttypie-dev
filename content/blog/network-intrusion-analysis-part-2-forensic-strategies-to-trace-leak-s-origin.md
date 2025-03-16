@@ -1,5 +1,7 @@
 ---
-title: Forensic Strategies to Trace Leak's Origin
+title: >-
+  Network Intrusion Analysis - Part 2: Forensic Strategies to Trace Leak's
+  Origin
 description: Useful techniques for a quick and effective intervention
 coverImage: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEI5PaOnmHPIxfLns9KTaAGyScoUlFq7rbY3JNd"
 tags:

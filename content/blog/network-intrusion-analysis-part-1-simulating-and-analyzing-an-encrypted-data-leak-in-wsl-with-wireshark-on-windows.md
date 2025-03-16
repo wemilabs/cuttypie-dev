@@ -1,7 +1,7 @@
 ---
 title: >-
-  Network Intrusion Analysis: Simulating and Analyzing an Encrypted Data Leak in
-  WSL with Wireshark on Windows
+  Network Intrusion Analysis - Part 1: Simulating and Analyzing an Encrypted Data
+  Leak in WSL with Wireshark on Windows
 description: >-
   Simulating and Analyzing an Encrypted Data Leak in WSL with Wireshark on
   Windows
@@ -23,15 +23,15 @@ postOfTheDay: true
 date: "2025-03-15T22:34:02.441Z"
 ---
 
-<p align="center"><img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEI72OmxOboQZaXjJq5RdrNBuiwW9ThF46DePCc" alt="Simulation Environment composed of three bash terminals running on WSL: first is a tcpdump monitor, second is the server, and third is the client" class="rounded-md" /></p>
+<p align="center"><img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEI72OmxOboQZaXjJq5RdrNBuiwW9ThF46DePCc" alt="Simulation Environment composed of three bash terminals running on WSL: first is a tcpdump monitor, second is the server, and third is the client (screenshotted from our own lab environment)." class="rounded-md" /></p>
 
   <div class="flex justify-center mb-20">
-    <span class="text-sm text-center text-white/70"><em>Simulation Environment composed of three bash terminals running on WSL: first is a tcpdump monitor, second is the server, and third is the client</em></span>
+    <span class="text-sm text-center text-white/70"><em>Simulation Environment composed of three bash terminals running on WSL: first is a tcpdump monitor, second is the server, and third is the client (screenshotted from our own lab environment).</em></span>
   </div>
 
-"A company suspects an insider is leaking confidential information via encrypted channels. You are given network traffic logs for analysis."
+<p class="text-white/70 font-bold">Scenario: A company suspects an insider is leaking confidential information via encrypted channels. You are given network traffic logs for analysis.</p>
 
-This is the scenario that has been brought to us. After many trials and errors, we're glad to finally come up with a working simulation of the given situation. Every step of the process has been documented so that you can follow along and might even be able to reproduce the same results on your own.
+Here's the case study that has been brought to us. After many trials and errors, we're glad to finally come up with a working simulation of the given situation. Every step of the process has been documented so that you can follow along and might even be able to reproduce the same results on your own.
 
 To perform this analysis, we'll be using `OpenSSL` to set up an SSL/TLS server, generating a large file to represent the data, creating a `Bash script` to send it periodically, capturing the traffic with `tcpdump` in WSL, and analyzing it with `Wireshark` on Windows.
 
@@ -235,4 +235,4 @@ These observations will help you spot suspicious activity, such as an insider le
 
 And that's it!🎉Congratulations on successfully completing the entire process.
 
-Make sure to follow the part 2 where we shared <a href="https://cuttypiedev.vercel.app/blog/forensic-strategies-to-trace-leak-s-origin">some strategies to trace the leak origin.</a>
+Make sure to follow the part 2 where we shared <a href="https://cuttypiedev.vercel.app/blog/network-intrusion-analysis-part-2-forensic-strategies-to-trace-leak-s-origin">some strategies to trace the leak origin.</a>
