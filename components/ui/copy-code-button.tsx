@@ -18,7 +18,7 @@ export function CopyCodeButton({ code }: { code: string }) {
   return (
     <button
       onClick={copyToClipboard}
-      className="absolute right-4 top-4 rounded-md bg-white/10 p-2 hover:bg-white/20 transition-colors"
+      className="rounded-md bg-white/10 p-1.5 hover:bg-white/20 transition-colors"
       aria-label={copied ? "Copied!" : "Copy code"}
     >
       {copied ? (
