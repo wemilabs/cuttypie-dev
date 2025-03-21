@@ -73,7 +73,14 @@ Here’s how we’ll tackle it:
 
 ## Implementation
 
-Below is the complete Python script for our NIDS prototype. Copy paste and save it as `nids_prototype.py` and run it with `sudo` (since packet sniffing often requires elevated privileges).
+First, ensure you have `pip` installed. You can run:
+
+```bash
+sudo apt -y update && sudo apt -y upgrade && sudo apt install -y python3-pip
+
+```
+
+Next, below is the complete Python script for our NIDS prototype. Copy paste and save it as `nids_prototype.py` and run it with `sudo` (since packet sniffing often requires elevated privileges).
 
 ```python
 from scapy.all import *
@@ -200,3 +207,9 @@ print("SYN flood simulation complete.")
 - **Data Manipulation Techniques:** The prototype parses packets, extracts features (IPs, ports, flags), and uses dictionaries to track and analyze traffic patterns over time—classic data manipulation in action.
 - **Analyzes Network Traffic:** It processes live TCP packets to identify suspicious behavior.
 - **Identifies Security Threats:** Detects port scans and SYN floods based on predefined signatures.
+
+---
+
+## Conclusion
+
+The NIDS prototype successfully demonstrates the application of data manipulation techniques to analyze network traffic and identify potential security threats. It provides a foundation for further development and can be expanded to include more advanced detection methods and features.
