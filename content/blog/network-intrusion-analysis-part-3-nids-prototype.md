@@ -50,7 +50,7 @@ Here’s how we’ll tackle it:
 ### 1. Packet Capture
 
 - Use Scapy’s `sniff` function to capture TCP packets in real-time.
-- For testing, we’ll use the loopback interface (`lo`) so you can demo it on your own machine without needing a live network.
+- For testing, we’ll use the loopback interface (`lo`) so anyone can demo it on their own machine without needing a live network.
 
 ### 2. Data Manipulation
 
@@ -73,7 +73,7 @@ Here’s how we’ll tackle it:
 
 ## Implementation
 
-First, ensure you have `pip` installed. You can run:
+First, ensure we have `pip` installed. Let's run:
 
 ```bash
 sudo apt -y update && sudo apt -y upgrade && sudo apt install -y python3-pip
@@ -143,14 +143,14 @@ sniff(iface="lo", filter="tcp", prn=packet_handler)
 
 ### Prerequisites
 
-- **Install Scapy globally in your Python environment**: Run `sudo python3 -m pip install scapy` in your terminal.
-- **Run with Permissions**: On Linux/Mac, use `sudo python3 nids_prototype.py` because sniffing requires root access. On Windows, you might need to adjust permissions or use a tool like Npcap.
+- **Install Scapy globally in the Python environment**: Run `sudo python3 -m pip install scapy` in the terminal.
+- **Run with Permissions**: On Linux/Mac, use `sudo python3 nids_prototype.py` because sniffing requires root access. On Windows, it might be needed to adjust permissions or use a tool like `Npcap`.
 
 ---
 
 ## Demo
 
-To show it working during your presentation, we'll need to generate some “malicious” traffic. Here are two simple scripts to simulate the attacks. Run them in separate terminal windows while the NIDS is active.
+To make our prototype up and running, we'll need to generate some “malicious” traffic. Here are two simple scripts to simulate the attacks. Run them in separate terminal windows while the NIDS is active.
 
 ### 1. Port Scan
 
@@ -212,4 +212,4 @@ print("SYN flood simulation complete.")
 
 ## Conclusion
 
-The NIDS prototype successfully demonstrates the application of data manipulation techniques to analyze network traffic and identify potential security threats. It provides a foundation for further development and can be expanded to include more advanced detection methods and features.
+Through this experimentation, we successfully demonstrated the application of data manipulation techniques to analyze network traffic and identify potential security threats. By providing a foundation for further development, this prototype can be expanded to include more advanced detection methods and features.
