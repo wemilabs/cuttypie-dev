@@ -285,4 +285,4 @@ By implementing these practices and leveraging GitHub’s advanced security feat
 
 - **Dr BUGINGO Emmanuel**, our lecturer who allowed us to work on this topic
 - **Alain MUGISHA**, Group 11 member
-- <a href="https://cuttypiedev.vercel.app" target="_blank">Matheo OKISSI</a>, Group 11 member
+- <a href="https://cuttypiedev.vercel.app/about" target="_blank">Matheo OKISSI</a>, Group 11 member
