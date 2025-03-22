@@ -144,7 +144,7 @@ sniff(iface="lo", filter="tcp", prn=packet_handler)
 ### Prerequisites
 
 - **Install Scapy globally in the Python environment**: Run `sudo python3 -m pip install scapy` in the terminal.
-- **Run with Permissions**: On Linux/Mac, use `sudo python3 nids_prototype.py` because sniffing requires root access. On Windows, it might be needed to adjust permissions or use a tool like `Npcap`.
+- **Run with Permissions**: On Linux/Mac, use `sudo python3 nids_prototype.py` because sniffing requires root access. On Windows, it might be needed to adjust permissions or use a tool like `npcap`.
 
 ---
 
