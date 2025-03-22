@@ -140,6 +140,8 @@ To effectively trace the origin of a data leak, combine these strategies:
 
 This multi-layered approach maximizes the chances of pinpointing the insider while reducing false positives. By systematically applying these techniques to the network traffic logs and related data, you can identify the source of the leak and take appropriate action.
 
+---
+
 ## Credits
 
 - **Dr BUGINGO Emmanuel**, our lecturer who allowed us to develop this prototype

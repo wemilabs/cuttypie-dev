@@ -237,6 +237,8 @@ And that's it!🎉Congratulations on successfully completing the entire process.
 
 Make sure to follow the part 2 where we shared <a href="https://cuttypiedev.vercel.app/blog/network-intrusion-analysis-part-2-forensic-strategies-to-trace-leak-s-origin">some strategies to trace the leak origin.</a>
 
+---
+
 ## Credits
 
 - **Dr BUGINGO Emmanuel**, our lecturer who allowed us to develop this prototype
