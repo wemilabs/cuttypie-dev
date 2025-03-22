@@ -213,3 +213,13 @@ print("SYN flood simulation complete.")
 ## Conclusion
 
 Through this experimentation, we successfully demonstrated the application of data manipulation techniques to analyze network traffic and identify potential security threats. By providing a foundation for further development, this prototype can be expanded to include more advanced detection methods and features.
+
+## References
+
+- <a href="https://github.com/wemilabs/nids-prototype" target="_blank">GitHub Resources</a> - NIDS Prototype GitHub
+
+## Credits
+
+- **Dr BUGINGO Emmanuel**, our lecturer who allowed us to develop this prototype
+- **Alain MUGISHA**, Group 12 member
+- <a href="https://cuttypiedev.vercel.app" target="_blank">Matheo OKISSI</a>, Group 12 member
