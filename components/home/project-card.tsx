@@ -57,18 +57,33 @@ const ProjectCard = ({
       </div>
       <div className="flex flex-col flex-grow p-5 space-y-3">
         <div className="flex items-start justify-between">
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn("", title === "OpenStud" && "cursor-not-allowed")}
+          >
             <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
               {title}
             </h3>
           </a>
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn("", title === "OpenStud" && "cursor-not-allowed")}
+          >
             <ExternalLink className="size-4 text-white/50 group-hover:text-amber-300 transition-colors" />
           </a>
         </div>
         <p className="text-white/70 text-sm flex-grow">{description}</p>
         <div className="pt-2">
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn("", title === "OpenStud" && "cursor-not-allowed")}
+          >
             <span className="text-xs font-medium text-amber-300/80 group-hover:text-amber-300 transition-colors inline-flex items-center">
               View project
               <svg
