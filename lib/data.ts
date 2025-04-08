@@ -40,4 +40,12 @@ export const projects = [
     link: "https://openstud.vercel.app",
     badge: "current",
   },
+  {
+    title: "KeepFlowing",
+    description: "Managing project shouldn't be a chore. Stay in the flow.",
+    image:
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIMlD3gXyOKu7I8gzycl5Ws9ViUDwbapXtnYfe",
+    link: "https://keepflowing.vercel.app",
+    badge: "in progress",
+  },
 ];
