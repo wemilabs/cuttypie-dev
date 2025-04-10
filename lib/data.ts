@@ -32,20 +32,28 @@ export const projects = [
     link: "https://turbo-mis.vercel.app",
     badge: "paused",
   },
-  {
-    title: "OpenStud",
-    description: "The Ultimate Place for Smarter Learning.",
-    image:
-      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIL8rqZRT9azBluIkrOxiR25JGcXeSbhtfT8UC",
-    link: "https://openstud.vercel.app",
-    badge: "current",
-  },
-  {
-    title: "KeepFlowing",
-    description: "Managing project shouldn't be a chore. Stay in the flow.",
-    image:
-      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIMlD3gXyOKu7I8gzycl5Ws9ViUDwbapXtnYfe",
-    link: "https://keepflowing.vercel.app",
-    badge: "in progress",
-  },
+  // {
+  //   title: "OpenStud",
+  //   description: "The Ultimate Place for Smarter Learning.",
+  //   image:
+  //     "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIL8rqZRT9azBluIkrOxiR25JGcXeSbhtfT8UC",
+  //   link: "https://openstud.vercel.app",
+  //   badge: "current",
+  // },
+  // {
+  //   title: "KeepFlowing",
+  //   description: "Managing project shouldn't be a chore. Stay in the flow.",
+  //   image:
+  //     "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIMlD3gXyOKu7I8gzycl5Ws9ViUDwbapXtnYfe",
+  //   link: "https://keepflowing.vercel.app",
+  //   badge: "in progress",
+  // },
+  // {
+  //   title: "Arport",
+  //   description: "The most comprehensive unified space for Academic Research.",
+  //   image:
+  //     "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIMlD3gXyOKu7I8gzycl5Ws9ViUDwbapXtnYfe",
+  //   link: "https://arport-psi.vercel.app",
+  //   badge: "in progress",
+  // },
 ];
