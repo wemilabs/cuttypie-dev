@@ -32,14 +32,14 @@ export const projects = [
     link: "https://turbo-mis.vercel.app",
     badge: "paused",
   },
-  // {
-  //   title: "OpenStud",
-  //   description: "The Ultimate Place for Smarter Learning.",
-  //   image:
-  //     "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIL8rqZRT9azBluIkrOxiR25JGcXeSbhtfT8UC",
-  //   link: "https://openstud.vercel.app",
-  //   badge: "current",
-  // },
+  {
+    title: "OpenStud (v1.38.11-beta)",
+    description: "The Ultimate Place for Smarter Learning.",
+    image:
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEINd5qsXKy9kHohf1BAiUGcSeL3dVQDnmF4YO6",
+    link: "https://openstud.vercel.app",
+    badge: "current",
+  },
   // {
   //   title: "KeepFlowing",
   //   description: "Managing project shouldn't be a chore. Stay in the flow.",
