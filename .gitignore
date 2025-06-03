@@ -46,3 +46,6 @@ next-env.d.ts
 /content/**/temp/
 /content/**/.cache/
 /content/.trash/
+
+# Prisma
+/lib/generated/

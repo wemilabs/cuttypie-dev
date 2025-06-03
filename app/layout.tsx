@@ -1,9 +1,10 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { unstable_ViewTransition as ViewTransition } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { unstable_ViewTransition as ViewTransition } from "react";
 import "./globals.css";
 
-import { AuthProvider, AuthModal } from "@/components/auth";
+import { AuthModal, AuthProvider } from "@/components/auth";
 import { SessionProvider } from "@/components/providers/session-provider";
 import Header from "@/components/shared/header";
 
@@ -85,6 +86,7 @@ export default function RootLayout({
             </main>
           </AuthProvider>
         </SessionProvider>
+        <Analytics />
       </body>
     </html>
   );

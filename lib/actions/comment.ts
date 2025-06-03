@@ -1,10 +1,10 @@
 "use server";
 
-import { z } from "zod";
-import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
-import { commentSchema } from "@/lib/validations/comment";
 import prisma from "@/lib/prisma";
+import { commentSchema } from "@/lib/validations/comment";
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 interface CommentInput {
   content: string;
@@ -38,7 +38,9 @@ interface CommentResponse {
 /**
  * Creates a new comment
  */
-export async function createComment(data: CommentInput): Promise<CommentResponse> {
+export async function createComment(
+  data: CommentInput
+): Promise<CommentResponse> {
   try {
     // Validate input
     const validatedData = commentSchema.parse(data);
@@ -71,7 +73,6 @@ export async function createComment(data: CommentInput): Promise<CommentResponse
     // Revalidate the blog post page
     revalidatePath(`/blog/${data.postSlug}`);
     return { comment: { ...comment, isPinned: comment.isPinned } };
-
   } catch (error) {
     console.error("Create comment error:", error);
     if (error instanceof z.ZodError) {
@@ -84,7 +85,10 @@ export async function createComment(data: CommentInput): Promise<CommentResponse
 /**
  * Deletes a comment
  */
-export async function deleteComment(commentId: string, postSlug: string): Promise<CommentResponse> {
+export async function deleteComment(
+  commentId: string,
+  postSlug: string
+): Promise<CommentResponse> {
   try {
     // Check authentication
     const session = await getSession();
@@ -114,7 +118,6 @@ export async function deleteComment(commentId: string, postSlug: string): Promis
     // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
     return {};
-
   } catch (error) {
     console.error("Delete comment error:", error);
     return { error: "Failed to delete comment" };
@@ -166,8 +169,9 @@ export async function editComment(
 
     // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
-    return { comment: { ...updatedComment, isPinned: updatedComment.isPinned } };
-
+    return {
+      comment: { ...updatedComment, isPinned: updatedComment.isPinned },
+    };
   } catch (error) {
     console.error("Edit comment error:", error);
     return { error: "Failed to edit comment" };
@@ -175,12 +179,15 @@ export async function editComment(
 }
 
 // Helper function to build comment tree
-const buildCommentTree = (comments: CommentWithAuthor[], parentId: string | null = null): CommentWithAuthor[] => {
+const buildCommentTree = (
+  comments: CommentWithAuthor[],
+  parentId: string | null = null
+): CommentWithAuthor[] => {
   return comments
-    .filter(comment => comment.parentId === parentId)
-    .map(comment => ({
+    .filter((comment) => comment.parentId === parentId)
+    .map((comment) => ({
       ...comment,
-      replies: buildCommentTree(comments, comment.id)
+      replies: buildCommentTree(comments, comment.id),
     }))
     .sort((a, b) => {
       // First sort by pinned status (pinned comments first)
@@ -196,7 +203,7 @@ const buildCommentTree = (comments: CommentWithAuthor[], parentId: string | null
  */
 export async function getComments(postSlug: string): Promise<CommentResponse> {
   try {
-    const allComments = await prisma.comment.findMany({
+    const allComments = (await prisma.comment.findMany({
       where: { postSlug },
       include: {
         author: {
@@ -207,12 +214,12 @@ export async function getComments(postSlug: string): Promise<CommentResponse> {
         },
       },
       orderBy: { createdAt: "desc" },
-    });
+    })) as unknown as Array<CommentWithAuthor & { updatedAt: Date }>;
 
     // Ensure all comments have the isPinned property
-    const commentsWithPinned = allComments.map(comment => ({
+    const commentsWithPinned = allComments.map((comment) => ({
       ...comment,
-      isPinned: comment.isPinned
+      isPinned: comment.isPinned || false,
     }));
 
     const threadedComments = buildCommentTree(commentsWithPinned);
@@ -269,7 +276,6 @@ export async function togglePinComment(
     // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
     return { comment: updatedComment };
-
   } catch (error) {
     console.error("Toggle pin comment error:", error);
     return { error: "Failed to update comment pin status" };
