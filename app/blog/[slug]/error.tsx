@@ -1,21 +1,32 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import { AlertTriangle } from 'lucide-react';
+import { useEffect } from 'react';
 
-export default function error() {
-  return (
-    <article className="max-w-4xl mx-auto px-6 py-36">
-      <h1 className="text-4xl font-bold mb-6">Not Found</h1>
-      <p className="text-white/70 mb-2">
-        The post you're looking for does not exist or has been moved.
-      </p>
-      <p>
-        Go back to{" "}
-        <Link href="/blog" className="underline hover:underline-offset-4">
-          blog
-        </Link>
-        .
-      </p>
-    </article>
-  );
+export default function Error({
+	error,
+	reset,
+}: {
+	error: Error & { digest?: string };
+	reset: () => void;
+}) {
+	useEffect(() => {
+		console.error('Blog post error:', error);
+	}, [error]);
+
+	return (
+		<div className='flex h-[50vh] flex-col items-center justify-center gap-4 text-center'>
+			<div className='flex size-20 items-center justify-center rounded-full bg-muted'>
+				<AlertTriangle className='size-10 text-destructive' />
+			</div>
+			<h2 className='text-2xl font-bold'>Something went wrong!</h2>
+			<p className='text-muted-foreground'>
+				There was an error getting this blog post.
+			</p>
+			<Button onClick={() => reset()} variant='default'>
+				Try again
+			</Button>
+		</div>
+	);
 }
