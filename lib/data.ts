@@ -40,6 +40,12 @@ export const projects: Project[] = [
 		badge: 'paused',
 	},
 	{
+		title: 'Lytics',
+		description: 'An efficient data analytics tool',
+		link: 'https://lytics-iota.vercel.app',
+		badge: 'paused',
+	},
+	{
 		title: 'OpenStud v1.60',
 		description: "Education in today's smartest way.",
 		image:
