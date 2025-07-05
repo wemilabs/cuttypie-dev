@@ -195,7 +195,7 @@ export default function About() {
 						<Icons.pnpm className='size-16' />
 						<span className='text-sm text-white/70'>PNPM</span>
 					</a>
-					<a
+					{/* <a
 						href='https://windsurf.com'
 						target='_blank'
 						rel='noopener noreferrer'
@@ -203,8 +203,8 @@ export default function About() {
 					>
 						<Icons.windsurf className='size-16' />
 						<span className='text-sm text-white/70'>Windsurf</span>
-					</a>
-					{/* <a
+					</a> */}
+					<a
 						href='https://cursor.com'
 						target='_blank'
 						rel='noopener noreferrer'
@@ -212,7 +212,7 @@ export default function About() {
 					>
 						<Icons.cursor className='size-16' />
 						<span className='text-sm text-white/70'>Cursor</span>
-					</a> */}
+					</a>
 				</div>
 			</AboutSection>
 
