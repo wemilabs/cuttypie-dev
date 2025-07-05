@@ -1,6 +1,7 @@
+import dynamic from 'next/dynamic';
 import type { SVGProps } from 'react';
 
-const XSocial = (props: SVGProps<SVGSVGElement>) => (
+export const XSocial = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width='1em'
@@ -16,7 +17,7 @@ const XSocial = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Github = (props: SVGProps<SVGSVGElement>) => (
+export const Github = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		viewBox='0 0 256 250'
 		width='1em'
@@ -30,23 +31,7 @@ const Github = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const JavaScript = (props: SVGProps<SVGSVGElement>) => (
-	<svg
-		xmlns='http://www.w3.org/2000/svg'
-		width='1em'
-		height='1em'
-		viewBox='0 0 1052 1052'
-		{...props}
-	>
-		<path fill='#f0db4f' d='M0 0h1052v1052H0z' />
-		<path
-			d='M965.9 801.1c-7.7-48-39-88.3-131.7-125.9-32.2-14.8-68.1-25.399-78.8-49.8-3.8-14.2-4.3-22.2-1.9-30.8 6.9-27.9 40.2-36.6 66.6-28.6 17 5.7 33.1 18.801 42.8 39.7 45.4-29.399 45.3-29.2 77-49.399-11.6-18-17.8-26.301-25.4-34-27.3-30.5-64.5-46.2-124-45-10.3 1.3-20.699 2.699-31 4-29.699 7.5-58 23.1-74.6 44-49.8 56.5-35.6 155.399 25 196.1 59.7 44.8 147.4 55 158.6 96.9 10.9 51.3-37.699 67.899-86 62-35.6-7.4-55.399-25.5-76.8-58.4-39.399 22.8-39.399 22.8-79.899 46.1 9.6 21 19.699 30.5 35.8 48.7 76.2 77.3 266.899 73.5 301.1-43.5 1.399-4.001 10.6-30.801 3.199-72.101zm-394-317.6h-98.4c0 85-.399 169.4-.399 254.4 0 54.1 2.8 103.7-6 118.9-14.4 29.899-51.7 26.2-68.7 20.399-17.3-8.5-26.1-20.6-36.3-37.699-2.8-4.9-4.9-8.7-5.601-9-26.699 16.3-53.3 32.699-80 49 13.301 27.3 32.9 51 58 66.399 37.5 22.5 87.9 29.4 140.601 17.3 34.3-10 63.899-30.699 79.399-62.199 22.4-41.3 17.6-91.3 17.4-146.6.5-90.2 0-180.4 0-270.9z'
-			fill='#323330'
-		/>
-	</svg>
-);
-
-const TypeScript = (props: SVGProps<SVGSVGElement>) => (
+export const TypeScript = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		viewBox='0 0 256 256'
 		width='1em'
@@ -66,7 +51,7 @@ const TypeScript = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const React = (props: SVGProps<SVGSVGElement>) => (
+export const React = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		width='1em'
 		height='1em'
@@ -92,7 +77,7 @@ const React = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Nextjs = (props: SVGProps<SVGSVGElement>) => (
+export const Nextjs = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		width='1em'
 		height='1em'
@@ -162,86 +147,7 @@ const Nextjs = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Nodejs = (props: SVGProps<SVGSVGElement>) => (
-	<svg
-		viewBox='0 0 256 292'
-		xmlns='http://www.w3.org/2000/svg'
-		xmlnsXlink='http://www.w3.org/1999/xlink'
-		width='1em'
-		height='1em'
-		{...props}
-	>
-		<defs>
-			<linearGradient
-				id='a'
-				x1='68.188%'
-				x2='27.823%'
-				y1='17.487%'
-				y2='89.755%'
-			>
-				<stop offset='0%' stopColor='#41873F' />
-				<stop offset='32.88%' stopColor='#418B3D' />
-				<stop offset='63.52%' stopColor='#419637' />
-				<stop offset='93.19%' stopColor='#3FA92D' />
-				<stop offset='100%' stopColor='#3FAE2A' />
-			</linearGradient>
-			<linearGradient
-				id='c'
-				x1='43.277%'
-				x2='159.245%'
-				y1='55.169%'
-				y2='-18.306%'
-			>
-				<stop offset='13.76%' stopColor='#41873F' />
-				<stop offset='40.32%' stopColor='#54A044' />
-				<stop offset='71.36%' stopColor='#66B848' />
-				<stop offset='90.81%' stopColor='#6CC04A' />
-			</linearGradient>
-			<linearGradient
-				id='f'
-				x1='-4.389%'
-				x2='101.499%'
-				y1='49.997%'
-				y2='49.997%'
-			>
-				<stop offset='9.192%' stopColor='#6CC04A' />
-				<stop offset='28.64%' stopColor='#66B848' />
-				<stop offset='59.68%' stopColor='#54A044' />
-				<stop offset='86.24%' stopColor='#41873F' />
-			</linearGradient>
-			<path
-				id='b'
-				d='M134.923 1.832c-4.344-2.443-9.502-2.443-13.846 0L6.787 67.801C2.443 70.244 0 74.859 0 79.745v132.208c0 4.887 2.715 9.502 6.787 11.945l114.29 65.968c4.344 2.444 9.502 2.444 13.846 0l114.29-65.968c4.344-2.443 6.787-7.058 6.787-11.945V79.745c0-4.886-2.715-9.501-6.787-11.944L134.923 1.832Z'
-			/>
-			<path
-				id='e'
-				d='M134.923 1.832c-4.344-2.443-9.502-2.443-13.846 0L6.787 67.801C2.443 70.244 0 74.859 0 79.745v132.208c0 4.887 2.715 9.502 6.787 11.945l114.29 65.968c4.344 2.444 9.502 2.444 13.846 0l114.29-65.968c4.344-2.443 6.787-7.058 6.787-11.945V79.745c0-4.886-2.715-9.501-6.787-11.944L134.923 1.832Z'
-			/>
-		</defs>
-		<path
-			fill='url(#a)'
-			d='M134.923 1.832c-4.344-2.443-9.502-2.443-13.846 0L6.787 67.801C2.443 70.244 0 74.859 0 79.745v132.208c0 4.887 2.715 9.502 6.787 11.945l114.29 65.968c4.344 2.444 9.502 2.444 13.846 0l114.29-65.968c4.344-2.443 6.787-7.058 6.787-11.945V79.745c0-4.886-2.715-9.501-6.787-11.944L134.923 1.832Z'
-		/>
-		<mask id='d' fill='#fff'>
-			<use xlinkHref='#b' />
-		</mask>
-		<path
-			fill='url(#c)'
-			d='M249.485 67.8 134.65 1.833c-1.086-.542-2.443-1.085-3.529-1.357L2.443 220.912c1.086 1.357 2.444 2.443 3.8 3.258l114.834 65.968c3.258 1.9 7.059 2.443 10.588 1.357L252.47 70.515c-.815-1.086-1.9-1.9-2.986-2.714Z'
-			mask='url(#d)'
-		/>
-		<mask id='g' fill='#fff'>
-			<use xlinkHref='#e' />
-		</mask>
-		<path
-			fill='url(#f)'
-			d='M249.756 223.898c3.258-1.9 5.701-5.158 6.787-8.687L130.579.204c-3.258-.543-6.787-.272-9.773 1.628L6.786 67.53l122.979 224.238c1.628-.272 3.529-.815 5.158-1.63l114.833-66.239Z'
-			mask='url(#g)'
-		/>
-	</svg>
-);
-
-const PostgreSQL = (props: SVGProps<SVGSVGElement>) => (
+export const PostgreSQL = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		xmlSpace='preserve'
@@ -312,7 +218,7 @@ const PostgreSQL = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Prisma = (props: SVGProps<SVGSVGElement>) => (
+export const Prisma = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		viewBox='0 0 256 310'
 		width='1em'
@@ -328,7 +234,7 @@ const Prisma = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Neon = (props: SVGProps<SVGSVGElement>) => (
+export const Neon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		viewBox='0 0 256 256'
 		xmlns='http://www.w3.org/2000/svg'
@@ -367,7 +273,7 @@ const Neon = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const BetterAuth = (props: SVGProps<SVGSVGElement>) => (
+export const BetterAuth = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
@@ -386,7 +292,7 @@ const BetterAuth = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const TailwindCSS = (props: SVGProps<SVGSVGElement>) => (
+export const TailwindCSS = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
@@ -411,7 +317,7 @@ const TailwindCSS = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const shadcnui = (props: SVGProps<SVGSVGElement>) => (
+export const shadcnui = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		viewBox='0 0 256 256'
@@ -430,7 +336,7 @@ const shadcnui = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Vercel = (props: SVGProps<SVGSVGElement>) => (
+export const Vercel = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		viewBox='0 0 256 222'
 		width='1em'
@@ -443,7 +349,7 @@ const Vercel = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Resend = (props: SVGProps<SVGSVGElement>) => (
+export const Resend = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		width='1em'
 		height='1em'
@@ -459,7 +365,7 @@ const Resend = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Zod = (props: SVGProps<SVGSVGElement>) => (
+export const Zod = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		xmlnsXlink='http://www.w3.org/1999/xlink'
@@ -512,7 +418,7 @@ const Zod = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Stripe = (props: SVGProps<SVGSVGElement>) => (
+export const Stripe = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width='1em'
@@ -527,7 +433,7 @@ const Stripe = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Polar = (props: SVGProps<SVGSVGElement>) => (
+export const Polar = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width='1em'
@@ -552,7 +458,7 @@ const Polar = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Pnpm = (props: SVGProps<SVGSVGElement>) => (
+export const Pnpm = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		xmlnsXlink='http://www.w3.org/1999/xlink'
@@ -665,7 +571,7 @@ const Pnpm = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Windsurf = (props: SVGProps<SVGSVGElement>) => (
+export const Windsurf = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width='1em'
@@ -763,7 +669,7 @@ const Windsurf = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Cursor = (props: SVGProps<SVGSVGElement>) => (
+export const Cursor = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		height='1em'
 		style={{
@@ -829,25 +735,31 @@ const Cursor = (props: SVGProps<SVGSVGElement>) => (
 );
 
 export const Icons = {
-	github: Github,
-	x: XSocial,
-	javascript: JavaScript,
-	typescript: TypeScript,
-	react: React,
-	nextjs: Nextjs,
-	nodejs: Nodejs,
-	postgresql: PostgreSQL,
-	prisma: Prisma,
-	neon: Neon,
-	betterAuth: BetterAuth,
-	tailwindcss: TailwindCSS,
-	shadcn: shadcnui,
-	vercel: Vercel,
-	resend: Resend,
-	zod: Zod,
-	stripe: Stripe,
-	polar: Polar,
-	pnpm: Pnpm,
-	windsurf: Windsurf,
-	cursor: Cursor,
+	github: dynamic(() => import('@/components/icons').then(m => m.Github)),
+	x: dynamic(() => import('@/components/icons').then(m => m.XSocial)),
+	typescript: dynamic(() =>
+		import('@/components/icons').then(m => m.TypeScript)
+	),
+	react: dynamic(() => import('@/components/icons').then(m => m.React)),
+	nextjs: dynamic(() => import('@/components/icons').then(m => m.Nextjs)),
+	postgresql: dynamic(() =>
+		import('@/components/icons').then(m => m.PostgreSQL)
+	),
+	prisma: dynamic(() => import('@/components/icons').then(m => m.Prisma)),
+	neon: dynamic(() => import('@/components/icons').then(m => m.Neon)),
+	betterAuth: dynamic(() =>
+		import('@/components/icons').then(m => m.BetterAuth)
+	),
+	tailwindcss: dynamic(() =>
+		import('@/components/icons').then(m => m.TailwindCSS)
+	),
+	shadcn: dynamic(() => import('@/components/icons').then(m => m.shadcnui)),
+	vercel: dynamic(() => import('@/components/icons').then(m => m.Vercel)),
+	resend: dynamic(() => import('@/components/icons').then(m => m.Resend)),
+	zod: dynamic(() => import('@/components/icons').then(m => m.Zod)),
+	stripe: dynamic(() => import('@/components/icons').then(m => m.Stripe)),
+	polar: dynamic(() => import('@/components/icons').then(m => m.Polar)),
+	pnpm: dynamic(() => import('@/components/icons').then(m => m.Pnpm)),
+	windsurf: dynamic(() => import('@/components/icons').then(m => m.Windsurf)),
+	cursor: dynamic(() => import('@/components/icons').then(m => m.Cursor)),
 };

@@ -1,4 +1,4 @@
-import { PrismaClient } from '@/lib/generated/prisma';
+import { PrismaClient } from '@/lib/generated/prisma/client';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
 // Prevent multiple instances of Prisma Client in development
