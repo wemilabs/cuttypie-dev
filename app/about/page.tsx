@@ -58,7 +58,7 @@ export default function About() {
 			</AboutSection>
 
 			{/* Tech Stack Section */}
-			<AboutSection title={`My ${new Date().getFullYear()} Tech Stack`}>
+			<AboutSection title={`Current ${new Date().getFullYear()} Tech Stack`}>
 				<div className='grid grid-cols-3 md:grid-cols-4 gap-8 place-items-center pt-5'>
 					<a
 						href='https://typescriptlang.org'
