@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 import FAQItem from '@/components/about/faq-item';
 import AboutSection from '@/components/about/section';
@@ -8,7 +7,7 @@ import ProjectRequestForm from '@/components/forms/project-request-form';
 import { Icons } from '@/components/icons';
 
 export const metadata: Metadata = {
-	title: 'About - Matheo (cuttypie)',
+	title: 'About - Mr T. ',
 	description: 'Learn more about me and what I do.',
 };
 
@@ -17,14 +16,13 @@ export default function About() {
 		<div className='max-w-4xl mx-auto px-6 pt-[74px] pb-20 mt-16'>
 			<section className='mb-16'>
 				<h1 className='text-4xl font-bold mb-6'>
-					Hey, I'm <span className='text-yellow-200'>Matheo</span>
+					Hey, I'm <span className='text-yellow-200'>Mr T.</span>
 				</h1>
 				<p className='text-lg tracking-tighter text-white/70 leading-relaxed'>
-					I'm a full-stack developer passionate about building beautiful and
-					functional web applications. My expertise lies in modern web
-					technologies, focusing on creating scalable and maintainable
-					solutions. All with a meticulous attention to performance and user
-					experience.
+					Full-stack developer passionate about innovating. My expertise lies in
+					modern web technologies, focusing on creating scalable and
+					maintainable solutions. All with a meticulous attention to performance
+					and user experience.
 				</p>
 			</section>
 			{/* What I Do Section */}
@@ -220,7 +218,7 @@ export default function About() {
 			<AboutSection title='Frequently Asked Questions'>
 				<FAQItem
 					question='Who are you?'
-					answer="I'm Matheo, a self-taught Gabonese full-stack developer, and I've been professionally coding since 2019. Technology is my passion, and these days I spend most of my time developing, researching, and writing."
+					answer="Mr T., a self-taught Gabonese full-stack developer. I've been professionally coding since 2019. Technology is my passion, and these days I spend most of my time developing, researching, and writing."
 				/>
 				<FAQItem
 					question='Your development philosophy?'

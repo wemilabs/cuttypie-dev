@@ -1,8 +1,7 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Icons } from '@/components/icons';
-import { ModeToggle } from './mode-toggle';
 
 const Header = () => {
 	return (
@@ -19,7 +18,7 @@ const Header = () => {
 						className='rounded-md'
 					/>
 					<h1 className='font-bold'>
-						matheo
+						Mr T
 						<span className='text-yellow-200 text-xl font-extrabold'>.</span>
 					</h1>
 				</Link>

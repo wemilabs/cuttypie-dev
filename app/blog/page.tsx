@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PostGrid } from '@/components/posts/post-grid';
 
 export const metadata: Metadata = {
-	title: 'Blog | Matheo (cuttypie)',
+	title: 'Blog - Mr T. ',
 	description: 'Read my latest blog posts about tech trends and projects.',
 	metadataBase: new URL('https://cuttypiedev.vercel.app/blog/'),
 	keywords: [

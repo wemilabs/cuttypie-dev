@@ -15,7 +15,7 @@ export async function generateMetadata({
 	const post = await getPostBySlug(slug);
 
 	return {
-		title: `${post.title} - Blog | Matheo (cuttypie)`,
+		title: `${post.title} - Blog | Mr T. `,
 		description: post.description,
 		metadataBase: new URL('https://cuttypiedev.vercel.app/blog/'),
 		keywords: post.tags,
@@ -30,9 +30,9 @@ export async function generateMetadata({
 			type: 'website',
 			locale: 'en_US',
 			url: `https://cuttypiedev.vercel.app/blog/${slug}`,
-			title: `${post.title} - Blog | Matheo (cuttypie)`,
+			title: `${post.title} - Blog | Mr T. `,
 			description: post.description,
-			siteName: 'Matheo (cuttypie)',
+			siteName: 'Mr T. ',
 			images: [
 				{
 					url:
@@ -47,7 +47,7 @@ export async function generateMetadata({
 		},
 		twitter: {
 			card: 'summary_large_image',
-			title: `${post.title} - Blog | Matheo (cuttypie)`,
+			title: `${post.title} - Blog | Mr T. `,
 			description: post.description,
 			images: [
 				post.coverImage === 'Cover Image URL'
