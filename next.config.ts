@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   experimental: {
     viewTransition: true,
   },
@@ -12,6 +13,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  serverExternalPackages: ["prettier"],
+  typedRoutes: true,
 };
 
 export default nextConfig;

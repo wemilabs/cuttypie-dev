@@ -7,7 +7,6 @@ import { EmailTemplate } from "@/components/templates/email-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
-// Validation schema for project request
 const projectRequestSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address."),
@@ -16,14 +15,12 @@ const projectRequestSchema = z.object({
 
 export async function sendProjectRequest(formData: FormData) {
   try {
-    // Validate form data
     const validatedData = projectRequestSchema.parse({
       name: formData.get("name"),
       email: formData.get("email"),
       pitch: formData.get("pitch"),
     });
 
-    // Send email
     const { data, error } = await resend.emails.send({
       from: process.env.DEFAULT_SENDER_EMAIL_ADDRESS!,
       to: [process.env.DEFAULT_RECEPIENT_EMAIL_ADDRESS!],
@@ -39,9 +36,8 @@ export async function sendProjectRequest(formData: FormData) {
     return { success: true, data };
   } catch (error) {
     console.error("Project request error:", error);
-    if (error instanceof z.ZodError) {
-      return { error: error.errors[0].message };
-    }
+    if (error instanceof z.ZodError) return { error: error.issues[0].message };
+
     return { error: "Failed to process project request" };
   }
 }

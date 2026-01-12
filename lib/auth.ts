@@ -6,20 +6,24 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "your-secret-key"
 );
 
-/**
- * Gets the current session from the JWT token in cookies
- * @returns The session data if authenticated, null otherwise
- */
 export async function getSession() {
   try {
-    const token = (await cookies()).get("token")?.value;
+    if (
+      process.env.NEXT_PHASE === "phase-production-build" ||
+      (process.env.NODE_ENV === "development" &&
+        typeof window === "undefined" &&
+        !process.env.NEXT_RUNTIME)
+    ) {
+      return null;
+    }
+
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
     if (!token) return null;
 
     const { payload } = await jose.jwtVerify(token, JWT_SECRET);
 
-    if (!payload || !payload.id || !payload.email || !payload.name) {
-      return null;
-    }
+    if (!payload || !payload.id || !payload.email || !payload.name) return null;
 
     return {
       id: payload.id as string,
@@ -32,23 +36,12 @@ export async function getSession() {
   }
 }
 
-/**
- * Generates a salt and hashes the password using scrypt
- * @param password - The plain text password to hash
- * @returns The hashed password with salt in format: salt:hash
- */
 export function hashPassword(password: string): string {
   const salt = randomBytes(16).toString("hex");
   const hash = scryptSync(password, salt, 64).toString("hex");
   return `${salt}:${hash}`;
 }
 
-/**
- * Verifies a password against a hash
- * @param password - The plain text password to verify
- * @param hashedPassword - The stored password hash with salt
- * @returns boolean indicating if the password matches
- */
 export function verifyPassword(
   password: string,
   hashedPassword: string

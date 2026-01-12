@@ -16,6 +16,15 @@
 }
 
 @layer utilities {
+  @keyframes orbit-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   body {
     color: var(--foreground);
     background: var(--background);
@@ -63,7 +72,7 @@
     overflow-x: auto;
   }
 
-  pre>code {
+  pre > code {
     display: grid;
     font-family: var(--font-geist-mono);
     font-size: 0.9em;
@@ -76,7 +85,7 @@
   }
 
   /* Inline code */
-  :not(pre)>code {
+  :not(pre) > code {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.2em 0.4em;
     border-radius: 3px;

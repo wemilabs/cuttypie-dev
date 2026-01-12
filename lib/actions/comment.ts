@@ -35,30 +35,22 @@ interface CommentResponse {
   error?: string;
 }
 
-/**
- * Creates a new comment
- */
 export async function createComment(
   data: CommentInput
 ): Promise<CommentResponse> {
   try {
-    // Validate input
     const validatedData = commentSchema.parse(data);
 
-    // Check authentication
     const session = await getSession();
-    if (!session) {
-      return { error: "You must be signed in to comment" };
-    }
+    if (!session) return { error: "You must be signed in to comment" };
 
-    // Create comment
     const comment = await prisma.comment.create({
       data: {
         content: validatedData.content,
         postSlug: validatedData.postSlug,
         parentId: validatedData.parentId,
         authorId: session.id,
-        isPinned: false, // Default to not pinned
+        isPinned: false,
       },
       include: {
         author: {
@@ -70,52 +62,38 @@ export async function createComment(
       },
     });
 
-    // Revalidate the blog post page
     revalidatePath(`/blog/${data.postSlug}`);
     return { comment: { ...comment, isPinned: comment.isPinned } };
   } catch (error) {
     console.error("Create comment error:", error);
-    if (error instanceof z.ZodError) {
-      return { error: error.errors[0].message };
-    }
+    if (error instanceof z.ZodError) return { error: error.issues[0].message };
+
     return { error: "Failed to create comment" };
   }
 }
 
-/**
- * Deletes a comment
- */
 export async function deleteComment(
   commentId: string,
   postSlug: string
 ): Promise<CommentResponse> {
   try {
-    // Check authentication
     const session = await getSession();
-    if (!session) {
-      return { error: "You must be signed in to delete comments" };
-    }
+    if (!session) return { error: "You must be signed in to delete comments" };
 
-    // Get comment to check ownership
     const comment = await prisma.comment.findUnique({
       where: { id: commentId },
       select: { authorId: true },
     });
 
-    if (!comment) {
-      return { error: "Comment not found" };
-    }
+    if (!comment) return { error: "Comment not found" };
 
-    if (comment.authorId !== session.id) {
+    if (comment.authorId !== session.id)
       return { error: "You can only delete your own comments" };
-    }
 
-    // Delete comment
     await prisma.comment.delete({
       where: { id: commentId },
     });
 
-    // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
     return {};
   } catch (error) {
@@ -124,36 +102,25 @@ export async function deleteComment(
   }
 }
 
-/**
- * Edits an existing comment
- */
 export async function editComment(
   commentId: string,
   content: string,
   postSlug: string
 ): Promise<CommentResponse> {
   try {
-    // Check authentication
     const session = await getSession();
-    if (!session) {
-      return { error: "You must be signed in to edit comments" };
-    }
+    if (!session) return { error: "You must be signed in to edit comments" };
 
-    // Get comment to check ownership
     const comment = await prisma.comment.findUnique({
       where: { id: commentId },
       select: { authorId: true },
     });
 
-    if (!comment) {
-      return { error: "Comment not found" };
-    }
+    if (!comment) return { error: "Comment not found" };
 
-    if (comment.authorId !== session.id) {
+    if (comment.authorId !== session.id)
       return { error: "You can only edit your own comments" };
-    }
 
-    // Update comment
     const updatedComment = await prisma.comment.update({
       where: { id: commentId },
       data: { content },
@@ -167,7 +134,6 @@ export async function editComment(
       },
     });
 
-    // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
     return {
       comment: { ...updatedComment, isPinned: updatedComment.isPinned },
@@ -178,7 +144,6 @@ export async function editComment(
   }
 }
 
-// Helper function to build comment tree
 const buildCommentTree = (
   comments: CommentWithAuthor[],
   parentId: string | null = null
@@ -190,17 +155,12 @@ const buildCommentTree = (
       replies: buildCommentTree(comments, comment.id),
     }))
     .sort((a, b) => {
-      // First sort by pinned status (pinned comments first)
       if (a.isPinned && !b.isPinned) return -1;
       if (!a.isPinned && b.isPinned) return 1;
-      // Then sort by date (newest first)
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 };
 
-/**
- * Gets all comments for a post with nested replies
- */
 export async function getComments(postSlug: string): Promise<CommentResponse> {
   try {
     const allComments = (await prisma.comment.findMany({
@@ -216,7 +176,6 @@ export async function getComments(postSlug: string): Promise<CommentResponse> {
       orderBy: { createdAt: "desc" },
     })) as unknown as Array<CommentWithAuthor & { updatedAt: Date }>;
 
-    // Ensure all comments have the isPinned property
     const commentsWithPinned = allComments.map((comment) => ({
       ...comment,
       isPinned: comment.isPinned || false,
@@ -230,36 +189,25 @@ export async function getComments(postSlug: string): Promise<CommentResponse> {
   }
 }
 
-/**
- * Pins or unpins a comment
- */
 export async function togglePinComment(
   commentId: string,
   postSlug: string,
   isPinned: boolean
 ): Promise<CommentResponse> {
   try {
-    // Check authentication
     const session = await getSession();
-    if (!session) {
-      return { error: "You must be signed in to pin comments" };
-    }
+    if (!session) return { error: "You must be signed in to pin comments" };
 
-    // Only allow pinning top-level comments (no replies)
     const comment = await prisma.comment.findUnique({
       where: { id: commentId },
       select: { parentId: true },
     });
 
-    if (!comment) {
-      return { error: "Comment not found" };
-    }
+    if (!comment) return { error: "Comment not found" };
 
-    if (comment.parentId) {
+    if (comment.parentId)
       return { error: "Only top-level comments can be pinned" };
-    }
 
-    // Update comment pin status
     const updatedComment = await prisma.comment.update({
       where: { id: commentId },
       data: { isPinned },
@@ -273,7 +221,6 @@ export async function togglePinComment(
       },
     });
 
-    // Revalidate the blog post page
     revalidatePath(`/blog/${postSlug}`);
     return { comment: updatedComment };
   } catch (error) {
