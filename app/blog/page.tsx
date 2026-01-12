@@ -31,6 +31,7 @@ export default function BlogPage() {
           <div className="space-y-4">
             <Skeleton className="h-52 bg-white/5 rounded-lg p-6 hover:bg-white/10 transition" />
             <Skeleton className="h-52 bg-white/5 rounded-lg p-6 hover:bg-white/10 transition" />
+            <Skeleton className="h-52 bg-white/5 rounded-lg p-6 hover:bg-white/10 transition" />
           </div>
         }
       >
