@@ -1,25 +1,26 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { BadgeType, ProjectCard } from '@/components/projects/project-card';
-import { Button } from '@/components/ui/button';
+import { BadgeType, ProjectCard } from "@/components/projects/project-card";
+import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
-import { projects } from '@/lib/data';
-import { ChevronDown } from 'lucide-react';
+import { projects } from "@/lib/data";
+import { ChevronDown } from "lucide-react";
 
 const badgeOrder: Record<BadgeType, number> = {
 	done: 0,
 	current: 1,
-	'in progress': 2,
-	paused: 3,
+	"in progress": 2,
+	"os contribution": 3,
+	paused: 4,
 };
 
 function BadgeFilter({
@@ -27,58 +28,68 @@ function BadgeFilter({
 	filterFunc,
 	filterQty,
 }: {
-	filter: 'all' | BadgeType;
-	filterFunc: (value: 'all' | BadgeType) => void;
+	filter: "all" | BadgeType;
+	filterFunc: (value: "all" | BadgeType) => void;
 	filterQty: {
 		current: number;
 		inProgress: number;
 		paused: number;
 		done: number;
+		osContribution: number;
 	};
 }) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant='outline' size='sm'>
-					{filter === 'all'
-						? 'All projects'
+				<Button variant="outline" size="sm">
+					{filter === "all"
+						? "All projects"
 						: filter.charAt(0).toUpperCase() + filter.slice(1)}
-					<ChevronDown className='size-4 ml-2' />
+					<ChevronDown className="size-4 ml-2" />
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align='end' className='bg-black/95'>
+			<DropdownMenuContent align="end" className="bg-black/95">
 				<DropdownMenuRadioGroup
 					value={filter}
-					onValueChange={value => filterFunc(value as 'all' | BadgeType)}
+					onValueChange={(value) => filterFunc(value as "all" | BadgeType)}
 				>
-					<DropdownMenuRadioItem value='all'>
-						All{' '}
-						<span className='text-xs text-white/50 ml-2 mt-0.5'>
-							{filterQty.current + filterQty.inProgress + filterQty.paused}
+					<DropdownMenuRadioItem value="all">
+						All{" "}
+						<span className="text-xs text-white/50 ml-2 mt-0.5">
+							{filterQty.current +
+								filterQty.inProgress +
+								filterQty.paused +
+								filterQty.osContribution}
 						</span>
 					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='current'>
-						Current{' '}
-						<span className='text-xs text-white/50 ml-2 mt-0.5'>
+					<DropdownMenuRadioItem value="current">
+						Current{" "}
+						<span className="text-xs text-white/50 ml-2 mt-0.5">
 							{filterQty.current}
 						</span>
 					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='in progress'>
-						In progress{' '}
-						<span className='text-xs text-white/50 ml-2 mt-0.5'>
+					<DropdownMenuRadioItem value="in progress">
+						In progress{" "}
+						<span className="text-xs text-white/50 ml-2 mt-0.5">
 							{filterQty.inProgress}
 						</span>
 					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='paused'>
-						Paused{' '}
-						<span className='text-xs text-white/50 ml-2 mt-0.5'>
+					<DropdownMenuRadioItem value="paused">
+						Paused{" "}
+						<span className="text-xs text-white/50 ml-2 mt-0.5">
 							{filterQty.paused}
 						</span>
 					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='done'>
-						Done{' '}
-						<span className='text-xs text-white/50 ml-2 mt-0.5'>
+					<DropdownMenuRadioItem value="done">
+						Done{" "}
+						<span className="text-xs text-white/50 ml-2 mt-0.5">
 							{filterQty.done}
+						</span>
+					</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value="os contribution">
+						OS Contribution{" "}
+						<span className="text-xs text-white/50 ml-2 mt-0.5">
+							{filterQty.osContribution}
 						</span>
 					</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
@@ -88,20 +99,25 @@ function BadgeFilter({
 }
 
 export function ProjectGrid() {
-	const [badgeFilter, setBadgeFilter] = useState<'all' | BadgeType>('all');
+	const [badgeFilter, setBadgeFilter] = useState<"all" | BadgeType>("all");
 
 	const filterQty = {
-		current: [...projects].filter(project => project.badge === 'current')
+		current: [...projects].filter((project) => project.badge === "current")
 			.length,
-		inProgress: [...projects].filter(project => project.badge === 'in progress')
+		inProgress: [...projects].filter(
+			(project) => project.badge === "in progress",
+		).length,
+		paused: [...projects].filter((project) => project.badge === "paused")
 			.length,
-		paused: [...projects].filter(project => project.badge === 'paused').length,
-		done: [...projects].filter(project => project.badge === 'done').length,
+		done: [...projects].filter((project) => project.badge === "done").length,
+		osContribution: [...projects].filter(
+			(project) => project.badge === "os contribution",
+		).length,
 	};
 
 	const filteredAndSortedProjects = [...projects]
-		.filter(project =>
-			badgeFilter === 'all' ? true : project.badge === badgeFilter
+		.filter((project) =>
+			badgeFilter === "all" ? true : project.badge === badgeFilter,
 		)
 		.sort((a, b) => {
 			const badgeDiff =
@@ -113,20 +129,20 @@ export function ProjectGrid() {
 
 	return (
 		<section
-			id='featured-projects'
-			className='max-w-6xl mx-auto px-6 pt-0 pb-16'
+			id="featured-projects"
+			className="max-w-6xl mx-auto px-6 pt-0 pb-16"
 		>
-			<h2 className='text-2xl text-center font-bold mb-8'>
+			<h2 className="text-2xl text-center font-bold mb-8">
 				What I've been working on
 			</h2>
-			<div className='flex justify-end mb-6'>
+			<div className="flex justify-end mb-6">
 				<BadgeFilter
 					filter={badgeFilter}
 					filterFunc={setBadgeFilter}
 					filterQty={filterQty}
 				/>
 			</div>
-			<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				{filteredAndSortedProjects.map((project, index) => (
 					<ProjectCard key={index} {...project} />
 				))}
