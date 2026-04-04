@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
-  title: "Blog - Mr T. ",
+  title: "Blog | Lisham.",
   description: "Read my latest blog posts about tech trends and projects.",
   metadataBase: new URL("https://cuttypiedev.vercel.app/blog/"),
   keywords: [

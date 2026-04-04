@@ -4,11 +4,10 @@ import FAQItem from "@/components/about/faq-item";
 import AboutSection from "@/components/about/section";
 import SkillCard from "@/components/about/skill-card";
 import ProjectRequestForm from "@/components/forms/project-request-form";
-import { Icons } from "@/components/icons";
 import { OrbitRotation } from "@/components/ui/orbit-rotation";
 
 export const metadata: Metadata = {
-  title: "About - Mr T. ",
+  title: "About | Lisham.",
   description: "Learn more about me and what I do.",
 };
 
@@ -17,9 +16,9 @@ export default async function About() {
     <div className="max-w-4xl mx-auto px-6 pt-[74px] pb-20 mt-16">
       <section className="mb-16">
         <h1 className="text-4xl font-bold mb-6">
-          Hey, I'm <span className="text-yellow-200">Mr T.</span>
+          Hey, I'm <span className="text-yellow-200">Lisham.</span>
         </h1>
-        <p className="text-lg tracking-tighter text-white/70 leading-relaxed">
+        <p className="text-white/70 leading-relaxed">
           Full-stack developer passionate about innovating. My expertise lies in
           modern web technologies, focusing on creating scalable and
           maintainable solutions. All with a meticulous attention to performance
@@ -85,7 +84,7 @@ export default async function About() {
       <AboutSection title="Frequently Asked Questions">
         <FAQItem
           question="Who are you?"
-          answer="Mr T., a self-taught Gabonese full-stack developer. I've been professionally coding since 2019. Technology is my passion, and these days I spend most of my time developing, researching, and writing."
+          answer="Lisham, a self-taught Gabonese full-stack developer. I've been professionally coding since 2019. Technology is my passion, and these days I spend most of my time developing, researching, and writing."
         />
         <FAQItem
           question="Your development philosophy?"

@@ -18,7 +18,7 @@ const Header = () => {
             className="rounded-md"
           />
           <h1 className="font-bold">
-            Mr T
+            lisham
             <span className="text-yellow-200 text-xl font-extrabold">.</span>
           </h1>
         </Link>

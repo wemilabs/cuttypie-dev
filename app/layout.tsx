@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mr T. ",
-  description: "Mr T.'s website.",
+  title: "Lisham.",
+  description: "Lisham's website.",
   metadataBase: new URL("https://cuttypiedev.vercel.app/"),
   keywords: [
     "developer",
@@ -32,36 +32,36 @@ export const metadata: Metadata = {
     "typescript",
     "javascript",
     "cuttypie",
-    "mr t.",
-    "Mr T.",
+    "lisham",
+    "Lisham",
   ],
   authors: [
     {
-      name: "Mr T.",
+      name: "Lisham",
       url: "https://cuttypiedev.vercel.app/",
     },
   ],
-  creator: "Mr T.",
+  creator: "Lisham",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://cuttypiedev.vercel.app/",
-    title: "Mr T. ",
-    description: "Mr T.'s website.",
-    siteName: "Mr T. ",
+    title: "Lisham",
+    description: "Lisham's website.",
+    siteName: "Lisham",
     images: [
       {
         url: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
         width: 1200,
         height: 630,
-        alt: "Mr T. ",
+        alt: "Lisham",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mr T. ",
-    description: "Mr T.'s website.",
+    title: "Lisham",
+    description: "Lisham's website.",
     images: [
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
     ],

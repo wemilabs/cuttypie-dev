@@ -1,4 +1,4 @@
-Built with ❤️ by [Mr T.](https://cuttypiedev.vercel.app/)
+Built with ❤️ by [Lisham](https://cuttypiedev.vercel.app/)
 
 # @findMe
 
@@ -8,7 +8,7 @@ Built with ❤️ by [Mr T.](https://cuttypiedev.vercel.app/)
     target="_blank"
     rel="noopener noreferrer"
   >
-    <img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu" alt="Mr T." width="296" />
+    <img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu" alt="Lisham" width="296" />
   </a>
 </div>
 
@@ -27,4 +27,4 @@ For a detailed understanding of this project:
 - [Vercel](https://vercel.com/) - For hosting the website and providing a smooth user experience
 - [Windsurf Editor by Codeium](https://codeium.com/windsurf/) - The code editor
 - [Lydia Hallie](https://www.lydiahallie.com/) - The website that inspired me to build this
-- [Mr T.](https://cuttypiedev.vercel.app/) - The owner of this website
+- [Lisham](https://cuttypiedev.vercel.app/) - The owner of this website
