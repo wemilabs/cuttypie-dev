@@ -30,7 +30,7 @@ const Header = () => {
             Blog
           </Link>
           <a
-            href="https://x.com/DorianTho5"
+            href="https://x.com/mthlish"
             className="hover:text-white/70 transition"
             target="_blank"
             rel="noopener noreferrer"
