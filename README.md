@@ -1,10 +1,10 @@
-Built with ❤️ by [Lisham](https://cuttypiedev.vercel.app/)
+Built with ❤️ by [Lisham](https://lisham.dev/)
 
 # @findMe
 
 <div>
   <a
-    href="https://cuttypiedev.vercel.app/"
+    href="https://lisham.dev/"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -27,4 +27,4 @@ For a detailed understanding of this project:
 - [Vercel](https://vercel.com/) - For hosting the website and providing a smooth user experience
 - [Windsurf Editor by Codeium](https://codeium.com/windsurf/) - The code editor
 - [Lydia Hallie](https://www.lydiahallie.com/) - The website that inspired me to build this
-- [Lisham](https://cuttypiedev.vercel.app/) - The owner of this website
+- [Lisham](https://lisham.dev/) - The owner of this website

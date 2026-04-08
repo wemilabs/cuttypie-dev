@@ -46,13 +46,11 @@ Enabling 2FA adds an extra layer of security by requiring users to provide a sec
 ### How
 
 - **Access GitHub Account Settings**:
-
   - Log into your GitHub account.
 
   - Navigate to your account settings.
 
 - **Enable 2FA**:
-
   - Go to "Password and authentication."
 
   - Scroll down to "Two-factor authentication" and click "Enable two-factor authentication."
@@ -72,7 +70,6 @@ Enforcing SSH keys provides a more secure way to authenticate users and reduce t
 ### How
 
 - **Generate SSH Keys**:
-
   - Open a terminal or command prompt.
 
   - Run the following command:
@@ -93,9 +90,7 @@ Enforcing SSH keys provides a more secure way to authenticate users and reduce t
         - **A public key (e.g., `id_ed25519.pub`):** This file is shared with the server or service you're connecting to (e.g., GitHub).
 
 - **Add SSH Key to ssh-agent**:
-
   - **Unix environment**:
-
     - Evaluate and add the ssh-agent:
 
     ```bash
@@ -110,7 +105,6 @@ Enforcing SSH keys provides a more secure way to authenticate users and reduce t
     ```
 
   - **MS DOS environment**:
-
     - Start the ssh-agent in the background:
 
     ```bash
@@ -142,7 +136,6 @@ Enforcing SSH keys provides a more secure way to authenticate users and reduce t
     ```
 
 - **Add SSH Key to GitHub**:
-
   - Go to your GitHub account settings.
 
   - Navigate to "SSH and GPG keys".
@@ -164,13 +157,11 @@ Implementing RBAC helps in managing access to repositories by assigning specific
 ### How
 
 - **Create Teams and Roles**:
-
   - In your GitHub organization, create teams (e.g., Developers, Reviewers, Security).
 
   - Assign roles with specific permissions (e.g., write, maintain, admin).
 
 - **Configure Repository Access**:
-
   - Set access levels for each repository (e.g., protected branches).
 
   - Use JSON to define protection rules for branches, including required reviews and status checks2.
@@ -178,7 +169,6 @@ Implementing RBAC helps in managing access to repositories by assigning specific
   - Assign teams to repositories with specific permissions.
 
   - Configure branch protection rules:
-
     - Set required approvals for protected branches.
 
     - Enable required status checks.
@@ -198,7 +188,6 @@ Now that you have generated and added your SSH key to GitHub, here's how you can
 To clone a repository using SSH, you need to use the SSH URL of the repository. Here’s how you can do it:
 
 - **Find the SSH URL**:
-
   - Go to the repository on GitHub.
 
   - Click the "Code" button.
@@ -208,7 +197,6 @@ To clone a repository using SSH, you need to use the SSH URL of the repository. 
   - Copy the SSH URL (it should look something like git@github.com:username/repository.git).
 
 - **Clone the Repo**:
-
   - Open PowerShell or Command Prompt.
 
   - Navigate to the directory where you want to clone the repository.
@@ -224,7 +212,6 @@ To clone a repository using SSH, you need to use the SSH URL of the repository. 
 After cloning, you can push changes to the repository using SSH, following these steps:
 
 - **Make changes**:
-
   - Edit files in your local repo
 
 - **Stage and commit changes**:
@@ -289,4 +276,4 @@ By implementing these practices and leveraging GitHub’s advanced security feat
 
 - **Dr BUGINGO Emmanuel**, our lecturer who allowed us to work on this topic
 - **Alain MUGISHA**, Group 11 member
-- <a href="https://cuttypiedev.vercel.app/about" target="_blank">Matheo OKISSI</a>, Group 11 member
+- <a href="https://lisham.dev/about" target="_blank">Matheo OKISSI</a>, Group 11 member

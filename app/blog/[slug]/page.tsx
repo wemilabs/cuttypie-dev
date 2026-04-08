@@ -20,19 +20,19 @@ export async function generateMetadata({
   return {
     title: `${post.title} - Blog | Lisham.`,
     description: post.description,
-    metadataBase: new URL("https://cuttypiedev.vercel.app/blog/"),
+    metadataBase: new URL("https://lisham.dev/blog/"),
     keywords: post.tags,
     authors: [
       {
-        name: "cuttypie",
-        url: "https://cuttypiedev.vercel.app/",
+        name: "Lisham",
+        url: "https://lisham.dev/",
       },
     ],
-    creator: "cuttypie",
+    creator: "Lisham",
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: `https://cuttypiedev.vercel.app/blog/${slug}`,
+      url: `https://lisham.dev/blog/${slug}`,
       title: `${post.title} - Blog | Lisham.`,
       description: post.description,
       siteName: "Lisham.",
@@ -54,10 +54,10 @@ export async function generateMetadata({
       description: post.description,
       images: [
         post.coverImage === "Cover Image URL"
-          ? "https://cuttypiedev.vercel.app/avatar.webp"
+          ? "https://lisham.dev/avatar.webp"
           : post.coverImage,
       ],
-      creator: "@DorianTho5",
+      creator: "@mthlish",
     },
   };
 }

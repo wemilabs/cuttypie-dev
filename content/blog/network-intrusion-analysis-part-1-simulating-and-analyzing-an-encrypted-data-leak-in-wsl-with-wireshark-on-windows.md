@@ -235,7 +235,7 @@ These observations will help you spot suspicious activity, such as an insider le
 
 And that's it!🎉Congratulations on successfully completing the entire process.
 
-Make sure to follow the part 2 where we shared <a href="https://cuttypiedev.vercel.app/blog/network-intrusion-analysis-part-2-forensic-strategies-to-trace-leak-s-origin">some strategies to trace the leak origin.</a>
+Make sure to follow the part 2 where we shared <a href="https://lisham.dev/blog/network-intrusion-analysis-part-2-forensic-strategies-to-trace-leak-s-origin">some strategies to trace the leak origin.</a>
 
 ---
 
@@ -243,4 +243,4 @@ Make sure to follow the part 2 where we shared <a href="https://cuttypiedev.verc
 
 - **Dr BUGINGO Emmanuel**, our lecturer who allowed us to develop this prototype
 - **Alain MUGISHA**, Group 12 member
-- <a href="https://cuttypiedev.vercel.app/about" target="_blank">Matheo OKISSI</a>, Group 12 member
+- <a href="https://lisham.dev/about" target="_blank">Matheo OKISSI</a>, Group 12 member

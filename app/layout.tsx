@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Lisham.",
   description: "Lisham's website.",
-  metadataBase: new URL("https://cuttypiedev.vercel.app/"),
+  metadataBase: new URL("https://lisham.dev/"),
   keywords: [
     "developer",
     "frontend",
@@ -31,21 +31,20 @@ export const metadata: Metadata = {
     "next.js",
     "typescript",
     "javascript",
-    "cuttypie",
     "lisham",
     "Lisham",
   ],
   authors: [
     {
       name: "Lisham",
-      url: "https://cuttypiedev.vercel.app/",
+      url: "https://lisham.dev/",
     },
   ],
   creator: "Lisham",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://cuttypiedev.vercel.app/",
+    url: "https://lisham.dev/",
     title: "Lisham",
     description: "Lisham's website.",
     siteName: "Lisham",
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
     images: [
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
     ],
-    creator: "@DorianTho5",
+    creator: "@mthlish",
   },
 };
 

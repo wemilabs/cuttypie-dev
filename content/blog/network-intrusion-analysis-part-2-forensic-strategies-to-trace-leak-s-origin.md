@@ -146,4 +146,4 @@ This multi-layered approach maximizes the chances of pinpointing the insider whi
 
 - **Dr BUGINGO Emmanuel**, our lecturer who allowed us to develop this prototype
 - **Alain MUGISHA**, Group 12 member
-- <a href="https://cuttypiedev.vercel.app/about" target="_blank">Matheo OKISSI</a>, Group 12 member
+- <a href="https://lisham.dev/about" target="_blank">Matheo OKISSI</a>, Group 12 member
