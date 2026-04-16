@@ -68,11 +68,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(props: LayoutProps<"/">) {
+  const { children } = props;
   return (
     <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
       <body
