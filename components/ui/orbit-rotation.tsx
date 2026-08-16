@@ -58,7 +58,7 @@ export function OrbitRotation({
       >
         <div
           className={cn(
-            "bg-background/90 border-white/15 flex items-center justify-center rounded-full border shadow-xl backdrop-blur-sm",
+            "bg-background/90 border-border flex items-center justify-center rounded-full border shadow-xl backdrop-blur-sm",
             sizeClasses[size],
           )}
         >
@@ -75,7 +75,7 @@ export function OrbitRotation({
           return (
             <div
               key={orbitSize}
-              className="absolute rounded-full border-2 border-dotted border-white/15"
+              className="absolute rounded-full border-2 border-dotted border-border"
               style={{
                 width: orbitSize,
                 height: orbitSize,

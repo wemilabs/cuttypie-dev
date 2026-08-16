@@ -61,7 +61,7 @@ export function CommentForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+        <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
           {error}
         </div>
       )}
@@ -83,7 +83,7 @@ export function CommentForm({
         <Button type="submit" disabled={isSubmitting || !content.trim()}>
           {isSubmitting ? (
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
               Posting...
             </div>
           ) : (

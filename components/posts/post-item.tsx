@@ -18,40 +18,43 @@ export function PostItem({ post }: PostItemProps) {
   const { slug, title, description, date, tags, postOfTheDay } = post;
 
   return (
-    <article className="group relative bg-white/5 rounded-lg p-6 hover:bg-white/10 transition">
+    <article className="group relative bg-muted/50 rounded-lg p-6 hover:bg-muted transition">
       {postOfTheDay && (
-        <div className="absolute -top-2 -right-2 bg-yellow-500 text-black rounded-full p-2 shadow-lg">
+        <div className="absolute -top-2 -right-2 bg-brand text-background rounded-full p-2 shadow-lg">
           <Star className="size-4" />
         </div>
       )}
       <div className="flex flex-col space-y-2">
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <time dateTime={date} className="text-sm text-white/60 shrink-0">
+          <time
+            dateTime={date}
+            className="text-sm text-muted-foreground shrink-0"
+          >
             {formatDate(date)}
           </time>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs px-2 py-1 bg-white/10 rounded-full whitespace-nowrap"
+                className="text-xs px-2 py-1 bg-muted rounded-full whitespace-nowrap"
               >
                 {tag}
               </span>
             ))}
           </div>
         </div>
-        <h2 className="text-2xl font-bold group-hover:text-yellow-200 transition">
+        <h2 className="text-2xl font-bold group-hover:text-brand transition">
           <Link href={`/blog/${slug}`}>
             {title}
             {postOfTheDay && (
-              <span className="ml-2 text-sm text-yellow-500">(potd)</span>
+              <span className="ml-2 text-sm text-brand">(potd)</span>
             )}
           </Link>
         </h2>
-        <p className="text-white/70">{description}</p>
+        <p className="text-muted-foreground">{description}</p>
         <Link
           href={`/blog/${slug}`}
-          className="inline-flex items-center text-yellow-200 hover:text-yellow-300 transition mt-4"
+          className="inline-flex items-center text-brand hover:text-brand/80 transition mt-4"
         >
           Read more
           <svg

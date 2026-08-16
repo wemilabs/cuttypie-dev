@@ -59,7 +59,7 @@ export function AuthForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+        <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
           {error}
         </div>
       )}
@@ -102,7 +102,7 @@ export function AuthForm() {
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? (
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
             {mode === "signin" ? "Signing in..." : "Signing up..."}
           </div>
         ) : mode === "signin" ? (

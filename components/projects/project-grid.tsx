@@ -49,14 +49,14 @@ function BadgeFilter({
           <ChevronDown className="size-4 ml-2" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-black/95">
+      <DropdownMenuContent align="end">
         <DropdownMenuRadioGroup
           value={filter}
           onValueChange={(value) => filterFunc(value as "all" | BadgeType)}
         >
           <DropdownMenuRadioItem value="all">
             All{" "}
-            <span className="text-xs text-white/50 ml-2 mt-0.5">
+            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
               {filterQty.current +
                 filterQty.inProgress +
                 filterQty.paused +
@@ -65,31 +65,31 @@ function BadgeFilter({
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="current">
             Current{" "}
-            <span className="text-xs text-white/50 ml-2 mt-0.5">
+            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
               {filterQty.current}
             </span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="in progress">
             In progress{" "}
-            <span className="text-xs text-white/50 ml-2 mt-0.5">
+            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
               {filterQty.inProgress}
             </span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="paused">
             Paused{" "}
-            <span className="text-xs text-white/50 ml-2 mt-0.5">
+            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
               {filterQty.paused}
             </span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="done">
             Done{" "}
-            <span className="text-xs text-white/50 ml-2 mt-0.5">
+            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
               {filterQty.done}
             </span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="os contribution">
             OS Contribution{" "}
-            <span className="text-xs text-white/50 ml-2 mt-0.5">
+            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
               {filterQty.osContribution}
             </span>
           </DropdownMenuRadioItem>

@@ -7,6 +7,7 @@ import "./globals.css";
 import { AuthModal, AuthProvider } from "@/components/auth";
 import { SessionProvider } from "@/components/providers/session-provider";
 import Header from "@/components/shared/header";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,18 +73,23 @@ export default function RootLayout(props: LayoutProps<"/">) {
   const { children } = props;
   return (
     <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.className} ${geistMono.className} antialiased`}
-      >
-        <Header />
-        <SessionProvider>
-          <AuthProvider>
-            <AuthModal />
-            <main className="min-h-screen">
-              <ViewTransition>{children}</ViewTransition>
-            </main>
-          </AuthProvider>
-        </SessionProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <SessionProvider>
+            <AuthProvider>
+              <AuthModal />
+              <main className="min-h-screen">
+                <ViewTransition>{children}</ViewTransition>
+              </main>
+            </AuthProvider>
+          </SessionProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

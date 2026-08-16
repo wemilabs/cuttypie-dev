@@ -22,7 +22,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "group flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-linear-to-b from-white/5 to-white/2 backdrop-blur-sm transition-all duration-300 hover:border-amber-300/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.1)] hover:-translate-y-1",
+        "group flex flex-col h-full rounded-xl overflow-hidden border border-border bg-linear-to-b from-muted/50 to-muted/20 backdrop-blur-sm transition-all duration-300 hover:border-brand/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.1)] hover:-translate-y-1",
         className,
         badge === "paused" && "opacity-50",
       )}
@@ -52,7 +52,7 @@ export function ProjectCard({
                     ? "bg-green-500/90"
                     : badge === "in progress"
                       ? "bg-amber-500/90"
-                      : "bg-white/90 text-black",
+                      : "bg-background/90 text-foreground",
             )}
           >
             {badge}
@@ -62,18 +62,18 @@ export function ProjectCard({
       <div className="flex flex-col grow p-5 space-y-3">
         <div className="flex items-start justify-between">
           <a href={link} target="_blank" rel="noopener noreferrer">
-            <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+            <h3 className="text-xl font-bold group-hover:text-brand transition-colors">
               {title}
             </h3>
           </a>
           <a href={link} target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="size-4 text-white/50 group-hover:text-amber-300 transition-colors" />
+            <ExternalLink className="size-4 text-muted-foreground group-hover:text-brand transition-colors" />
           </a>
         </div>
-        <p className="text-white/70 text-sm grow">{description}</p>
+        <p className="text-muted-foreground text-sm grow">{description}</p>
         <div className="pt-2">
           <a href={link} target="_blank" rel="noopener noreferrer">
-            <span className="text-xs font-medium text-amber-300/80 group-hover:text-amber-300 transition-colors inline-flex items-center">
+            <span className="text-xs font-medium text-brand/80 group-hover:text-brand transition-colors inline-flex items-center">
               View project
               <svg
                 className="w-3.5 h-3.5 ml-1 transform transition-transform duration-300 group-hover:translate-x-1"

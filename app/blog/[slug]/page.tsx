@@ -81,14 +81,17 @@ async function BlogPostContent({
     <>
       <header className="space-y-4 mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <time dateTime={date} className="text-sm text-white/60 shrink-0">
+          <time
+            dateTime={date}
+            className="text-sm text-muted-foreground shrink-0"
+          >
             {formatDate(date)}
           </time>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs px-2 py-1 bg-white/10 rounded-full whitespace-nowrap"
+                className="text-xs px-2 py-1 bg-muted rounded-full whitespace-nowrap"
               >
                 {tag}
               </span>
@@ -99,10 +102,10 @@ async function BlogPostContent({
         <h1 className="text-3xl font-bold">
           {title}
           <Activity mode={postOfTheDay ? "visible" : "hidden"}>
-            <span className="ml-2 text-sm text-yellow-500">(potd)</span>
+            <span className="ml-2 text-sm text-brand">(potd)</span>
           </Activity>
         </h1>
-        <p className="text-base text-white/70">{description}</p>
+        <p className="text-base text-muted-foreground">{description}</p>
       </header>
 
       <div
@@ -113,19 +116,19 @@ async function BlogPostContent({
         prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
         prose-p:text-base prose-p:leading-7 prose-p:my-2
         prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline
-        prose-strong:text-yellow-500 prose-strong:font-semibold
-        prose-code:text-yellow-500 prose-code:bg-gray-800/50 prose-code:rounded prose-code:px-1
-        prose-pre:bg-gray-800/50 prose-pre:rounded-lg prose-pre:p-4
+        prose-strong:text-brand prose-strong:font-semibold
+        prose-code:text-brand prose-code:bg-muted prose-code:rounded prose-code:px-1
+        prose-pre:bg-muted prose-pre:rounded-lg prose-pre:p-4
         prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
         prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
         prose-li:my-2
-        prose-blockquote:border-l-4 prose-blockquote:border-yellow-500 prose-blockquote:pl-4 prose-blockquote:italic
+        prose-blockquote:border-l-4 prose-blockquote:border-brand prose-blockquote:pl-4 prose-blockquote:italic
         prose-img:rounded-lg prose-img:mt-12 prose-img:mb-4"
       >
         <CodeBlock html={content} />
       </div>
 
-      <div className="mt-16 border-t border-white/10 pt-8">
+      <div className="mt-16 border-t border-border pt-8">
         <Suspense
           fallback={<div className="animate-pulse">Loading comments...</div>}
         >
@@ -145,7 +148,7 @@ export default function BlogPost({
     <article className="max-w-4xl mx-auto px-6 py-24">
       <Link
         href="/blog"
-        className="inline-flex items-center text-white/60 hover:text-white mb-8 transition"
+        className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition"
       >
         <ChevronLeft className="mr-2 size-5" />
         Back to blog
@@ -185,7 +188,7 @@ export default function BlogPost({
               <Skeleton className="h-6 w-full" />
               <Skeleton className="h-5 w-full" />
               <Skeleton className="h-5 w-5/6" />
-              <div className="bg-gray-800/50 rounded-lg p-4 space-y-2">
+              <div className="bg-muted rounded-lg p-4 space-y-2">
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-4/5" />
@@ -195,7 +198,7 @@ export default function BlogPost({
               <Skeleton className="h-5 w-2/3" />
             </div>
 
-            <div className="mt-16 border-t border-white/10 pt-8">
+            <div className="mt-16 border-t border-border pt-8">
               <Skeleton className="h-7 w-32 mb-6" />
               <div className="space-y-4">
                 <Skeleton className="h-20 w-full" />
