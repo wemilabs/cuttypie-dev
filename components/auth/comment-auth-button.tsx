@@ -19,7 +19,7 @@ export function CommentAuthButton({
     if (isAuthenticated) {
       onAuthenticated();
     } else {
-      openAuth("signin");
+      openAuth();
     }
   };
 

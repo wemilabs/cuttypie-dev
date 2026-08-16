@@ -1,9 +1,13 @@
 "use server";
 
+import { desc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { z } from "zod";
-import { getSession } from "@/lib/auth";
-import prisma from "@/lib/prisma";
+
+import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { comment } from "@/lib/db/schema";
 import { commentSchema } from "@/lib/validations/comment";
 
 interface CommentInput {
@@ -35,35 +39,38 @@ interface CommentResponse {
   error?: string;
 }
 
+async function getSessionUser() {
+  const session = await auth.api.getSession({ headers: await headers() });
+  return session?.user ?? null;
+}
+
 export async function createComment(
   data: CommentInput,
 ): Promise<CommentResponse> {
   try {
     const validatedData = commentSchema.parse(data);
 
-    const session = await getSession();
-    if (!session) return { error: "You must be signed in to comment" };
+    const user = await getSessionUser();
+    if (!user) return { error: "You must be signed in to comment" };
 
-    const comment = await prisma.comment.create({
-      data: {
+    const [created] = await db
+      .insert(comment)
+      .values({
         content: validatedData.content,
         postSlug: validatedData.postSlug,
         parentId: validatedData.parentId,
-        authorId: session.id,
+        authorId: user.id,
         isPinned: false,
-      },
-      include: {
-        author: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
-      },
-    });
+      })
+      .returning();
 
     revalidatePath(`/blog/${data.postSlug}`);
-    return { comment: { ...comment, isPinned: comment.isPinned } };
+    return {
+      comment: {
+        ...created,
+        author: { name: user.name, email: user.email },
+      },
+    };
   } catch (error) {
     console.error("Create comment error:", error);
     if (error instanceof z.ZodError) return { error: error.issues[0].message };
@@ -77,22 +84,20 @@ export async function deleteComment(
   postSlug: string,
 ): Promise<CommentResponse> {
   try {
-    const session = await getSession();
-    if (!session) return { error: "You must be signed in to delete comments" };
+    const user = await getSessionUser();
+    if (!user) return { error: "You must be signed in to delete comments" };
 
-    const comment = await prisma.comment.findUnique({
-      where: { id: commentId },
-      select: { authorId: true },
+    const existing = await db.query.comment.findFirst({
+      where: eq(comment.id, commentId),
+      columns: { authorId: true },
     });
 
-    if (!comment) return { error: "Comment not found" };
+    if (!existing) return { error: "Comment not found" };
 
-    if (comment.authorId !== session.id)
+    if (existing.authorId !== user.id)
       return { error: "You can only delete your own comments" };
 
-    await prisma.comment.delete({
-      where: { id: commentId },
-    });
+    await db.delete(comment).where(eq(comment.id, commentId));
 
     revalidatePath(`/blog/${postSlug}`);
     return {};
@@ -108,35 +113,31 @@ export async function editComment(
   postSlug: string,
 ): Promise<CommentResponse> {
   try {
-    const session = await getSession();
-    if (!session) return { error: "You must be signed in to edit comments" };
+    const user = await getSessionUser();
+    if (!user) return { error: "You must be signed in to edit comments" };
 
-    const comment = await prisma.comment.findUnique({
-      where: { id: commentId },
-      select: { authorId: true },
+    const existing = await db.query.comment.findFirst({
+      where: eq(comment.id, commentId),
+      columns: { authorId: true },
     });
 
-    if (!comment) return { error: "Comment not found" };
+    if (!existing) return { error: "Comment not found" };
 
-    if (comment.authorId !== session.id)
+    if (existing.authorId !== user.id)
       return { error: "You can only edit your own comments" };
 
-    const updatedComment = await prisma.comment.update({
-      where: { id: commentId },
-      data: { content },
-      include: {
-        author: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
-      },
-    });
+    const [updated] = await db
+      .update(comment)
+      .set({ content })
+      .where(eq(comment.id, commentId))
+      .returning();
 
     revalidatePath(`/blog/${postSlug}`);
     return {
-      comment: { ...updatedComment, isPinned: updatedComment.isPinned },
+      comment: {
+        ...updated,
+        author: { name: user.name, email: user.email },
+      },
     };
   } catch (error) {
     console.error("Edit comment error:", error);
@@ -149,10 +150,10 @@ const buildCommentTree = (
   parentId: string | null = null,
 ): CommentWithAuthor[] => {
   return comments
-    .filter((comment) => comment.parentId === parentId)
-    .map((comment) => ({
-      ...comment,
-      replies: buildCommentTree(comments, comment.id),
+    .filter((c) => c.parentId === parentId)
+    .map((c) => ({
+      ...c,
+      replies: buildCommentTree(comments, c.id),
     }))
     .sort((a, b) => {
       if (a.isPinned && !b.isPinned) return -1;
@@ -163,25 +164,17 @@ const buildCommentTree = (
 
 export async function getComments(postSlug: string): Promise<CommentResponse> {
   try {
-    const allComments = (await prisma.comment.findMany({
-      where: { postSlug },
-      include: {
+    const allComments = await db.query.comment.findMany({
+      where: eq(comment.postSlug, postSlug),
+      with: {
         author: {
-          select: {
-            name: true,
-            email: true,
-          },
+          columns: { name: true, email: true },
         },
       },
-      orderBy: { createdAt: "desc" },
-    })) as unknown as Array<CommentWithAuthor & { updatedAt: Date }>;
+      orderBy: desc(comment.createdAt),
+    });
 
-    const commentsWithPinned = allComments.map((comment) => ({
-      ...comment,
-      isPinned: comment.isPinned || false,
-    }));
-
-    const threadedComments = buildCommentTree(commentsWithPinned);
+    const threadedComments = buildCommentTree(allComments);
     return { comments: threadedComments };
   } catch (error) {
     console.error("Get comments error:", error);
@@ -195,34 +188,40 @@ export async function togglePinComment(
   isPinned: boolean,
 ): Promise<CommentResponse> {
   try {
-    const session = await getSession();
-    if (!session) return { error: "You must be signed in to pin comments" };
+    const user = await getSessionUser();
+    if (!user) return { error: "You must be signed in to pin comments" };
 
-    const comment = await prisma.comment.findUnique({
-      where: { id: commentId },
-      select: { parentId: true },
+    const existing = await db.query.comment.findFirst({
+      where: eq(comment.id, commentId),
+      columns: { parentId: true, authorId: true },
     });
 
-    if (!comment) return { error: "Comment not found" };
+    if (!existing) return { error: "Comment not found" };
 
-    if (comment.parentId)
+    if (existing.parentId)
       return { error: "Only top-level comments can be pinned" };
 
-    const updatedComment = await prisma.comment.update({
-      where: { id: commentId },
-      data: { isPinned },
-      include: {
-        author: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
-      },
+    if (existing.authorId !== user.id)
+      return { error: "You can only pin your own comments" };
+
+    const [updated] = await db
+      .update(comment)
+      .set({ isPinned })
+      .where(eq(comment.id, commentId))
+      .returning();
+
+    const author = await db.query.user.findFirst({
+      where: (u, { eq: whereEq }) => whereEq(u.id, updated.authorId),
+      columns: { name: true, email: true },
     });
 
     revalidatePath(`/blog/${postSlug}`);
-    return { comment: updatedComment };
+    return {
+      comment: {
+        ...updated,
+        author: author ?? { name: null, email: "" },
+      },
+    };
   } catch (error) {
     console.error("Toggle pin comment error:", error);
     return { error: "Failed to update comment pin status" };

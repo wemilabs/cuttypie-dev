@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useComments } from "@/components/providers/comments-provider";
-import { useSession } from "@/components/providers/session-provider";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -23,6 +22,7 @@ import {
   editComment,
   togglePinComment,
 } from "@/lib/actions/comment";
+import { useSession } from "@/lib/auth-client";
 import { CommentForm } from "./comment-form";
 
 interface CommentAuthor {
@@ -48,7 +48,7 @@ interface SingleCommentProps {
 }
 
 export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const { removeComment, updateComment, togglePinStatus } = useComments();
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -190,7 +190,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
               </div>
 
               {/* Actions Menu */}
-              {session?.id === comment.authorId && (
+              {session?.user.id === comment.authorId && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button

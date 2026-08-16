@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useComments } from "@/components/providers/comments-provider";
-import { useSession } from "@/components/providers/session-provider";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { createComment } from "@/lib/actions/comment";
+import { useSession } from "@/lib/auth-client";
 
 interface CommentFormProps {
   postSlug: string;
@@ -18,7 +18,7 @@ export function CommentForm({
   parentId,
   onSuccess,
 }: CommentFormProps) {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const { addComment } = useComments();
   const [content, setContent] = useState("");
   const [error, setError] = useState<string | null>(null);

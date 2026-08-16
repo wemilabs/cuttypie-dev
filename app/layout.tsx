@@ -5,7 +5,6 @@ import { ViewTransition } from "react";
 import "./globals.css";
 
 import { AuthModal, AuthProvider } from "@/components/auth";
-import { SessionProvider } from "@/components/providers/session-provider";
 import Header from "@/components/shared/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
@@ -81,14 +80,12 @@ export default function RootLayout(props: LayoutProps<"/">) {
           disableTransitionOnChange
         >
           <Header />
-          <SessionProvider>
-            <AuthProvider>
-              <AuthModal />
-              <main className="min-h-screen">
-                <ViewTransition>{children}</ViewTransition>
-              </main>
-            </AuthProvider>
-          </SessionProvider>
+          <AuthProvider>
+            <AuthModal />
+            <main className="min-h-screen">
+              <ViewTransition>{children}</ViewTransition>
+            </main>
+          </AuthProvider>
         </ThemeProvider>
         <Analytics />
       </body>

@@ -89,11 +89,11 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   /* Custom scrollbar */
