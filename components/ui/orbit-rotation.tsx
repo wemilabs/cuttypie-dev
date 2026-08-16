@@ -91,8 +91,8 @@ export function OrbitRotation({
                 .map((iconConfig, iconIdx) => {
                   const angle = iconIdx * angleStep;
                   const radius = 50;
-                  const x = radius + radius * Math.cos(angle);
-                  const y = radius + radius * Math.sin(angle);
+                  const x = (radius + radius * Math.cos(angle)).toFixed(5);
+                  const y = (radius + radius * Math.sin(angle)).toFixed(5);
 
                   return (
                     <div
