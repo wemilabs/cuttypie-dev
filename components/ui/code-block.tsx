@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createRoot } from "react-dom/client";
 
 import { CopyCodeButton } from "@/components/ui/copy-code-button";
 
@@ -38,9 +39,9 @@ export function CodeBlock({ html }: CodeBlockProps) {
         const preClassMatch = pre.className.match(/language-(\w+)/);
         const codeClassMatch = code.className.match(/language-(\w+)/);
 
-        if (codeClassMatch && codeClassMatch[1]) {
+        if (codeClassMatch?.[1]) {
           language = codeClassMatch[1];
-        } else if (preClassMatch && preClassMatch[1]) {
+        } else if (preClassMatch?.[1]) {
           language = preClassMatch[1];
         }
       }
@@ -90,12 +91,8 @@ export function CodeBlock({ html }: CodeBlockProps) {
 
       // Get the code content and create the copy button
       const codeContent = code.textContent || "";
-      const copyButton = <CopyCodeButton code={codeContent} />;
-
-      // @ts-ignore - React 18 types
-      const reactRoot =
-        require("react-dom/client").createRoot(copyButtonContainer);
-      reactRoot.render(copyButton);
+      const reactRoot = createRoot(copyButtonContainer);
+      reactRoot.render(<CopyCodeButton code={codeContent} />);
     });
   }, []);
 
@@ -103,6 +100,7 @@ export function CodeBlock({ html }: CodeBlockProps) {
     <div
       ref={containerRef}
       className="relative"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted HTML generated at build time from local markdown via rehype/shiki
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

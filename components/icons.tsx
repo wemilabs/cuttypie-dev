@@ -213,7 +213,7 @@ export const Icons = {
     </svg>
   ),
 
-  drizzle: (props: SVGProps<SVGSVGElement>) => (
+  drizzle: (_props: SVGProps<SVGSVGElement>) => (
     <svg fill="none" viewBox="0 0 160 160">
       <rect
         width="9.631"

@@ -1,8 +1,8 @@
 "use client";
 
 import { createElement, useState } from "react";
-import { cn } from "@/lib/shadcn/utils";
 import { Icons } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 interface OrbitIcon {
   name: string;
@@ -45,11 +45,12 @@ export function OrbitRotation({
     <div
       className={cn(
         "relative flex items-center justify-center w-full overflow-visible",
-        className
+        className,
       )}
       style={{ minHeight: "32rem" }}
       {...props}
     >
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: hover only pauses a decorative animation, no functionality is gated on it */}
       <div
         className="relative flex items-center justify-center"
         onMouseEnter={() => setIsPaused(true)}
@@ -58,7 +59,7 @@ export function OrbitRotation({
         <div
           className={cn(
             "bg-background/90 border-white/15 flex items-center justify-center rounded-full border shadow-xl backdrop-blur-sm",
-            sizeClasses[size]
+            sizeClasses[size],
           )}
         >
           {createElement(Icons[centerIcon.name as keyof typeof Icons], {
@@ -73,7 +74,7 @@ export function OrbitRotation({
 
           return (
             <div
-              key={orbitIdx}
+              key={orbitSize}
               className="absolute rounded-full border-2 border-dotted border-white/15"
               style={{
                 width: orbitSize,
@@ -85,7 +86,7 @@ export function OrbitRotation({
               {icons
                 .slice(
                   orbitIdx * iconsPerOrbit,
-                  orbitIdx * iconsPerOrbit + iconsPerOrbit
+                  orbitIdx * iconsPerOrbit + iconsPerOrbit,
                 )
                 .map((iconConfig, iconIdx) => {
                   const angle = iconIdx * angleStep;
@@ -95,7 +96,7 @@ export function OrbitRotation({
 
                   return (
                     <div
-                      key={iconIdx}
+                      key={iconConfig.name}
                       className="absolute rounded-full bg-background/80 p-2 shadow-lg backdrop-blur-sm"
                       style={{
                         left: `${x}%`,
@@ -105,7 +106,7 @@ export function OrbitRotation({
                     >
                       {createElement(
                         Icons[iconConfig.name as keyof typeof Icons],
-                        { className: cn(iconSizeClasses[size]) }
+                        { className: cn(iconSizeClasses[size]) },
                       )}
                     </div>
                   );

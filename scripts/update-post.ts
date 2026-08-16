@@ -1,10 +1,10 @@
-import prompts from "prompts";
-import fs from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
+import { spawn } from "node:child_process";
+import { existsSync } from "node:fs";
+import fs from "node:fs/promises";
+import path from "node:path";
 import matter from "gray-matter";
-import { spawn } from "child_process";
-import { generateSafeSlug } from "../lib/utils";
+import prompts from "prompts";
+import { generateSafeSlug } from "../lib/posts";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -17,7 +17,7 @@ async function editInEditor(content: string): Promise<string | null> {
   const tmpFile = path.join(
     process.cwd(),
     "content/temp",
-    `edit-${Date.now()}.md`
+    `edit-${Date.now()}.md`,
   );
 
   try {
@@ -84,7 +84,7 @@ async function main() {
           .map(async (file) => {
             const content = await fs.readFile(
               path.join(postsDirectory, file),
-              "utf8"
+              "utf8",
             );
             const { data } = matter(content);
             return {
@@ -92,7 +92,7 @@ async function main() {
               title: data.title,
               date: new Date(data.date).toLocaleDateString(),
             };
-          })
+          }),
       );
 
       // Sort posts by date (newest first)
@@ -162,7 +162,7 @@ async function main() {
     }
 
     // Only include fields that were actually changed
-    const metadata: Record<string, any> = {
+    const metadata: Record<string, unknown> = {
       ...existingData,
       lastEdited: new Date().toISOString(),
     };

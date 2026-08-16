@@ -1,5 +1,5 @@
 import prompts from "prompts";
-import { listTrash, restoreFromTrash } from "../lib/utils";
+import { listTrash, restoreFromTrash } from "../lib/posts";
 
 async function main() {
   try {

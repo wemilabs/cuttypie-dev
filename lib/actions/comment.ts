@@ -1,10 +1,10 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
 import { getSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { commentSchema } from "@/lib/validations/comment";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
 
 interface CommentInput {
   content: string;
@@ -36,7 +36,7 @@ interface CommentResponse {
 }
 
 export async function createComment(
-  data: CommentInput
+  data: CommentInput,
 ): Promise<CommentResponse> {
   try {
     const validatedData = commentSchema.parse(data);
@@ -74,7 +74,7 @@ export async function createComment(
 
 export async function deleteComment(
   commentId: string,
-  postSlug: string
+  postSlug: string,
 ): Promise<CommentResponse> {
   try {
     const session = await getSession();
@@ -105,7 +105,7 @@ export async function deleteComment(
 export async function editComment(
   commentId: string,
   content: string,
-  postSlug: string
+  postSlug: string,
 ): Promise<CommentResponse> {
   try {
     const session = await getSession();
@@ -146,7 +146,7 @@ export async function editComment(
 
 const buildCommentTree = (
   comments: CommentWithAuthor[],
-  parentId: string | null = null
+  parentId: string | null = null,
 ): CommentWithAuthor[] => {
   return comments
     .filter((comment) => comment.parentId === parentId)
@@ -192,7 +192,7 @@ export async function getComments(postSlug: string): Promise<CommentResponse> {
 export async function togglePinComment(
   commentId: string,
   postSlug: string,
-  isPinned: boolean
+  isPinned: boolean,
 ): Promise<CommentResponse> {
   try {
     const session = await getSession();

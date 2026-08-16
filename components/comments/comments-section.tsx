@@ -1,11 +1,11 @@
 "use client";
 
+import { useAuth } from "@/components/auth";
+import { CommentsProvider } from "@/components/providers/comments-provider";
+import { useSession } from "@/components/providers/session-provider";
 import { Button } from "@/components/ui/button";
 import { CommentForm } from "./comment-form";
 import { CommentList } from "./comment-list";
-import { useAuth } from "@/components/auth";
-import { useSession } from "@/components/providers/session-provider";
-import { CommentsProvider } from "@/components/providers/comments-provider";
 
 interface CommentsSectionProps {
   postSlug: string;

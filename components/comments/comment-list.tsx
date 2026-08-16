@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { SingleComment } from "./single-comment";
 import { useComments } from "@/components/providers/comments-provider";
+import { SingleComment } from "./single-comment";
 
 interface CommentListProps {
   postSlug: string;
@@ -24,11 +24,7 @@ export function CommentList({ postSlug }: CommentListProps) {
   }
 
   if (error) {
-    return (
-      <div className="text-center text-red-500 py-8">
-        {error}
-      </div>
-    );
+    return <div className="text-center text-red-500 py-8">{error}</div>;
   }
 
   if (comments.length === 0) {

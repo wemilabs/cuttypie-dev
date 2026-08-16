@@ -1,9 +1,9 @@
-import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
-import { cookies } from "next/headers";
+import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import * as jose from "jose";
+import { cookies } from "next/headers";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "your-secret-key"
+  process.env.JWT_SECRET || "your-secret-key",
 );
 
 export async function getSession() {
@@ -23,7 +23,7 @@ export async function getSession() {
 
     const { payload } = await jose.jwtVerify(token, JWT_SECRET);
 
-    if (!payload || !payload.id || !payload.email || !payload.name) return null;
+    if (!payload?.id || !payload.email || !payload.name) return null;
 
     return {
       id: payload.id as string,
@@ -44,7 +44,7 @@ export function hashPassword(password: string): string {
 
 export function verifyPassword(
   password: string,
-  hashedPassword: string
+  hashedPassword: string,
 ): boolean {
   const [salt, hash] = hashedPassword.split(":");
   const hashBuffer = Buffer.from(hash, "hex");

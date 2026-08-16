@@ -1,20 +1,20 @@
 "use server";
 
+import * as jose from "jose";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { ZodError } from "zod";
+import { hashPassword, verifyPassword } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import {
-  SignInInput,
-  SignUpInput,
+  type SignInInput,
+  type SignUpInput,
   signInSchema,
   signUpSchema,
 } from "@/lib/validations/auth";
-import { hashPassword, verifyPassword } from "@/lib/auth";
-import prisma from "@/lib/prisma";
-import * as jose from "jose";
-import { revalidatePath } from "next/cache";
-import { ZodError } from "zod";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "your-secret-key"
+  process.env.JWT_SECRET || "your-secret-key",
 );
 
 interface Session {

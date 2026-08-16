@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-
-import { PostGrid } from "@/components/posts/post-grid";
 import { Suspense } from "react";
+import { PostGrid } from "@/components/posts/post-grid";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {

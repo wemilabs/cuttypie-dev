@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface Session {
   id: string;
@@ -27,8 +33,8 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       const response = await fetch("/api/auth/session", {
         headers: {
           "Cache-Control": "no-cache",
-          "Pragma": "no-cache"
-        }
+          Pragma: "no-cache",
+        },
       });
       if (!response.ok) throw new Error("Failed to fetch session");
       const data = await response.json();
@@ -50,13 +56,11 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     session,
     setSession,
     isLoading,
-    refresh
+    refresh,
   };
 
   return (
-    <SessionContext.Provider value={value}>
-      {children}
-    </SessionContext.Provider>
+    <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
   );
 }
 

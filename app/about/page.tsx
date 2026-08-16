@@ -7,7 +7,7 @@ import ProjectRequestForm from "@/components/forms/project-request-form";
 import { OrbitRotation } from "@/components/ui/orbit-rotation";
 
 export const metadata: Metadata = {
-  title: "About | Lisham.",
+  title: "About | lisham_",
   description: "Learn more about me and what I do.",
 };
 
@@ -16,7 +16,7 @@ export default async function About() {
     <div className="max-w-4xl mx-auto px-6 pt-[74px] pb-20 mt-16">
       <section className="mb-16">
         <h1 className="text-4xl font-bold mb-6">
-          Hey, I'm <span className="text-yellow-200">Lisham.</span>
+          Hey, I'm <span className="text-yellow-200">lisham_</span>
         </h1>
         <p className="text-white/70 leading-relaxed">
           Full-stack developer passionate about innovating. My expertise lies in

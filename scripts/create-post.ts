@@ -1,5 +1,5 @@
 import prompts from "prompts";
-import { createNewPost } from "../lib/utils";
+import { createNewPost } from "../lib/posts";
 
 interface PostData {
   title: string;

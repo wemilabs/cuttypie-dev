@@ -1,7 +1,7 @@
 "use client";
 
-import { sendProjectRequest } from "@/lib/actions/send-project-request";
 import { useState } from "react";
+import { sendProjectRequest } from "@/lib/actions/send-project-request";
 
 export default function ProjectRequestForm() {
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ export default function ProjectRequestForm() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));

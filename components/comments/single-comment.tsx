@@ -1,5 +1,13 @@
 "use client";
 
+import { formatDistanceToNow } from "date-fns";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+  PinIcon,
+} from "lucide-react";
+import { useState } from "react";
 import { useComments } from "@/components/providers/comments-provider";
 import { useSession } from "@/components/providers/session-provider";
 import { Button } from "@/components/ui/button";
@@ -15,14 +23,6 @@ import {
   editComment,
   togglePinComment,
 } from "@/lib/actions/comment";
-import { formatDistanceToNow } from "date-fns";
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-  PinIcon,
-} from "lucide-react";
-import { useState } from "react";
 import { CommentForm } from "./comment-form";
 
 interface CommentAuthor {
@@ -152,6 +152,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
           {/* Collapse Toggle */}
           {hasReplies && (
             <button
+              type="button"
               onClick={() => setIsCollapsed(!isCollapsed)}
               className="mt-1.5 flex size-4 items-center justify-center rounded-sm hover:bg-accent"
             >

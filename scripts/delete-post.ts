@@ -1,9 +1,9 @@
-import prompts from "prompts";
-import fs from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
+import { existsSync } from "node:fs";
+import fs from "node:fs/promises";
+import path from "node:path";
 import matter from "gray-matter";
-import { movePostToTrash } from "../lib/utils";
+import prompts from "prompts";
+import { movePostToTrash } from "../lib/posts";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -19,10 +19,6 @@ async function deletePost(slug: string): Promise<void> {
   if (!existsSync(filePath)) {
     throw new Error(`Post "${slug}" not found`);
   }
-
-  // Read the post to show confirmation details
-  const content = await fs.readFile(filePath, "utf8");
-  const { data: frontmatter } = matter(content);
 
   // Move the file to trash
   await movePostToTrash(slug);
@@ -45,7 +41,7 @@ async function main() {
           .map(async (file) => {
             const content = await fs.readFile(
               path.join(postsDirectory, file),
-              "utf8"
+              "utf8",
             );
             const { data } = matter(content);
             return {
@@ -53,7 +49,7 @@ async function main() {
               title: data.title,
               date: new Date(data.date).toLocaleDateString(),
             };
-          })
+          }),
       );
 
       // Sort posts by date (newest first)

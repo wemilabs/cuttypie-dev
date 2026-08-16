@@ -19,7 +19,7 @@ const Header = () => {
           />
           <h1 className="font-bold">
             lisham
-            <span className="text-yellow-200 text-xl font-extrabold">.</span>
+            <span className="text-yellow-200 text-xl font-extrabold">_</span>
           </h1>
         </Link>
         <div className="flex gap-6 text-sm font-semibold">

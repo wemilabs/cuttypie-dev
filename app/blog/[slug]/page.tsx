@@ -1,7 +1,7 @@
+import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Suspense } from "react";
-import { ChevronLeft } from "lucide-react";
 
 import { CommentsSection } from "@/components/comments";
 import { CodeBlock } from "@/components/ui/code-block";

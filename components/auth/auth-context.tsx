@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 type AuthMode = "signin" | "signup";
 
@@ -39,7 +39,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ isOpen, mode, openAuth, closeAuth, switchMode, handleSignUpSuccess }}
+      value={{
+        isOpen,
+        mode,
+        openAuth,
+        closeAuth,
+        switchMode,
+        handleSignUpSuccess,
+      }}
     >
       {children}
     </AuthContext.Provider>

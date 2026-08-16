@@ -19,7 +19,7 @@ export async function GET() {
           "Cache-Control": "no-store, max-age=0",
           Pragma: "no-cache",
         },
-      }
+      },
     );
   }
 }

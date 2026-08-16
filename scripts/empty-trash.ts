@@ -1,5 +1,5 @@
 import prompts from "prompts";
-import { listTrash, emptyTrash } from "../lib/utils";
+import { emptyTrash, listTrash } from "../lib/posts";
 
 async function main() {
   try {
@@ -14,7 +14,9 @@ async function main() {
     // Show trash contents
     console.log("\n📂 Trash contents:");
     trashItems.forEach((item) => {
-      console.log(`- ${item.title} (deleted ${item.deletedAt.toLocaleString()})`);
+      console.log(
+        `- ${item.title} (deleted ${item.deletedAt.toLocaleString()})`,
+      );
     });
     console.log(); // Empty line for readability
 
@@ -35,7 +37,8 @@ async function main() {
       type: "text",
       name: "value",
       message: `Type "DELETE" to confirm permanent deletion:`,
-      validate: (value) => value === "DELETE" || "Please type DELETE to confirm",
+      validate: (value) =>
+        value === "DELETE" || "Please type DELETE to confirm",
     });
 
     if (!doubleConfirmation.value || doubleConfirmation.value !== "DELETE") {
@@ -44,7 +47,9 @@ async function main() {
 
     // Empty the trash
     const deletedCount = await emptyTrash();
-    console.log(`✅ Permanently deleted ${deletedCount} post${deletedCount === 1 ? "" : "s"}`);
+    console.log(
+      `✅ Permanently deleted ${deletedCount} post${deletedCount === 1 ? "" : "s"}`,
+    );
   } catch (error: unknown) {
     if (error instanceof Error) {
       if (error.message === "ABORTED") {

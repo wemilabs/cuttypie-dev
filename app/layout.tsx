@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { ViewTransition } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ViewTransition } from "react";
 import "./globals.css";
 
 import { AuthModal, AuthProvider } from "@/components/auth";
@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lisham.",
+  title: "lisham_",
   description: "Lisham's website.",
   metadataBase: new URL("https://lisham.dev/"),
   keywords: [
@@ -32,34 +32,34 @@ export const metadata: Metadata = {
     "typescript",
     "javascript",
     "lisham",
-    "Lisham",
+    "lisham_",
   ],
   authors: [
     {
-      name: "Lisham",
+      name: "lisham_",
       url: "https://lisham.dev/",
     },
   ],
-  creator: "Lisham",
+  creator: "lisham_",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lisham.dev/",
-    title: "Lisham",
+    title: "lisham_",
     description: "Lisham's website.",
-    siteName: "Lisham",
+    siteName: "lisham_",
     images: [
       {
         url: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
         width: 1200,
         height: 630,
-        alt: "Lisham",
+        alt: "lisham_",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lisham",
+    title: "lisham_",
     description: "Lisham's website.",
     images: [
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
