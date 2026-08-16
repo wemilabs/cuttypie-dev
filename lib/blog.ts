@@ -1,7 +1,6 @@
+import matter from "gray-matter";
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
-import { connection } from "next/server";
 import type { Theme } from "rehype-pretty-code";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
@@ -26,10 +25,7 @@ const postsDirectory = path.join(process.cwd(), "content/blog");
 const THEME: Theme = "github-dark";
 
 function safeToISOString(date: string | Date | undefined): string {
-  if (!date) {
-    connection();
-    return new Date().toISOString();
-  }
+  if (!date) return new Date(0).toISOString();
 
   try {
     if (typeof date === "string") {
@@ -46,12 +42,11 @@ function safeToISOString(date: string | Date | undefined): string {
     console.error("Error converting date to ISO string:", err);
   }
 
-  connection();
-  return new Date().toISOString();
+  return new Date(0).toISOString();
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  await connection();
+  "use cache";
 
   // Get all .md files from the posts directory
   const fileNames = fs.readdirSync(postsDirectory);
@@ -68,6 +63,8 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost> {
+  "use cache";
+
   const realSlug = slug.replace(/\.md$/, "");
   const fullPath = path.join(postsDirectory, `${realSlug}.md`);
 
