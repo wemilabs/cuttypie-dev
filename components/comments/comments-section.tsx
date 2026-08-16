@@ -49,7 +49,7 @@ function CommentsContent({ postSlug }: CommentsSectionProps) {
               <Button
                 variant="outline"
                 className="w-full sm:w-auto"
-                onClick={openAuth}
+                onClick={() => openAuth("signin")}
               >
                 Sign In
               </Button>

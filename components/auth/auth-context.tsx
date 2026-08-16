@@ -2,22 +2,37 @@
 
 import { createContext, useCallback, useContext, useState } from "react";
 
+type AuthMode = "signin" | "signup";
+
 interface AuthContextType {
   isOpen: boolean;
-  openAuth: () => void;
+  mode: AuthMode;
+  openAuth: (mode?: AuthMode) => void;
   closeAuth: () => void;
+  switchMode: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mode, setMode] = useState<AuthMode>("signin");
 
-  const openAuth = useCallback(() => setIsOpen(true), []);
+  const openAuth = useCallback((initialMode: AuthMode = "signin") => {
+    setMode(initialMode);
+    setIsOpen(true);
+  }, []);
+
   const closeAuth = useCallback(() => setIsOpen(false), []);
 
+  const switchMode = useCallback(() => {
+    setMode((prev) => (prev === "signin" ? "signup" : "signin"));
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ isOpen, openAuth, closeAuth }}>
+    <AuthContext.Provider
+      value={{ isOpen, mode, openAuth, closeAuth, switchMode }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -12,9 +12,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Stack
 
-- Next.js (App Router, Turbopack, Cache Components enabled, React Compiler)
+- Next.js (App Router, Turbopack, Cache Components + Partial Prefetching enabled, React Compiler)
 - React 19, TypeScript 7 (strict)
-- Tailwind CSS v4 (CSS-first config in `app/globals.css`) + shadcn/ui components
+- Tailwind CSS v4 (CSS-first config in `app/globals.css`) + shadcn/ui components + next-themes (light/dark)
+- Database: Neon Postgres via Drizzle ORM (`lib/db/`, `drizzle.config.ts`; push schema with `pnpm exec drizzle-kit push`)
+- Auth: Better Auth, social-only (GitHub + Google), config in `lib/auth.ts`, client in `lib/auth-client.ts`
 - Blog posts are local markdown in `content/blog/`, rendered with unified/remark/rehype + shiki
 
 ## Commands
