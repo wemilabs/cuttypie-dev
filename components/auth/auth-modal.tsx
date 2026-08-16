@@ -15,7 +15,7 @@ export function AuthModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={closeAuth}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
           <DialogTitle>
             {mode === "signin" ? "Welcome Back" : "Create Account"}

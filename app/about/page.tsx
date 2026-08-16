@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default async function About() {
   return (
-    <div className="max-w-4xl mx-auto px-6 pt-[74px] pb-20 mt-16">
+    <div className="max-w-4xl mx-auto px-6 pt-18.5 pb-20 mt-16">
       <section className="mb-16">
         <h1 className="text-4xl font-bold mb-6">
           Hey, I'm <span className="text-brand">lisham_</span>

@@ -236,7 +236,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                 <Textarea
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
-                  className="min-h-[100px] bg-muted/50"
+                  className="min-h-25 bg-muted/50"
                 />
                 <div className="flex items-center gap-2">
                   <Button

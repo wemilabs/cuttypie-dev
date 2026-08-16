@@ -2,7 +2,7 @@ import { Icons } from "@/components/icons";
 
 const Hero = () => {
   return (
-    <section className="flex items-center justify-center pt-[74px] pb-20 px-6 mt-16">
+    <section className="flex items-center justify-center pt-18.5 pb-20 px-6 mt-16">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           Hey, I'm <span className="text-brand">lisham_</span>

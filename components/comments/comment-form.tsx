@@ -75,7 +75,7 @@ export function CommentForm({
           minLength={1}
           maxLength={1000}
           disabled={isSubmitting}
-          className="min-h-[100px]"
+          className="min-h-25"
         />
       </div>
 
