@@ -1,4 +1,4 @@
-import { listDrafts } from "../lib/utils";
+import { listDrafts } from "../lib/posts";
 
 async function main() {
   try {

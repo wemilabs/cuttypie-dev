@@ -49,3 +49,6 @@ next-env.d.ts
 
 # Prisma
 /lib/generated/
+
+# local data exports
+old-db-export.json

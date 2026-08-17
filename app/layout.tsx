@@ -1,12 +1,12 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { ViewTransition } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ViewTransition } from "react";
 import "./globals.css";
 
 import { AuthModal, AuthProvider } from "@/components/auth";
-import { SessionProvider } from "@/components/providers/session-provider";
 import Header from "@/components/shared/header";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lisham.",
+  title: "lisham_",
   description: "Lisham's website.",
   metadataBase: new URL("https://lisham.dev/"),
   keywords: [
@@ -32,34 +32,34 @@ export const metadata: Metadata = {
     "typescript",
     "javascript",
     "lisham",
-    "Lisham",
+    "lisham_",
   ],
   authors: [
     {
-      name: "Lisham",
+      name: "lisham_",
       url: "https://lisham.dev/",
     },
   ],
-  creator: "Lisham",
+  creator: "lisham_",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lisham.dev/",
-    title: "Lisham",
+    title: "lisham_",
     description: "Lisham's website.",
-    siteName: "Lisham",
+    siteName: "lisham_",
     images: [
       {
         url: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
         width: 1200,
         height: 630,
-        alt: "Lisham",
+        alt: "lisham_",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lisham",
+    title: "lisham_",
     description: "Lisham's website.",
     images: [
       "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
@@ -72,18 +72,21 @@ export default function RootLayout(props: LayoutProps<"/">) {
   const { children } = props;
   return (
     <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.className} ${geistMono.className} antialiased`}
-      >
-        <Header />
-        <SessionProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
           <AuthProvider>
             <AuthModal />
             <main className="min-h-screen">
               <ViewTransition>{children}</ViewTransition>
             </main>
           </AuthProvider>
-        </SessionProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

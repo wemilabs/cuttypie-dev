@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { EmailTemplate } from "@/components/templates/email-template";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const projectRequestSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -21,9 +21,16 @@ export async function sendProjectRequest(formData: FormData) {
       pitch: formData.get("pitch"),
     });
 
+    const sender = process.env.DEFAULT_SENDER_EMAIL_ADDRESS;
+    const recipient = process.env.DEFAULT_RECEPIENT_EMAIL_ADDRESS;
+    if (!sender || !recipient) {
+      console.error("Missing sender/recipient email configuration");
+      return { error: "Failed to send the project request" };
+    }
+
     const { data, error } = await resend.emails.send({
-      from: process.env.DEFAULT_SENDER_EMAIL_ADDRESS!,
-      to: [process.env.DEFAULT_RECEPIENT_EMAIL_ADDRESS!],
+      from: sender,
+      to: [recipient],
       subject: `New Project Request: ${validatedData.name}`,
       react: EmailTemplate(validatedData),
     });

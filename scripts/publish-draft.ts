@@ -1,5 +1,5 @@
 import prompts from "prompts";
-import { listDrafts, publishDraft } from "../lib/utils";
+import { listDrafts, publishDraft } from "../lib/posts";
 
 async function main() {
   try {

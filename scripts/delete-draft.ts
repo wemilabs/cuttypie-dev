@@ -1,7 +1,7 @@
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import prompts from "prompts";
-import { listDrafts } from "../lib/utils";
+import { listDrafts } from "../lib/posts";
 
 const draftsDirectory = path.join(process.cwd(), "content/_drafts");
 

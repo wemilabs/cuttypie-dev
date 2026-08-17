@@ -1,7 +1,14 @@
 "use client";
 
+import { formatDistanceToNow } from "date-fns";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+  PinIcon,
+} from "lucide-react";
+import { useState } from "react";
 import { useComments } from "@/components/providers/comments-provider";
-import { useSession } from "@/components/providers/session-provider";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,14 +22,7 @@ import {
   editComment,
   togglePinComment,
 } from "@/lib/actions/comment";
-import { formatDistanceToNow } from "date-fns";
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-  PinIcon,
-} from "lucide-react";
-import { useState } from "react";
+import { useSession } from "@/lib/auth-client";
 import { CommentForm } from "./comment-form";
 
 interface CommentAuthor {
@@ -48,7 +48,7 @@ interface SingleCommentProps {
 }
 
 export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const { removeComment, updateComment, togglePinStatus } = useComments();
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -138,12 +138,12 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
     <div
       className={`group relative ${level > 0 ? "pl-12" : ""} ${
         comment.isPinned && level === 0
-          ? "bg-yellow-50/20 dark:bg-yellow-900/10 border border-yellow-100/30 dark:border-yellow-800/20 rounded-md p-3 shadow-sm"
+          ? "bg-brand/5 border border-brand/20 rounded-md p-3 shadow-sm"
           : ""
       }`}
     >
       {level > 0 && (
-        <div className="absolute left-0 top-8 bottom-0 border-l-2 border-slate-200 dark:border-slate-800" />
+        <div className="absolute left-0 top-8 bottom-0 border-l-2 border-border" />
       )}
 
       <div className="relative space-y-3">
@@ -152,6 +152,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
           {/* Collapse Toggle */}
           {hasReplies && (
             <button
+              type="button"
               onClick={() => setIsCollapsed(!isCollapsed)}
               className="mt-1.5 flex size-4 items-center justify-center rounded-sm hover:bg-accent"
             >
@@ -167,20 +168,20 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
             {/* Author Info */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="size-6 rounded-full bg-linear-to-br from-yellow-200 to-yellow-200/90 flex items-center justify-center text-xs font-bold text-black">
+                <div className="size-6 rounded-full bg-linear-to-br from-brand to-brand/90 flex items-center justify-center text-xs font-bold text-background">
                   {(comment.author.name || "A")[0].toUpperCase()}
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-sm font-medium text-yellow-500">
+                  <span className="text-sm font-medium text-brand">
                     {comment.author.name || "Anonymous"}
                   </span>
-                  <span className="text-xs text-gray-300/70">
+                  <span className="text-xs text-muted-foreground">
                     {formatDistanceToNow(new Date(comment.createdAt), {
                       addSuffix: true,
                     })}
                   </span>
                   {comment.isPinned && (
-                    <span className="flex items-center gap-1 text-xs text-yellow-600/90 dark:text-yellow-500/90 bg-yellow-100/30 dark:bg-yellow-900/20 px-2 py-0.5 rounded-full">
+                    <span className="flex items-center gap-1 text-xs text-brand bg-brand/10 px-2 py-0.5 rounded-full">
                       <PinIcon className="size-3" />
                       Pinned
                     </span>
@@ -189,7 +190,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
               </div>
 
               {/* Actions Menu */}
-              {session?.id === comment.authorId && (
+              {session?.user.id === comment.authorId && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
@@ -199,32 +200,23 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                       disabled={isDeleting || isEditing || isPinning}
                     >
                       {isDeleting || isPinning ? (
-                        <div className="size-4 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                        <div className="size-4 animate-spin rounded-full border-2 border-destructive border-t-transparent" />
                       ) : (
                         <MoreHorizontalIcon className="size-4" />
                       )}
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="end"
-                    className="w-32 bg-linear-to-br from-yellow-50/90 to-yellow-50/90 dark:from-slate-800/90 dark:to-slate-900/90 backdrop-blur-sm border border-yellow-100/50 dark:border-slate-700/50 shadow-md"
-                  >
-                    <DropdownMenuItem
-                      onClick={() => setIsEditing(true)}
-                      className="focus:bg-yellow-100/50 dark:focus:bg-slate-700/50 transition-colors"
-                    >
+                  <DropdownMenuContent align="end" className="w-32">
+                    <DropdownMenuItem onClick={() => setIsEditing(true)}>
                       Edit
                     </DropdownMenuItem>
                     {isTopLevel && (
-                      <DropdownMenuItem
-                        onClick={handleTogglePin}
-                        className="focus:bg-yellow-100/50 dark:focus:bg-slate-700/50 transition-colors"
-                      >
+                      <DropdownMenuItem onClick={handleTogglePin}>
                         {comment.isPinned ? "Unpin" : "Pin"}
                       </DropdownMenuItem>
                     )}
                     <DropdownMenuItem
-                      className="text-red-600 dark:text-red-400 focus:bg-red-50/50 dark:focus:bg-red-900/20 transition-colors"
+                      className="text-destructive"
                       onClick={handleDelete}
                       disabled={isDeleting}
                     >
@@ -238,11 +230,13 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
             {/* Comment Content */}
             {isEditing ? (
               <div className="space-y-2">
-                {error && <div className="text-sm text-red-500">{error}</div>}
+                {error && (
+                  <div className="text-sm text-destructive">{error}</div>
+                )}
                 <Textarea
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
-                  className="min-h-[100px] bg-muted/50"
+                  className="min-h-25 bg-muted/50"
                 />
                 <div className="flex items-center gap-2">
                   <Button

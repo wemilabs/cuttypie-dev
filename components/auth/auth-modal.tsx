@@ -3,6 +3,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -14,11 +15,16 @@ export function AuthModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={closeAuth}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
           <DialogTitle>
             {mode === "signin" ? "Welcome Back" : "Create Account"}
           </DialogTitle>
+          <DialogDescription>
+            {mode === "signin"
+              ? "Sign in to join the conversation."
+              : "Create an account to join the conversation."}
+          </DialogDescription>
         </DialogHeader>
         <AuthForm />
       </DialogContent>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-
-import { PostGrid } from "@/components/posts/post-grid";
 import { Suspense } from "react";
+import { PostGrid } from "@/components/posts/post-grid";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
@@ -29,9 +28,9 @@ export default function BlogPage() {
       <Suspense
         fallback={
           <div className="space-y-4">
-            <Skeleton className="h-52 bg-white/5 rounded-lg p-6 hover:bg-white/10 transition" />
-            <Skeleton className="h-52 bg-white/5 rounded-lg p-6 hover:bg-white/10 transition" />
-            <Skeleton className="h-52 bg-white/5 rounded-lg p-6 hover:bg-white/10 transition" />
+            <Skeleton className="h-52 rounded-lg p-6" />
+            <Skeleton className="h-52 rounded-lg p-6" />
+            <Skeleton className="h-52 rounded-lg p-6" />
           </div>
         }
       >

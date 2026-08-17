@@ -1,8 +1,8 @@
-import prompts from "prompts";
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import matter from "gray-matter";
-import { unpublishPost } from "../lib/utils";
+import prompts from "prompts";
+import { unpublishPost } from "../lib/posts";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -22,7 +22,7 @@ async function main() {
           .map(async (file) => {
             const content = await fs.readFile(
               path.join(postsDirectory, file),
-              "utf8"
+              "utf8",
             );
             const { data } = matter(content);
             return {
@@ -30,7 +30,7 @@ async function main() {
               title: data.title,
               date: new Date(data.date).toLocaleDateString(),
             };
-          })
+          }),
       );
 
       // Sort posts by date (newest first)
@@ -68,7 +68,10 @@ async function main() {
     // Unpublish the post
     const draftSlug = await unpublishPost(targetSlug);
     console.log("✅ Converted post to draft:", draftSlug);
-    console.log("💡 Edit your draft in content/_drafts/", `${draftSlug}.draft.md`);
+    console.log(
+      "💡 Edit your draft in content/_drafts/",
+      `${draftSlug}.draft.md`,
+    );
   } catch (error: unknown) {
     if (error instanceof Error) {
       if (error.message === "ABORTED") {

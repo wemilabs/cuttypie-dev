@@ -1,8 +1,8 @@
-import prompts from "prompts";
-import { listDrafts, updateDraft } from "../lib/utils";
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import matter from "gray-matter";
+import prompts from "prompts";
+import { listDrafts, updateDraft } from "../lib/posts";
 
 const draftsDirectory = path.join(process.cwd(), "content/_drafts");
 
@@ -62,21 +62,28 @@ async function main() {
       {
         type: "list",
         name: "tags",
-        message: "Enter new tags (comma-separated, leave empty to keep current):",
+        message:
+          "Enter new tags (comma-separated, leave empty to keep current):",
         initial: existingData.tags.join(","),
         separator: ",",
       },
     ]);
 
     // Only include fields that were actually changed
-    const metadata: Record<string, any> = {};
+    const metadata: Record<string, unknown> = {};
     if (updates.title && updates.title !== existingData.title) {
       metadata.title = updates.title;
     }
-    if (updates.description && updates.description !== existingData.description) {
+    if (
+      updates.description &&
+      updates.description !== existingData.description
+    ) {
       metadata.description = updates.description;
     }
-    if (updates.tags && updates.tags.join(",") !== existingData.tags.join(",")) {
+    if (
+      updates.tags &&
+      updates.tags.join(",") !== existingData.tags.join(",")
+    ) {
       metadata.tags = updates.tags;
     }
 

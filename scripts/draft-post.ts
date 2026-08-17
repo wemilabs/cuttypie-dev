@@ -1,5 +1,5 @@
 import prompts from "prompts";
-import { createDraft } from "../lib/utils";
+import { createDraft } from "../lib/posts";
 
 async function main() {
   try {

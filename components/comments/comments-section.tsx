@@ -1,11 +1,11 @@
 "use client";
 
+import { useAuth } from "@/components/auth";
+import { CommentsProvider } from "@/components/providers/comments-provider";
 import { Button } from "@/components/ui/button";
+import { signOut, useSession } from "@/lib/auth-client";
 import { CommentForm } from "./comment-form";
 import { CommentList } from "./comment-list";
-import { useAuth } from "@/components/auth";
-import { useSession } from "@/components/providers/session-provider";
-import { CommentsProvider } from "@/components/providers/comments-provider";
 
 interface CommentsSectionProps {
   postSlug: string;
@@ -13,7 +13,7 @@ interface CommentsSectionProps {
 
 function CommentsContent({ postSlug }: CommentsSectionProps) {
   const { openAuth } = useAuth();
-  const { session, isLoading } = useSession();
+  const { data: session, isPending } = useSession();
 
   return (
     <div className="py-8 max-w-2xl mx-auto">
@@ -22,12 +22,25 @@ function CommentsContent({ postSlug }: CommentsSectionProps) {
       <div className="space-y-8">
         {/* Comment Form */}
         <div className="border rounded-lg p-4 bg-card">
-          {isLoading ? (
+          {isPending ? (
             <div className="text-center py-4">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent mx-auto" />
             </div>
           ) : session ? (
-            <CommentForm postSlug={postSlug} />
+            <div className="space-y-3">
+              <CommentForm postSlug={postSlug} />
+              <p className="text-xs text-muted-foreground text-right">
+                Signed in as {session.user.name}
+                {" · "}
+                <button
+                  type="button"
+                  className="underline underline-offset-2 hover:text-foreground"
+                  onClick={() => signOut()}
+                >
+                  Sign out
+                </button>
+              </p>
+            </div>
           ) : (
             <div className="text-center py-4">
               <p className="text-muted-foreground mb-4">

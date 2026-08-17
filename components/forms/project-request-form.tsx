@@ -1,7 +1,7 @@
 "use client";
 
-import { sendProjectRequest } from "@/lib/actions/send-project-request";
 import { useState } from "react";
+import { sendProjectRequest } from "@/lib/actions/send-project-request";
 
 export default function ProjectRequestForm() {
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ export default function ProjectRequestForm() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -47,7 +47,7 @@ export default function ProjectRequestForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-500">
+        <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive">
           {error}
         </div>
       )}
@@ -65,7 +65,7 @@ export default function ProjectRequestForm() {
           placeholder="Name"
           required
           disabled={isSubmitting}
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-transparent placeholder:text-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent placeholder:text-muted-foreground/60 disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
       <div>
@@ -77,7 +77,7 @@ export default function ProjectRequestForm() {
           placeholder="Email"
           required
           disabled={isSubmitting}
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-transparent placeholder:text-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent placeholder:text-muted-foreground/60 disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
       <div>
@@ -89,13 +89,13 @@ export default function ProjectRequestForm() {
           required
           disabled={isSubmitting}
           rows={4}
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-transparent placeholder:text-white/30 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent placeholder:text-muted-foreground/60 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 bg-yellow-200 text-black rounded-lg hover:bg-yellow-300 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+        className="w-full px-6 py-3 bg-brand text-black rounded-lg hover:bg-brand/90 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
       >
         {isSubmitting ? "Sending..." : "Submit"}
       </button>
