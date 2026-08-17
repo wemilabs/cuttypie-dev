@@ -1,17 +1,12 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import { ViewTransition } from "react";
 import "./globals.css";
 
 import { AuthModal, AuthProvider } from "@/components/auth";
 import Header from "@/components/shared/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -72,7 +67,7 @@ export default function RootLayout(props: LayoutProps<"/">) {
   const { children } = props;
   return (
     <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistMono.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
