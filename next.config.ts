@@ -3,10 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   cacheComponents: true,
-  partialPrefetching: true,
   experimental: {
-    turbopackRustReactCompiler: true,
     useOffline: true,
+    turbopackRustReactCompiler: true,
+    typedEnv: true,
   },
   images: {
     remotePatterns: [
@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  partialPrefetching: true,
   reactCompiler: true,
   serverExternalPackages: ["prettier"],
   typedRoutes: true,
