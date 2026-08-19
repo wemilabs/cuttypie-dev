@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./athena.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -198,4 +197,126 @@ code {
   margin-right: 1rem;
   text-align: right;
   color: #484f58;
+}
+
+/* Athena theme — glow effects, grid surfaces, scanlines (inlined from athena.css) */
+:root {
+  --tron-glow-spread-sm: 4px;
+  --tron-glow-spread-md: 10px;
+  --tron-glow-spread-lg: 20px;
+  --tron-transition: 0.25s ease-out;
+  --tron-pulse-duration: 2.5s;
+  --tron-border-glow:
+    0 0 var(--tron-glow-spread-sm)
+    color-mix(in oklch, var(--glow) 55%, transparent),
+    0 0 var(--tron-glow-spread-md)
+    color-mix(in oklch, var(--glow-muted) 28%, transparent);
+  --tron-hover-glow:
+    0 0 var(--tron-glow-spread-md)
+    color-mix(in oklch, var(--glow) 65%, transparent),
+    0 0 var(--tron-glow-spread-lg)
+    color-mix(in oklch, var(--glow-muted) 35%, transparent);
+}
+
+.dark {
+  --tron-border-glow:
+    0 0 var(--tron-glow-spread-sm)
+    color-mix(in oklch, var(--glow) 75%, transparent),
+    0 0 var(--tron-glow-spread-md)
+    color-mix(in oklch, var(--glow-muted) 50%, transparent);
+  --tron-hover-glow:
+    0 0 var(--tron-glow-spread-md)
+    color-mix(in oklch, var(--glow) 85%, transparent),
+    0 0 var(--tron-glow-spread-lg)
+    color-mix(in oklch, var(--glow-muted) 60%, transparent);
+}
+
+[data-slot="button"],
+[data-slot="card"],
+[data-slot="tron-data-card"] {
+  box-shadow: var(--tron-border-glow);
+  transition:
+    box-shadow var(--tron-transition),
+    border-color var(--tron-transition),
+    background-color var(--tron-transition);
+}
+
+[data-slot="button"]:hover:not(:disabled),
+[data-slot="card"]:hover,
+[data-slot="tron-data-card"]:hover {
+  box-shadow: var(--tron-hover-glow);
+}
+
+[data-slot="input"]:focus,
+[data-slot="textarea"]:focus,
+[data-slot="dialog-content"] {
+  box-shadow: var(--tron-hover-glow);
+}
+
+.glow {
+  box-shadow: var(--tron-border-glow);
+}
+
+.glow-sm {
+  box-shadow: 0 0 var(--tron-glow-spread-sm)
+    color-mix(in oklch, var(--glow) 50%, transparent);
+}
+
+.glow-lg,
+.glow-border,
+.hover\:glow-border:hover {
+  box-shadow: var(--tron-hover-glow);
+}
+
+.glow-pulse {
+  animation: athena-glow-pulse var(--tron-pulse-duration) ease-in-out infinite;
+}
+
+.grid-surface {
+  background-image:
+    linear-gradient(
+      color-mix(in oklch, var(--primary) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--primary) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+}
+
+.scanline-surface::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    color-mix(in oklch, var(--foreground) 3%, transparent) 2px,
+    color-mix(in oklch, var(--foreground) 3%, transparent) 4px
+  );
+}
+
+@keyframes athena-glow-pulse {
+  0%,
+  100% {
+    box-shadow: var(--tron-border-glow);
+  }
+  50% {
+    box-shadow: var(--tron-hover-glow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+  }
 }
