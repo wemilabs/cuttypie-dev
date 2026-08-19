@@ -1,0 +1,86 @@
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+interface BreadcrumbItem {
+  active?: boolean;
+  href?: string;
+  label: string;
+}
+
+interface BreadcrumbNavProps extends React.HTMLAttributes<HTMLElement> {
+  items: BreadcrumbItem[];
+  separator?: "chevron" | "slash" | "dot";
+}
+
+function SeparatorIcon({ type }: { type: string }) {
+  if (type === "slash") {
+    return <span className="font-mono text-[10px] text-foreground/20">/</span>;
+  }
+  if (type === "dot") {
+    return <span className="h-1 w-1 rounded-full bg-foreground/20" />;
+  }
+
+  return (
+    <svg
+      aria-hidden="true"
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      fill="none"
+      className="text-foreground/20"
+    >
+      <path
+        d="M3.5 2l3.5 3-3.5 3"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function BreadcrumbNav({
+  items,
+  separator = "chevron",
+  className,
+  ...props
+}: BreadcrumbNavProps) {
+  return (
+    <nav
+      data-slot="tron-breadcrumb"
+      aria-label="Breadcrumb"
+      className={cn(
+        "inline-flex items-center gap-2 rounded border border-primary/20 bg-card/80 px-3 py-1.5 backdrop-blur-sm",
+        className,
+      )}
+      {...props}
+    >
+      {items.map((item, index) => (
+        <React.Fragment key={`${item.href ?? item.label}-${item.label}`}>
+          {index > 0 && (
+            <span className="flex items-center">
+              <SeparatorIcon type={separator} />
+            </span>
+          )}
+          {item.active ? (
+            <span className="max-w-60 truncate font-mono text-[10px] text-primary tracking-widest">
+              {item.label}
+            </span>
+          ) : item.href ? (
+            <a
+              href={item.href}
+              className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest transition-colors hover:text-primary"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">
+              {item.label}
+            </span>
+          )}
+        </React.Fragment>
+      ))}
+    </nav>
+  );
+}

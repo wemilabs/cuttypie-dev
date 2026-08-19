@@ -1,14 +1,24 @@
-const FAQItem = ({
-  question,
-  answer,
-}: {
-  question: string;
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/accordion";
+
+interface FAQItemProps {
   answer: string;
-}) => (
-  <div className="mb-8">
-    <h3 className="text-xl font-bold mb-3">{question}</h3>
-    <p className="text-muted-foreground leading-relaxed">{answer}</p>
-  </div>
+  question: string;
+  value: string;
+}
+
+const FAQItem = ({ question, answer, value }: FAQItemProps) => (
+  <AccordionItem className="border-primary/20" value={value}>
+    <AccordionTrigger className="font-display text-base uppercase tracking-wide hover:text-primary hover:no-underline">
+      {question}
+    </AccordionTrigger>
+    <AccordionContent className="text-muted-foreground leading-relaxed">
+      {answer}
+    </AccordionContent>
+  </AccordionItem>
 );
 
 export default FAQItem;

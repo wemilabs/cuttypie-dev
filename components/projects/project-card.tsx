@@ -1,98 +1,123 @@
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-
-import type { Project } from "@/lib/data";
+import type { ReactNode } from "react";
+import { GlowContainer } from "@/components/glow-container";
+import { Tag } from "@/components/tag";
+import type { BadgeType, Project } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-export type BadgeType =
-  | "os contribution"
-  | "current"
-  | "in progress"
-  | "paused"
-  | "done";
+export type { BadgeType } from "@/lib/data";
 
-export function ProjectCard({
-  title,
+const fallbackImage =
+  "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIIU0MlBPxpbxQUqOZN6A0LHBjPY4Vlwumcioz";
+
+const badgeVariants: Record<
+  BadgeType,
+  "default" | "success" | "warning" | "danger" | "outline"
+> = {
+  current: "default",
+  done: "success",
+  "in progress": "warning",
+  "os contribution": "outline",
+  paused: "danger",
+};
+
+function ProjectContent({
+  badge,
   description,
   image,
   link,
-  badge,
-  className,
-}: Project) {
+  title,
+}: Pick<Project, "badge" | "description" | "image" | "link" | "title">) {
   return (
-    <div
+    <>
+      <div className="relative aspect-video overflow-hidden border-border/60 border-b bg-muted">
+        <Image
+          src={image ?? fallbackImage}
+          alt={`Preview of ${title}`}
+          fill
+          sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) calc(50vw - 2.5rem), 35rem"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
+        <Tag
+          variant={badgeVariants[badge]}
+          glow={badge !== "os contribution"}
+          className="absolute top-3 left-3 bg-background/90 backdrop-blur-sm"
+        >
+          {badge}
+        </Tag>
+      </div>
+      <div className="flex grow flex-col gap-3 p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-lg transition-colors group-hover:text-primary sm:text-xl">
+            {title}
+          </h3>
+          {link ? (
+            <ArrowUpRight
+              aria-hidden="true"
+              className="mt-1 size-4 shrink-0 text-muted-foreground transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+            />
+          ) : null}
+        </div>
+        <p className="grow text-sm leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+        {link ? (
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
+            View project
+          </span>
+        ) : null}
+      </div>
+    </>
+  );
+}
+
+function ProjectSurface({
+  badge,
+  children,
+  className,
+}: {
+  badge: BadgeType;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <GlowContainer
+      intensity="sm"
       className={cn(
-        "group flex flex-col h-full rounded-xl overflow-hidden border border-border bg-linear-to-b from-muted/50 to-muted/20 backdrop-blur-sm transition-all duration-300 hover:border-brand/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.1)] hover:-translate-y-1",
+        "group h-full overflow-hidden rounded p-0",
+        badge === "paused" && "opacity-60",
         className,
-        badge === "paused" && "opacity-50",
       )}
     >
-      <div className="relative h-28 overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-        <Image
-          src={
-            image ??
-            "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEIIU0MlBPxpbxQUqOZN6A0LHBjPY4Vlwumcioz"
-          }
-          alt={title}
-          width={800}
-          height={450}
-          loading="eager"
-          className="object-cover w-full h-full transform transition-transform duration-500 group-hover:scale-105"
-        />
-        {badge && (
-          <div
-            className={cn(
-              "absolute top-3 left-3 z-20 px-2.5 py-1 text-xs font-medium text-white rounded-full",
-              badge === "paused"
-                ? "bg-red-500/90"
-                : badge === "current"
-                  ? "bg-cyan-500/90"
-                  : badge === "done"
-                    ? "bg-green-500/90"
-                    : badge === "in progress"
-                      ? "bg-amber-500/90"
-                      : "bg-background/90 text-foreground",
-            )}
+      {children}
+    </GlowContainer>
+  );
+}
+
+export function ProjectCard(project: Project) {
+  const { badge, className, link, title } = project;
+
+  return (
+    <article className="h-full">
+      <ProjectSurface badge={badge} className={className}>
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${title} project (opens in a new tab)`}
+            className="flex h-full flex-col rounded outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            {badge}
+            <ProjectContent {...project} />
+          </a>
+        ) : (
+          <div className="flex h-full flex-col">
+            <ProjectContent {...project} />
           </div>
         )}
-      </div>
-      <div className="flex flex-col grow p-5 space-y-3">
-        <div className="flex items-start justify-between">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <h3 className="text-xl font-bold group-hover:text-brand transition-colors">
-              {title}
-            </h3>
-          </a>
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="size-4 text-muted-foreground group-hover:text-brand transition-colors" />
-          </a>
-        </div>
-        <p className="text-muted-foreground text-sm grow">{description}</p>
-        <div className="pt-2">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <span className="text-xs font-medium text-brand/80 group-hover:text-brand transition-colors inline-flex items-center">
-              View project
-              <svg
-                className="w-3.5 h-3.5 ml-1 transform transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
+      </ProjectSurface>
+    </article>
   );
 }

@@ -2,19 +2,17 @@
 
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import {
-  type BadgeType,
-  ProjectCard,
-} from "@/components/projects/project-card";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { projects } from "@/lib/data";
+} from "@/components/dropdown-menu";
+import { ProjectCard } from "@/components/projects/project-card";
+import { Tag } from "@/components/tag";
+import { type BadgeType, projects } from "@/lib/data";
 
 const badgeOrder: Record<BadgeType, number> = {
   done: 0,
@@ -24,75 +22,61 @@ const badgeOrder: Record<BadgeType, number> = {
   paused: 4,
 };
 
+const badgeLabels: Record<"all" | BadgeType, string> = {
+  all: "All projects",
+  current: "Current",
+  done: "Done",
+  "in progress": "In progress",
+  "os contribution": "OS contribution",
+  paused: "Paused",
+};
+
+const filterOptions: ("all" | BadgeType)[] = [
+  "all",
+  "current",
+  "in progress",
+  "paused",
+  "done",
+  "os contribution",
+];
+
+type FilterCounts = Record<"all" | BadgeType, number>;
+
 function BadgeFilter({
+  counts,
   filter,
-  filterFunc,
-  filterQty,
+  onFilterChange,
 }: {
+  counts: FilterCounts;
   filter: "all" | BadgeType;
-  filterFunc: (value: "all" | BadgeType) => void;
-  filterQty: {
-    current: number;
-    inProgress: number;
-    paused: number;
-    done: number;
-    osContribution: number;
-  };
+  onFilterChange: (value: "all" | BadgeType) => void;
 }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
-          {filter === "all"
-            ? "All projects"
-            : filter.charAt(0).toUpperCase() + filter.slice(1)}
-          <ChevronDown className="size-4 ml-2" />
+        <Button
+          variant="outline"
+          size="sm"
+          aria-label={`Filter projects. Current filter: ${badgeLabels[filter]}`}
+          className="font-mono text-[10px] uppercase tracking-widest"
+        >
+          {badgeLabels[filter]}
+          <ChevronDown aria-hidden="true" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-52">
         <DropdownMenuRadioGroup
           value={filter}
-          onValueChange={(value) => filterFunc(value as "all" | BadgeType)}
+          onValueChange={(value) => onFilterChange(value as "all" | BadgeType)}
         >
-          <DropdownMenuRadioItem value="all">
-            All{" "}
-            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
-              {filterQty.current +
-                filterQty.inProgress +
-                filterQty.paused +
-                filterQty.osContribution}
-            </span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="current">
-            Current{" "}
-            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
-              {filterQty.current}
-            </span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="in progress">
-            In progress{" "}
-            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
-              {filterQty.inProgress}
-            </span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="paused">
-            Paused{" "}
-            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
-              {filterQty.paused}
-            </span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="done">
-            Done{" "}
-            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
-              {filterQty.done}
-            </span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="os contribution">
-            OS Contribution{" "}
-            <span className="text-xs text-muted-foreground ml-2 mt-0.5">
-              {filterQty.osContribution}
-            </span>
-          </DropdownMenuRadioItem>
+          {filterOptions.map((option) => (
+            <DropdownMenuRadioItem key={option} value={option}>
+              {badgeLabels[option]}
+              <span className="ml-auto font-mono text-xs text-muted-foreground">
+                {counts[option]}
+              </span>
+            </DropdownMenuRadioItem>
+          ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -102,48 +86,59 @@ function BadgeFilter({
 export function ProjectGrid() {
   const [badgeFilter, setBadgeFilter] = useState<"all" | BadgeType>("all");
 
-  const filterQty = {
-    current: [...projects].filter((project) => project.badge === "current")
-      .length,
-    inProgress: [...projects].filter(
-      (project) => project.badge === "in progress",
-    ).length,
-    paused: [...projects].filter((project) => project.badge === "paused")
-      .length,
-    done: [...projects].filter((project) => project.badge === "done").length,
-    osContribution: [...projects].filter(
-      (project) => project.badge === "os contribution",
-    ).length,
-  };
+  const filterCounts = projects.reduce<FilterCounts>(
+    (counts, project) => {
+      counts[project.badge] += 1;
+      return counts;
+    },
+    {
+      all: projects.length,
+      current: 0,
+      done: 0,
+      "in progress": 0,
+      "os contribution": 0,
+      paused: 0,
+    },
+  );
 
   const filteredAndSortedProjects = [...projects]
     .filter((project) =>
       badgeFilter === "all" ? true : project.badge === badgeFilter,
     )
     .sort((a, b) => {
-      const badgeDiff =
-        (badgeOrder[a.badge as BadgeType] ?? 99) -
-        (badgeOrder[b.badge as BadgeType] ?? 99);
-      if (badgeDiff !== 0) return badgeDiff;
+      const badgeDifference = badgeOrder[a.badge] - badgeOrder[b.badge];
+
+      if (badgeDifference !== 0) {
+        return badgeDifference;
+      }
+
       return a.title.localeCompare(b.title);
     });
 
   return (
     <section
       id="featured-projects"
-      className="max-w-6xl mx-auto px-6 pt-0 pb-16"
+      aria-labelledby="featured-projects-heading"
+      className="mx-auto max-w-6xl scroll-mt-28 px-4 pb-20 sm:px-6 sm:pb-24"
     >
-      <h2 className="text-2xl text-center font-bold mb-8">
-        What I've been working on
-      </h2>
-      <div className="flex justify-end mb-6">
+      <div className="mb-8 flex flex-col gap-5 border-primary/25 border-y py-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="space-y-2">
+          <Tag variant="outline">Selected work</Tag>
+          <h2 id="featured-projects-heading" className="text-2xl sm:text-3xl">
+            What I&apos;ve been working on
+          </h2>
+          <p className="max-w-2xl text-sm text-muted-foreground">
+            Products, experiments, and open-source contributions, ordered by
+            project status.
+          </p>
+        </div>
         <BadgeFilter
+          counts={filterCounts}
           filter={badgeFilter}
-          filterFunc={setBadgeFilter}
-          filterQty={filterQty}
+          onFilterChange={setBadgeFilter}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {filteredAndSortedProjects.map((project) => (
           <ProjectCard key={project.title} {...project} />
         ))}
