@@ -12,6 +12,11 @@ import {
 } from "@/components/dropdown-menu";
 import { ProjectCard } from "@/components/projects/project-card";
 import { Tag } from "@/components/tag";
+import {
+  WheelPicker,
+  type WheelPickerOption,
+  WheelPickerWrapper,
+} from "@/components/wheel-picker";
 import { type BadgeType, projects } from "@/lib/data";
 
 const badgeOrder: Record<BadgeType, number> = {
@@ -83,6 +88,31 @@ function BadgeFilter({
   );
 }
 
+function MobileWheelFilter({
+  filter,
+  onFilterChange,
+}: {
+  filter: "all" | BadgeType;
+  onFilterChange: (value: "all" | BadgeType) => void;
+}) {
+  const options: WheelPickerOption<string>[] = filterOptions.map((option) => ({
+    label: `${badgeLabels[option]}`,
+    value: option,
+  }));
+
+  return (
+    <WheelPickerWrapper className="w-full">
+      <WheelPicker
+        options={options}
+        value={filter}
+        onValueChange={(value) => onFilterChange(value as "all" | BadgeType)}
+        optionItemHeight={36}
+        visibleCount={8}
+      />
+    </WheelPickerWrapper>
+  );
+}
+
 export function ProjectGrid() {
   const [badgeFilter, setBadgeFilter] = useState<"all" | BadgeType>("all");
 
@@ -132,8 +162,16 @@ export function ProjectGrid() {
             project status.
           </p>
         </div>
-        <BadgeFilter
-          counts={filterCounts}
+        <div className="hidden sm:block">
+          <BadgeFilter
+            counts={filterCounts}
+            filter={badgeFilter}
+            onFilterChange={setBadgeFilter}
+          />
+        </div>
+      </div>
+      <div className="mb-8 sm:hidden">
+        <MobileWheelFilter
           filter={badgeFilter}
           onFilterChange={setBadgeFilter}
         />
