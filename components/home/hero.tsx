@@ -1,26 +1,47 @@
+import { ArrowDown, BookOpen } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/button";
+import { HeroSection } from "@/components/hero-section";
 import { Icons } from "@/components/icons";
 
 const Hero = () => {
   return (
-    <section className="flex items-center justify-center pt-18.5 pb-10 px-6 mt-16">
-      <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Hey, I'm <span className="text-brand">lisham_</span>
-        </h1>
-        <p className="text-sm md:text-base tracking-tighter text-muted-foreground font-light mb-4">
-          <span className="font-bold">Full-Stack Developer</span> and{" "}
-          <span className="font-bold">Tech Blogger</span>
-        </p>
-        <div className="flex items-center justify-center">
+    <section className="mx-auto max-w-6xl px-4 pt-8 pb-12 sm:px-6 sm:pt-12 sm:pb-16">
+      <HeroSection
+        align="left"
+        badge="Full-stack developer · Tech blogger"
+        title={
+          <>
+            Hey, I&apos;m{" "}
+            <span className="text-primary glow-text">lisham_</span>
+          </>
+        }
+        description="I build full-stack products and write about technology. Explore the projects I have been working on or read the latest from the blog."
+        className="flex min-h-128 items-center"
+      >
+        <Button asChild size="lg">
+          <a href="#featured-projects">
+            View projects
+            <ArrowDown aria-hidden="true" />
+          </a>
+        </Button>
+        <Button asChild size="lg" variant="outline">
+          <Link href="/blog">
+            Read the blog
+            <BookOpen aria-hidden="true" />
+          </Link>
+        </Button>
+        <Button asChild size="icon-lg" variant="ghost">
           <a
             href="https://github.com/wemilabs"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit lisham on GitHub"
           >
-            <Icons.github className="size-11" />
+            <Icons.github aria-hidden="true" />
           </a>
-        </div>
-      </div>
+        </Button>
+      </HeroSection>
     </section>
   );
 };

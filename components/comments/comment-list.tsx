@@ -1,6 +1,8 @@
 "use client";
 
+import { MessageSquareDashedIcon } from "lucide-react";
 import { useEffect } from "react";
+import { EmptyState } from "@/components/empty-state";
 import { useComments } from "@/components/providers/comments-provider";
 import { SingleComment } from "./single-comment";
 
@@ -17,21 +19,32 @@ export function CommentList({ postSlug }: CommentListProps) {
 
   if (isLoading) {
     return (
-      <div className="text-center text-muted-foreground py-8">
-        <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent mx-auto" />
+      <div className="py-8 text-center text-muted-foreground">
+        <div className="mx-auto size-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        <span className="sr-only">Loading comments</span>
       </div>
     );
   }
 
   if (error) {
-    return <div className="text-center text-red-500 py-8">{error}</div>;
+    return (
+      <div
+        className="rounded border border-destructive/30 bg-destructive/10 px-4 py-6 text-center font-mono text-destructive text-xs"
+        role="alert"
+      >
+        {error}
+      </div>
+    );
   }
 
   if (comments.length === 0) {
     return (
-      <div className="text-center text-muted-foreground py-8">
-        No comments yet. Be the first to comment!
-      </div>
+      <EmptyState
+        className="py-10"
+        description="No transmissions recorded for this post."
+        icon={<MessageSquareDashedIcon className="size-8" />}
+        title="Conversation channel idle"
+      />
     );
   }
 

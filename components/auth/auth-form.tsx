@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/button";
+import { Input } from "@/components/input";
+import { Label } from "@/components/label";
 import { signIn, signUp } from "@/lib/auth-client";
 import { useAuth } from "./auth-context";
 
@@ -44,16 +44,24 @@ export function AuthForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
+        <div
+          className="rounded border border-destructive/30 bg-destructive/10 px-3 py-2 font-mono text-destructive text-xs"
+          role="alert"
+        >
           {error}
         </div>
       )}
 
       {mode === "signup" && (
         <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
+          <Label
+            className="font-mono text-xs uppercase tracking-wider"
+            htmlFor="name"
+          >
+            Name
+          </Label>
           <Input
             id="name"
             name="name"
@@ -66,7 +74,12 @@ export function AuthForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label
+          className="font-mono text-xs uppercase tracking-wider"
+          htmlFor="email"
+        >
+          Email
+        </Label>
         <Input
           id="email"
           name="email"
@@ -78,7 +91,12 @@ export function AuthForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <Label
+          className="font-mono text-xs uppercase tracking-wider"
+          htmlFor="password"
+        >
+          Password
+        </Label>
         <Input
           id="password"
           name="password"
@@ -90,7 +108,11 @@ export function AuthForm() {
         />
       </div>
 
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
+      <Button
+        type="submit"
+        className="w-full font-mono text-xs uppercase tracking-widest"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? (
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
@@ -103,13 +125,13 @@ export function AuthForm() {
         )}
       </Button>
 
-      <p className="text-center text-sm text-muted-foreground">
+      <p className="text-center font-mono text-muted-foreground text-xs">
         {mode === "signin"
           ? "Don't have an account? "
           : "Already have an account? "}
         <button
           type="button"
-          className="underline underline-offset-2 hover:text-foreground"
+          className="text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
           onClick={switchMode}
           disabled={isSubmitting}
         >

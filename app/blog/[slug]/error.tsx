@@ -2,7 +2,7 @@
 
 import { AlertTriangle } from "lucide-react";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/button";
 
 export default function BlogPostError({
   error,
@@ -16,8 +16,8 @@ export default function BlogPostError({
   }, [error]);
 
   return (
-    <div className="flex h-[50vh] flex-col items-center justify-center gap-4 text-center">
-      <div className="flex size-20 items-center justify-center rounded-full bg-muted">
+    <main className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center gap-4 px-6 text-center">
+      <div className="flex size-20 items-center justify-center rounded border border-destructive/30 bg-destructive/10">
         <AlertTriangle className="size-10 text-destructive" />
       </div>
       <h2 className="text-2xl font-bold">Something went wrong!</h2>
@@ -27,6 +27,6 @@ export default function BlogPostError({
       <Button onClick={() => reset()} variant="default">
         Try again
       </Button>
-    </div>
+    </main>
   );
 }

@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/button";
+import { Input } from "@/components/input";
+import { Label } from "@/components/label";
+import { Textarea } from "@/components/textarea";
 import { sendProjectRequest } from "@/lib/actions/send-project-request";
 
 export default function ProjectRequestForm() {
@@ -45,19 +49,34 @@ export default function ProjectRequestForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {error && (
-        <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive">
-          {error}
-        </div>
-      )}
-      {success && (
-        <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-500">
-          Thank you! Your message has been sent successfully.
-        </div>
-      )}
-      <div>
-        <input
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div aria-live="polite">
+        {error && (
+          <div
+            className="rounded border border-destructive/30 bg-destructive/10 p-3 text-destructive text-sm"
+            role="alert"
+          >
+            {error}
+          </div>
+        )}
+        {success && (
+          <div
+            className="rounded border border-primary/30 bg-primary/10 p-3 text-primary text-sm"
+            role="status"
+          >
+            Thank you! Your message has been sent successfully.
+          </div>
+        )}
+      </div>
+      <div className="space-y-2">
+        <Label
+          className="font-mono text-foreground/80 text-xs uppercase tracking-widest"
+          htmlFor="project-name"
+        >
+          Name
+        </Label>
+        <Input
+          id="project-name"
           type="text"
           name="name"
           value={formData.name}
@@ -65,11 +84,18 @@ export default function ProjectRequestForm() {
           placeholder="Name"
           required
           disabled={isSubmitting}
-          className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent placeholder:text-muted-foreground/60 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="h-11 rounded border-primary/20 bg-background/50"
         />
       </div>
-      <div>
-        <input
+      <div className="space-y-2">
+        <Label
+          className="font-mono text-foreground/80 text-xs uppercase tracking-widest"
+          htmlFor="project-email"
+        >
+          Email
+        </Label>
+        <Input
+          id="project-email"
           type="email"
           name="email"
           value={formData.email}
@@ -77,11 +103,18 @@ export default function ProjectRequestForm() {
           placeholder="Email"
           required
           disabled={isSubmitting}
-          className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent placeholder:text-muted-foreground/60 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="h-11 rounded border-primary/20 bg-background/50"
         />
       </div>
-      <div>
-        <textarea
+      <div className="space-y-2">
+        <Label
+          className="font-mono text-foreground/80 text-xs uppercase tracking-widest"
+          htmlFor="project-pitch"
+        >
+          Project pitch
+        </Label>
+        <Textarea
+          id="project-pitch"
           name="pitch"
           value={formData.pitch}
           onChange={handleChange}
@@ -89,16 +122,17 @@ export default function ProjectRequestForm() {
           required
           disabled={isSubmitting}
           rows={4}
-          className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent placeholder:text-muted-foreground/60 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+          className="min-h-32 resize-none rounded border-primary/20 bg-background/50"
         />
       </div>
-      <button
+      <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 bg-brand text-black rounded-lg hover:bg-brand/90 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+        className="w-full uppercase tracking-wider"
+        size="lg"
       >
         {isSubmitting ? "Sending..." : "Submit"}
-      </button>
+      </Button>
     </form>
   );
 }

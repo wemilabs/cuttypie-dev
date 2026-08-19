@@ -1,12 +1,13 @@
 "use client";
 
-import { Button, type ButtonProps } from "@/components/ui/button";
+import type { ComponentProps } from "react";
+import { Button } from "@/components/button";
 import { useAuth } from "./auth-context";
 
-interface CommentAuthButtonProps extends ButtonProps {
+type CommentAuthButtonProps = ComponentProps<typeof Button> & {
   isAuthenticated: boolean;
   onAuthenticated: () => void;
-}
+};
 
 export function CommentAuthButton({
   isAuthenticated,

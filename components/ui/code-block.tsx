@@ -54,22 +54,8 @@ export function CodeBlock({ html }: CodeBlockProps) {
 
       // Create language bar
       const languageBar = document.createElement("div");
-      languageBar.className = "code-language-bar";
-      languageBar.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        background-color: rgba(0, 0, 0, .4);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-family: var(--font-mono);
-        font-size: 0.8rem;
-        color: rgba(255, 255, 255, 0.7);
-      `;
+      languageBar.className =
+        "code-language-bar absolute inset-x-0 top-0 flex h-10 items-center justify-between border-primary/20 border-b bg-card/95 px-4 font-mono text-[10px] text-muted-foreground uppercase tracking-[0.18em] backdrop-blur-sm";
 
       // Add language text
       const languageText = document.createElement("span");

@@ -1,4 +1,9 @@
-import type { BadgeType } from "@/components/projects/project-card";
+export type BadgeType =
+  | "os contribution"
+  | "current"
+  | "in progress"
+  | "paused"
+  | "done";
 
 export interface Project {
   title: string;

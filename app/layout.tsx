@@ -1,16 +1,31 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Orbitron, Rajdhani } from "next/font/google";
 import { ViewTransition } from "react";
 import "./globals.css";
 
 import { AuthModal, AuthProvider } from "@/components/auth";
+import { Footer } from "@/components/shared/footer";
 import Header from "@/components/shared/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const geistMono = Geist_Mono({
+  display: "swap",
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const orbitron = Orbitron({
+  display: "swap",
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+});
+
+const rajdhani = Rajdhani({
+  display: "swap",
+  variable: "--font-rajdhani",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -66,8 +81,16 @@ export const metadata: Metadata = {
 export default function RootLayout(props: LayoutProps<"/">) {
   const { children } = props;
   return (
-    <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
-      <body className={`${geistMono.variable}`}>
+    <html
+      data-theme="athena"
+      data-tron-intensity="medium"
+      data-scroll-behavior="smooth"
+      lang="en"
+      suppressHydrationWarning
+    >
+      <body
+        className={`${geistMono.variable} ${orbitron.variable} ${rajdhani.variable}`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -77,10 +100,11 @@ export default function RootLayout(props: LayoutProps<"/">) {
           <Header />
           <AuthProvider>
             <AuthModal />
-            <main className="min-h-screen">
+            <div className="min-h-screen pt-23">
               <ViewTransition>{children}</ViewTransition>
-            </main>
+            </div>
           </AuthProvider>
+          <Footer />
         </ThemeProvider>
         <Analytics />
       </body>

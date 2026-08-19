@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/button";
 import { useComments } from "@/components/providers/comments-provider";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/textarea";
 import { createComment } from "@/lib/actions/comment";
 import { useSession } from "@/lib/auth-client";
 
@@ -61,7 +61,10 @@ export function CommentForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
+        <div
+          className="rounded border border-destructive/30 bg-destructive/10 px-3 py-2 font-mono text-destructive text-xs"
+          role="alert"
+        >
           {error}
         </div>
       )}
@@ -75,12 +78,16 @@ export function CommentForm({
           minLength={1}
           maxLength={1000}
           disabled={isSubmitting}
-          className="min-h-25"
+          className="min-h-25 border-primary/20 bg-background/50 font-mono text-sm"
         />
       </div>
 
       <div className="flex justify-end">
-        <Button type="submit" disabled={isSubmitting || !content.trim()}>
+        <Button
+          type="submit"
+          className="font-mono text-xs uppercase tracking-widest"
+          disabled={isSubmitting || !content.trim()}
+        >
           {isSubmitting ? (
             <div className="flex items-center gap-2">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />

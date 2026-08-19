@@ -1,45 +1,48 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import { Icons } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/50 backdrop-blur-md border-b border-border">
-      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <Link href="/" className="flex gap-2 items-center">
+    <header className="fixed inset-x-0 top-0 z-50 border-primary/25 border-b bg-background/90 backdrop-blur-xl">
+      <nav
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
+        aria-label="Primary navigation"
+      >
+        <Link href="/" className="group flex items-center gap-3">
           <Image
-            src={
-              "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu"
-            }
+            src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu"
             alt="cuttypie"
             width={36}
             height={36}
-            className="rounded-md"
+            className="size-9 rounded-md border border-primary/40 transition group-hover:border-primary/70"
           />
-          <h1 className="font-bold">
-            lisham
-            <span className="text-brand text-xl font-extrabold">_</span>
-          </h1>
+          <span className="hidden font-display text-sm font-bold tracking-[0.18em] sm:block">
+            LISHAM<span className="text-primary">_</span>
+          </span>
         </Link>
-        <div className="flex gap-6 text-sm font-semibold items-center">
+        <div className="flex items-center gap-1 sm:gap-2">
           <Link
             href="/about"
-            className="hover:text-muted-foreground transition"
+            className="rounded px-3 py-2 font-mono text-[11px] uppercase tracking-widest text-muted-foreground transition hover:bg-primary/10 hover:text-primary"
           >
             About
           </Link>
-          <Link href="/blog" className="hover:text-muted-foreground transition">
+          <Link
+            href="/blog"
+            className="rounded px-3 py-2 font-mono text-[11px] uppercase tracking-widest text-muted-foreground transition hover:bg-primary/10 hover:text-primary"
+          >
             Blog
           </Link>
           <a
             href="https://x.com/mthlish"
-            className="hover:text-muted-foreground transition"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="X / Twitter"
+            className="flex size-9 items-center justify-center rounded text-muted-foreground transition hover:bg-primary/10 hover:text-primary"
           >
-            <Icons.x />
+            <Icons.x className="size-4" />
           </a>
           <ThemeToggle />
         </div>

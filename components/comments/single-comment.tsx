@@ -8,15 +8,15 @@ import {
   PinIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { useComments } from "@/components/providers/comments-provider";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/components/dropdown-menu";
+import { useComments } from "@/components/providers/comments-provider";
+import { Textarea } from "@/components/textarea";
 import {
   deleteComment,
   editComment,
@@ -138,12 +138,12 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
     <div
       className={`group relative ${level > 0 ? "pl-12" : ""} ${
         comment.isPinned && level === 0
-          ? "bg-brand/5 border border-brand/20 rounded-md p-3 shadow-sm"
+          ? "rounded border border-primary/30 bg-primary/5 p-3 shadow-[inset_0_1px_0_color-mix(in_oklab,var(--primary)_10%,transparent)]"
           : ""
       }`}
     >
       {level > 0 && (
-        <div className="absolute left-0 top-8 bottom-0 border-l-2 border-border" />
+        <div className="absolute top-8 bottom-0 left-0 border-primary/20 border-l" />
       )}
 
       <div className="relative space-y-3">
@@ -154,7 +154,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
             <button
               type="button"
               onClick={() => setIsCollapsed(!isCollapsed)}
-              className="mt-1.5 flex size-4 items-center justify-center rounded-sm hover:bg-accent"
+              className="mt-1.5 flex size-4 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
             >
               {isCollapsed ? (
                 <ChevronRightIcon className="size-3" />
@@ -168,11 +168,11 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
             {/* Author Info */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="size-6 rounded-full bg-linear-to-br from-brand to-brand/90 flex items-center justify-center text-xs font-bold text-background">
+                <div className="flex size-7 items-center justify-center rounded border border-primary/30 bg-primary/10 font-mono font-bold text-primary text-xs">
                   {(comment.author.name || "A")[0].toUpperCase()}
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-sm font-medium text-brand">
+                  <span className="font-mono font-medium text-primary text-xs uppercase tracking-wide">
                     {comment.author.name || "Anonymous"}
                   </span>
                   <span className="text-xs text-muted-foreground">
@@ -181,7 +181,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                     })}
                   </span>
                   {comment.isPinned && (
-                    <span className="flex items-center gap-1 text-xs text-brand bg-brand/10 px-2 py-0.5 rounded-full">
+                    <span className="flex items-center gap-1 rounded border border-primary/20 bg-primary/10 px-2 py-0.5 font-mono text-primary text-[10px] uppercase tracking-wider">
                       <PinIcon className="size-3" />
                       Pinned
                     </span>
@@ -195,8 +195,8 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
-                      size="sm"
-                      className="size-8 p-0"
+                      size="icon-sm"
+                      className="text-muted-foreground hover:text-primary"
                       disabled={isDeleting || isEditing || isPinning}
                     >
                       {isDeleting || isPinning ? (
@@ -216,7 +216,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                       </DropdownMenuItem>
                     )}
                     <DropdownMenuItem
-                      className="text-destructive"
+                      variant="destructive"
                       onClick={handleDelete}
                       disabled={isDeleting}
                     >
@@ -236,11 +236,12 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                 <Textarea
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
-                  className="min-h-25 bg-muted/50"
+                  className="min-h-25 border-primary/20 bg-background/50 font-mono text-sm"
                 />
                 <div className="flex items-center gap-2">
                   <Button
                     size="sm"
+                    className="font-mono text-xs uppercase tracking-wider"
                     onClick={handleEdit}
                     disabled={isSubmitting || !editContent.trim()}
                   >
@@ -249,6 +250,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                   <Button
                     variant="ghost"
                     size="sm"
+                    className="font-mono text-xs uppercase tracking-wider"
                     onClick={() => {
                       setIsEditing(false);
                       setEditContent(comment.content);
@@ -272,7 +274,7 @@ export function SingleComment({ comment, level = 0 }: SingleCommentProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-auto px-0 text-xs text-muted-foreground hover:text-foreground"
+                  className="h-auto px-0 font-mono text-muted-foreground text-xs uppercase tracking-wider hover:bg-transparent hover:text-primary"
                   onClick={() => setShowReplyForm(!showReplyForm)}
                 >
                   {showReplyForm ? "Cancel" : "Reply"}
