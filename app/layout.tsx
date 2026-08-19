@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: "lisham_",
     images: [
       {
-        url: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
+        url: "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEI2mPqd16OWeVvZR7TyuB8q0wYA9LGpXglijMJ",
         width: 1200,
         height: 630,
         alt: "lisham_",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     title: "lisham_",
     description: "Lisham's website.",
     images: [
-      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu",
+      "https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEI2mPqd16OWeVvZR7TyuB8q0wYA9LGpXglijMJ",
     ],
     creator: "@mthlish",
   },
