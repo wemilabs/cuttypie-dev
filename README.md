@@ -2,13 +2,13 @@ Built with ❤️ by [Lisham](https://lisham.dev/)
 
 # @findMe
 
-<div>
+<div align="center">
   <a
     href="https://lisham.dev/"
     target="_blank"
     rel="noopener noreferrer"
   >
-    <img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEItcjH8NfMhVmKxAzk0snGS3pR2rOLb8tZ1UHu" alt="Lisham" width="296" />
+    <img src="https://ubrw5iu3hw.ufs.sh/f/TFsxjrtdWsEI2mPqd16OWeVvZR7TyuB8q0wYA9LGpXglijMJ" alt="Lisham" width="600" />
   </a>
 </div>
 
