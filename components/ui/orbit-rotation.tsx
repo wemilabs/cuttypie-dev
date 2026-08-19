@@ -1,8 +1,8 @@
 "use client";
 
-import { createElement, useState } from "react";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import { createElement, useState } from "react";
 
 interface OrbitIcon {
   name: string;
@@ -70,7 +70,7 @@ export function OrbitRotation({
         {[...Array(orbitCount)].map((_, orbitIdx) => {
           const orbitSize = `${8 + orbitGap * (orbitIdx + 1)}rem`;
           const angleStep = (2 * Math.PI) / iconsPerOrbit;
-          const animationDuration = `${12 + orbitIdx * 6}s`;
+          const animationDuration = `${24 + orbitIdx * 12}s`;
 
           return (
             <div
