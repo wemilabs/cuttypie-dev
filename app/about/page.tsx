@@ -138,7 +138,7 @@ export default async function About() {
                   { name: "resend" },
                 ]}
                 centerIcon={{
-                  name: "windsurf",
+                  name: "devin",
                 }}
               />
             </div>

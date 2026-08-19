@@ -25,6 +25,6 @@ For a detailed understanding of this project:
 - [Next.js](https://nextjs.org/) - The React framework
 - [Tailwind CSS](https://tailwindcss.com/) - For a faster and more consistent development experience
 - [Vercel](https://vercel.com/) - For hosting the website and providing a smooth user experience
-- [Windsurf Editor by Codeium](https://codeium.com/windsurf/) - The code editor
+- [Devin Desktop by Cognition](https://devin.ai) - The AI software engineer
 - [Lydia Hallie](https://www.lydiahallie.com/) - The website that inspired me to build this
 - [Lisham](https://lisham.dev/) - The owner of this website
