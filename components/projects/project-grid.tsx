@@ -1,7 +1,5 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
 import { Button } from "@/components/button";
 import {
   DropdownMenu,
@@ -18,14 +16,8 @@ import {
   WheelPickerWrapper,
 } from "@/components/wheel-picker";
 import { type BadgeType, projects } from "@/lib/data";
-
-const badgeOrder: Record<BadgeType, number> = {
-  done: 0,
-  current: 1,
-  "in progress": 2,
-  "os contribution": 3,
-  paused: 4,
-};
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const badgeLabels: Record<"all" | BadgeType, string> = {
   all: "All projects",
@@ -135,15 +127,7 @@ export function ProjectGrid() {
     .filter((project) =>
       badgeFilter === "all" ? true : project.badge === badgeFilter,
     )
-    .sort((a, b) => {
-      const badgeDifference = badgeOrder[a.badge] - badgeOrder[b.badge];
-
-      if (badgeDifference !== 0) {
-        return badgeDifference;
-      }
-
-      return a.title.localeCompare(b.title);
-    });
+    .sort((a, b) => b.position - a.position);
 
   return (
     <section
@@ -158,8 +142,7 @@ export function ProjectGrid() {
             What I&apos;ve been working on
           </h2>
           <p className="max-w-2xl text-sm text-muted-foreground">
-            Products, experiments, and open-source contributions, ordered by
-            project status.
+            Products, experiments, and open-source contributions.
           </p>
         </div>
         <div className="hidden sm:block">
