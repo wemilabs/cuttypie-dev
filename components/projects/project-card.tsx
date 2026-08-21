@@ -1,10 +1,12 @@
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import type { ReactNode } from "react";
 import { GlowContainer } from "@/components/glow-container";
 import { Tag } from "@/components/tag";
 import type { BadgeType, Project } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
+import type { Route } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
 
 export type { BadgeType } from "@/lib/data";
 
@@ -103,15 +105,15 @@ export function ProjectCard(project: Project) {
     <article className="h-full">
       <ProjectSurface badge={badge} className={className}>
         {link ? (
-          <a
-            href={link}
+          <Link
+            href={link as Route}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View ${title} project (opens in a new tab)`}
             className="flex h-full flex-col rounded outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <ProjectContent {...project} />
-          </a>
+          </Link>
         ) : (
           <div className="flex h-full flex-col">
             <ProjectContent {...project} />
